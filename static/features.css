@@ -1,0 +1,16 @@
+.language-setting{display:flex;align-items:center;gap:15px;margin-bottom:12px}.language-setting select{flex:1}
+.settings-tabs button{padding:0 8px;font-size:13px;white-space:normal}.setup-command{display:block;padding:14px 0;overflow-wrap:anywhere;font-size:13px}
+#system-settings{display:flex;flex-direction:column;gap:12px}#system-settings p{line-height:1.5}.button-link{display:inline-flex;padding:12px;border:1px solid var(--accent);border-radius:10px;min-height:48px;align-items:center;justify-content:center}
+.check-label{display:flex!important;flex-direction:row!important;align-items:center;gap:12px;min-height:48px}.check-label input{width:24px;height:24px;accent-color:var(--accent)}
+.target-extras{display:flex;gap:5px;flex-wrap:wrap}.target-extras button{min-height:48px;flex:1;font-size:12px;padding:4px}.target-extras .selected{color:var(--accent);border-color:var(--accent)}
+#plan-dialog,#comparison-dialog{width:min(1000px,calc(100vw - 16px));height:min(650px,calc(100dvh - 16px));max-height:none;padding:12px;overflow:auto}
+#plan-dialog .dialog-title,#comparison-dialog .dialog-title{gap:8px;margin-bottom:8px;min-height:48px}#plan-dialog h2,#comparison-dialog h2{font-size:21px}
+#plan-dialog .dialog-title button,#comparison-dialog .dialog-title button{min-width:48px;min-height:48px;height:48px;flex-shrink:0}
+#altitude-chart{width:100%;height:180px;display:block;border:1px solid var(--line);border-radius:10px;background:var(--panel2)}
+.plan-window{display:flex;gap:14px;align-items:center;padding:8px 0}.plan-window strong{font-size:22px;color:var(--accent);white-space:nowrap}.plan-window p{font-size:12px;line-height:1.45}.chart-legend{display:flex;gap:16px;font-size:12px;color:var(--muted);margin-top:6px}.chart-target{color:var(--accent)}.chart-moon{color:var(--warn)}
+#comparison-dialog[open]{display:flex;flex-direction:column;gap:6px}#comparison-status{font-size:13px;flex:none}#comparison-stage{flex:1;min-height:120px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#030503;border-radius:10px;position:relative}
+#comparison-images{position:relative;max-height:100%;max-width:100%;width:var(--compare-width,100%);aspect-ratio:var(--compare-ratio,1.5)}
+#comparison-images img{width:100%;height:100%;display:block;object-fit:contain}#comparison-reference{position:absolute;inset:0;clip-path:inset(0 0 0 50%)}
+#comparison-controls{display:flex;gap:10px;align-items:center}#comparison-controls label{display:flex;align-items:center;gap:8px;flex:1;font-size:12px;white-space:nowrap}#comparison-swipe{min-width:50px;flex:1;accent-color:var(--accent);height:48px}#comparison-blink{min-height:48px;padding:0 12px;font-size:13px}#comparison-info,#comparison-details{font-size:11px}#start-comparison{min-height:48px}
+.capture-actions{flex-wrap:wrap}.capture-actions button,.capture-actions a{padding:0 9px;font-size:12px}
+@media(max-width:600px){.plan-window{flex-direction:column;align-items:flex-start;gap:4px}#altitude-chart{height:240px}.target-extras{grid-column:1/-1}.settings-tabs{flex-wrap:wrap}.settings-tabs button{flex-basis:30%}.capture-actions{gap:5px}}

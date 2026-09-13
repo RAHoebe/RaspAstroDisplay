@@ -1,0 +1,27 @@
+[Unit]
+Description=Astro Control Panel
+After=network.target
+
+[Service]
+Type=simple
+User=@@USER@@
+SupplementaryGroups=astrodisplay
+WorkingDirectory=@@ROOT@@
+Environment=@@STATE_ENV@@
+Environment=OPENBLAS_NUM_THREADS=1
+Environment=OMP_NUM_THREADS=1
+ExecStart=@@PYTHON@@ @@APP@@
+Restart=always
+RestartSec=5
+TimeoutStopSec=15
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+UMask=0027
+StandardOutput=journal
+StandardError=journal
+LogRateLimitIntervalSec=60
+LogRateLimitBurst=30
+
+[Install]
+WantedBy=multi-user.target

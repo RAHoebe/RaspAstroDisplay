@@ -1,0 +1,13 @@
+{
+  "project": "OpenNGC",
+  "author": "Mattia Verga",
+  "commit": "da90466031b0372c896588b85be6016c617e205b",
+  "license": "CC-BY-SA-4.0",
+  "url": "https://github.com/mattiaverga/OpenNGC",
+  "objects": 12160,
+  "categories": {
+    "galaxy": 10792,
+    "nebula": 433,
+    "cluster": 935
+  }
+}

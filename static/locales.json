@@ -1,0 +1,1930 @@
+[
+ [
+  "Tonight",
+  "Vanavond"
+ ],
+ [
+  "Moon",
+  "Maan"
+ ],
+ [
+  "Weather",
+  "Weer"
+ ],
+ [
+  "Targets",
+  "Doelen"
+ ],
+ [
+  "Captures",
+  "Opnames"
+ ],
+ [
+  "Settings",
+  "Instellingen"
+ ],
+ [
+  "Close settings",
+  "Instellingen sluiten"
+ ],
+ [
+  "Night",
+  "Nacht"
+ ],
+ [
+  "Red night mode",
+  "Rode nachtmodus"
+ ],
+ [
+  "Main navigation",
+  "Hoofdnavigatie"
+ ],
+ [
+  "Loading sky data…",
+  "De hemelgegevens worden opgehaald…"
+ ],
+ [
+  "Location & display",
+  "Locatie & scherm"
+ ],
+ [
+  "Telescopes",
+  "Telescopen"
+ ],
+ [
+  "Search for a place",
+  "Zoek een plaats"
+ ],
+ [
+  "Place name",
+  "Plaatsnaam"
+ ],
+ [
+  "Search",
+  "Zoeken"
+ ],
+ [
+  "Search",
+  "Zoek"
+ ],
+ [
+  "Display brightness",
+  "Schermhelderheid"
+ ],
+ [
+  "Times use the local time zone. Astronomy remains available offline; weather and satellite images are cached with timestamps.",
+  "Tijden volgen de lokale tijdzone. Astronomie blijft offline beschikbaar; weer en satellietbeelden worden bewaard met hun tijdstip."
+ ],
+ [
+  "＋ Other telescope",
+  "＋ Andere telescoop"
+ ],
+ [
+  "Name",
+  "Naam"
+ ],
+ [
+  "Your telescope's name",
+  "Naam van je telescoop"
+ ],
+ [
+  "Width (°)",
+  "Breedte (°)"
+ ],
+ [
+  "Height (°)",
+  "Hoogte (°)"
+ ],
+ [
+  "Cancel",
+  "Annuleren"
+ ],
+ [
+  "Save",
+  "Opslaan"
+ ],
+ [
+  "Field of view of one telephoto exposure, width × height. Choose your default telescope. Frame orientation is illustrative; EQ mode and alt-az mounting determine the actual orientation.",
+  "Beeldveld van één tele-opname, breedte × hoogte. Kies je standaardtelescoop. De voorbeeldstand van het kader is indicatief; EQ-modus en alt-az-opstelling bepalen de werkelijke stand."
+ ],
+ [
+  "View target",
+  "Doel bekijken"
+ ],
+ [
+  "Close target",
+  "Doel sluiten"
+ ],
+ [
+  "Reference image",
+  "Referentiebeeld"
+ ],
+ [
+  "My captures",
+  "Mijn opnames"
+ ],
+ [
+  "＋ Add capture",
+  "＋ Opname toevoegen"
+ ],
+ [
+  "Reference image with telescope field of view",
+  "Referentiebeeld met telescoopbeeldveld"
+ ],
+ [
+  "Reload",
+  "Opnieuw laden"
+ ],
+ [
+  "Telescope · one exposure",
+  "Telescoop · één opname"
+ ],
+ [
+  "Telescope for field of view",
+  "Telescoop voor beeldveld"
+ ],
+ [
+  "Zoom to target",
+  "Zoom op doel"
+ ],
+ [
+  "Zoom to field of view",
+  "Zoom op beeldveld"
+ ],
+ [
+  "Illustrative frame orientation.",
+  "Kaderstand indicatief."
+ ],
+ [
+  "No camera rotation; actual orientation depends on setup and time.",
+  "Geen camerarotatie; werkelijke stand hangt af van opstelling en tijd."
+ ],
+ [
+  "Filter targets",
+  "Doelen filteren"
+ ],
+ [
+  "Close filters",
+  "Filters sluiten"
+ ],
+ [
+  "Observing period",
+  "Waarneemperiode"
+ ],
+ [
+  "Coming night",
+  "Komende nacht"
+ ],
+ [
+  "Above horizon now",
+  "Nu boven horizon"
+ ],
+ [
+  "Next 24 hours",
+  "Komende 24 uur"
+ ],
+ [
+  "Target type",
+  "Soort doel"
+ ],
+ [
+  "All types",
+  "Alle soorten"
+ ],
+ [
+  "Nebulae",
+  "Nevels"
+ ],
+ [
+  "Galaxies",
+  "Sterrenstelsels"
+ ],
+ [
+  "Star clusters",
+  "Sterrenhopen"
+ ],
+ [
+  "Bright planets",
+  "Heldere planeten"
+ ],
+ [
+  "Find target",
+  "Doel zoeken"
+ ],
+ [
+  "Name / M / NGC / IC",
+  "Naam / M / NGC / IC"
+ ],
+ [
+  "⌨ Keyboard",
+  "⌨ Toetsenbord"
+ ],
+ [
+  "Apply filters",
+  "Filters toepassen"
+ ],
+ [
+  "Recommended combines altitude (40%), frame coverage (30%) and brightness (30%), with additional penalties for low and very small targets. This is an estimate; weather, filters and exposure also affect results. Size and light distribution are approximate. Unknown brightness receives a neutral score.",
+  "Aanbevolen combineert hoogte (40%), beeldvulling (30%) en helderheid (30%), met extra afwaardering voor lage en heel kleine doelen. Schatting; weer, filters en belichting bepalen mede het resultaat. Grootte en lichtspreiding zijn benaderingen. Onbekende helderheid telt neutraal mee."
+ ],
+ [
+  "Add capture",
+  "Opname toevoegen"
+ ],
+ [
+  "Close upload",
+  "Upload sluiten"
+ ],
+ [
+  "Find object",
+  "Object zoeken"
+ ],
+ [
+  "For example M31 or Heart Nebula",
+  "Bijvoorbeeld M31 of Hartnevel"
+ ],
+ [
+  "Telescope",
+  "Telescoop"
+ ],
+ [
+  "Photos · JPG/JPEG or PNG",
+  "Foto’s · JPG/JPEG of PNG"
+ ],
+ [
+  "Capture date (optional)",
+  "Opnamedatum (optioneel)"
+ ],
+ [
+  "Note (optional)",
+  "Notitie (optioneel)"
+ ],
+ [
+  "Maximum 25 MB and 32 megapixels per photo. The original is retained on the Pi. Select files from this device; you can also open this page on your phone or computer.",
+  "Maximaal 25 MB en 32 megapixels per foto. Origineel blijft bewaard op de Pi. Selecteer bestanden vanaf dit apparaat; je kunt deze pagina ook op je telefoon of computer openen."
+ ],
+ [
+  "Upload to Pi",
+  "Uploaden naar Pi"
+ ],
+ [
+  "Capture",
+  "Opname"
+ ],
+ [
+  "Close capture",
+  "Opname sluiten"
+ ],
+ [
+  "Own capture",
+  "Eigen opname"
+ ],
+ [
+  "Previous capture",
+  "Vorige opname"
+ ],
+ [
+  "Next capture",
+  "Volgende opname"
+ ],
+ [
+  "Enlarge",
+  "Vergroten"
+ ],
+ [
+  "Original",
+  "Origineel"
+ ],
+ [
+  "Go to object",
+  "Naar object"
+ ],
+ [
+  "Trash",
+  "Prullenbak"
+ ],
+ [
+  "Keyboard",
+  "Toetsenbord"
+ ],
+ [
+  "Enter text",
+  "Tekst invoeren"
+ ],
+ [
+  "Done",
+  "Gereed"
+ ],
+ [
+  "Space",
+  "Spatie"
+ ],
+ [
+  "Clear",
+  "Wis"
+ ],
+ [
+  "No event",
+  "Geen gebeurtenis"
+ ],
+ [
+  "No event in this period",
+  "Geen gebeurtenis in deze periode"
+ ],
+ [
+  "Preparing local sky calculations…",
+  "De lokale hemelberekeningen worden voorbereid…"
+ ],
+ [
+  "A clear opportunity",
+  "Een heldere kans"
+ ],
+ [
+  "Between the clouds",
+  "Tussen de wolken"
+ ],
+ [
+  "Mostly cloudy",
+  "Veel bewolking"
+ ],
+ [
+  "Your observing night",
+  "Jouw waarneemnacht"
+ ],
+ [
+  "Average {0}% cloud cover expected",
+  "Gemiddeld {0}% bewolking verwacht"
+ ],
+ [
+  "A promising window for stargazing.",
+  "Een kansrijk venster voor sterrenkijken."
+ ],
+ [
+  "Check the cloud map before going outside.",
+  "Controleer de wolkenkaart voor je naar buiten gaat."
+ ],
+ [
+  "No astronomical darkness remains in this observing night.",
+  "Geen astronomische duisternis meer in deze waarneemnacht."
+ ],
+ [
+  "No reliable weather advice available yet.",
+  "Nog geen betrouwbaar weeradvies beschikbaar."
+ ],
+ [
+  "No complete two-hour dark window remains.",
+  "Geen volledig donker venster van twee uur meer beschikbaar."
+ ],
+ [
+  "Best 2 hours based on cloud cover and moonlight.",
+  "Gunstigste 2 uur op basis van bewolking en maanlicht."
+ ],
+ [
+  "Astronomical times are calculated locally.",
+  "Astronomische tijden worden lokaal berekend."
+ ],
+ [
+  "temperature",
+  "temperatuur"
+ ],
+ [
+  "moon illuminated",
+  "maan verlicht"
+ ],
+ [
+  "Cloud cover by hour",
+  "Bewolking per uur"
+ ],
+ [
+  "Outdated",
+  "Verouderd"
+ ],
+ [
+  "Next 8 hours",
+  "Komende 8 uur"
+ ],
+ [
+  "Dark sky",
+  "Donkere hemel"
+ ],
+ [
+  "bar height = cloud cover",
+  "balkhoogte = bewolking"
+ ],
+ [
+  "Fetching weather data…",
+  "Weergegevens worden opgehaald…"
+ ],
+ [
+  "Astronomical darkness",
+  "Astronomisch donker"
+ ],
+ [
+  "No darkness",
+  "Geen duisternis"
+ ],
+ [
+  "Sun below −18°",
+  "Zon lager dan −18°"
+ ],
+ [
+  "Sun stays above −18°",
+  "De zon blijft boven −18°"
+ ],
+ [
+  "Sunset {0}",
+  "Zon onder {0}"
+ ],
+ [
+  "Moon now",
+  "Maan nu"
+ ],
+ [
+  "Above the horizon",
+  "Boven de horizon"
+ ],
+ [
+  "Below the horizon",
+  "Onder de horizon"
+ ],
+ [
+  "Calculating the Moon's position…",
+  "De maanstand wordt berekend…"
+ ],
+ [
+  "Schematic moon phase: {0}, {1} percent illuminated",
+  "Schematische maanfase: {0}, {1} procent verlicht"
+ ],
+ [
+  "% illuminated",
+  "% verlicht"
+ ],
+ [
+  "Schematic phase",
+  "Schematische fase"
+ ],
+ [
+  "north up",
+  "noord boven"
+ ],
+ [
+  "Altitude now",
+  "Hoogte nu"
+ ],
+ [
+  "above horizon",
+  "boven horizon"
+ ],
+ [
+  "below horizon",
+  "onder horizon"
+ ],
+ [
+  "Direction",
+  "Richting"
+ ],
+ [
+  "{0}° azimuth",
+  "{0}° azimut"
+ ],
+ [
+  "Distance",
+  "Afstand"
+ ],
+ [
+  "kilometers",
+  "kilometer"
+ ],
+ [
+  "Next rise",
+  "Volgende opkomst"
+ ],
+ [
+  "Next set",
+  "Volgende ondergang"
+ ],
+ [
+  "New Moon",
+  "Nieuwe maan"
+ ],
+ [
+  "Full Moon",
+  "Volle maan"
+ ],
+ [
+  "times in {0}",
+  "tijden in {0}"
+ ],
+ [
+  "Clouds over the region",
+  "Wolken boven de regio"
+ ],
+ [
+  "Weather in {0}",
+  "Het weer in {0}"
+ ],
+ [
+  "Forecast",
+  "Verwachting"
+ ],
+ [
+  "Cloud map",
+  "Wolkenkaart"
+ ],
+ [
+  "Temperature",
+  "Temperatuur"
+ ],
+ [
+  "feels like {0}",
+  "voelt als {0}"
+ ],
+ [
+  "Cloud cover",
+  "Bewolking"
+ ],
+ [
+  "total cover",
+  "totale bedekking"
+ ],
+ [
+  "Wind",
+  "Wind"
+ ],
+ [
+  "km/h · gusts {0}",
+  "km/u · vlagen {0}"
+ ],
+ [
+  "Humidity",
+  "Vochtigheid"
+ ],
+ [
+  "dew point {0}",
+  "dauwpunt {0}"
+ ],
+ [
+  "Precipitation",
+  "Neerslag"
+ ],
+ [
+  "mm this interval",
+  "mm dit interval"
+ ],
+ [
+  "Time",
+  "Tijd"
+ ],
+ [
+  "Clouds",
+  "Wolken"
+ ],
+ [
+  "Rain",
+  "Regen"
+ ],
+ [
+  "Chance",
+  "Kans"
+ ],
+ [
+  "Low",
+  "Laag"
+ ],
+ [
+  "Mid",
+  "Midden"
+ ],
+ [
+  "High",
+  "Hoog"
+ ],
+ [
+  "Play",
+  "Afspelen"
+ ],
+ [
+  "Pause",
+  "Pauze"
+ ],
+ [
+  "Previous image",
+  "Vorig beeld"
+ ],
+ [
+  "Next image",
+  "Volgend beeld"
+ ],
+ [
+  "Satellite time",
+  "Satelliettijd"
+ ],
+ [
+  "Observing targets",
+  "Waarneemdoelen"
+ ],
+ [
+  "Calculating observing targets…",
+  "Waarneemdoelen worden berekend…"
+ ],
+ [
+  "Calculating observing targets.",
+  "Waarneemdoelen worden berekend."
+ ],
+ [
+  "Recommended",
+  "Aanbevolen"
+ ],
+ [
+  "Altitude now ↓",
+  "Hoogte nu ↓"
+ ],
+ [
+  "Night altitude ↓",
+  "Hoogte nacht ↓"
+ ],
+ [
+  "Largest first",
+  "Grootste eerst"
+ ],
+ [
+  "Smallest first",
+  "Kleinste eerst"
+ ],
+ [
+  "Brightest first",
+  "Helderste eerst"
+ ],
+ [
+  "size unknown",
+  "maat onbekend"
+ ],
+ [
+  "Target list could not be loaded.",
+  "Doelenlijst kon niet worden geladen."
+ ],
+ [
+  "{0} targets",
+  "{0} doelen"
+ ],
+ [
+  "nebulae",
+  "nevels"
+ ],
+ [
+  "View Moon",
+  "Bekijk Maan"
+ ],
+ [
+  "☾ Moon",
+  "☾ Maan"
+ ],
+ [
+  "{0}% illuminated",
+  "{0}% verlicht"
+ ],
+ [
+  "Previous targets",
+  "Vorige doelen"
+ ],
+ [
+  "Next targets",
+  "Volgende doelen"
+ ],
+ [
+  "Telescope for recommendations",
+  "Telescoop voor aanbevelingen"
+ ],
+ [
+  "Sort targets",
+  "Doelen sorteren"
+ ],
+ [
+  "Filters / search",
+  "Filters / zoeken"
+ ],
+ [
+  "Filters / search ●",
+  "Filters / zoeken ●"
+ ],
+ [
+  "View {0}",
+  "Bekijk {0}"
+ ],
+ [
+  "Captures of {0} with {1}",
+  "Opnames {0} met {1}"
+ ],
+ [
+  "{0} captures",
+  "{0} opnames"
+ ],
+ [
+  "now",
+  "nu"
+ ],
+ [
+  "Loading catalog…",
+  "De catalogus wordt geladen…"
+ ],
+ [
+  "No targets match these filters.",
+  "Geen doelen voor deze filters."
+ ],
+ [
+  "Advice ≈",
+  "Advies ≈"
+ ],
+ [
+  "no guarantee",
+  "geen garantie"
+ ],
+ [
+  "% = long frame edge",
+  "% = lange beeldrand"
+ ],
+ [
+  "above horizon ≠ suitable for imaging",
+  "boven horizon ≠ goed fotografeerbaar"
+ ],
+ [
+  "Capture counts unavailable",
+  "Opnametellers niet bereikbaar"
+ ],
+ [
+  "default",
+  "standaard"
+ ],
+ [
+  "Remove {0}",
+  "Verwijder {0}"
+ ],
+ [
+  "Could not save.",
+  "Opslaan is niet gelukt."
+ ],
+ [
+  "Telescope settings saved.",
+  "Telescoopinstellingen opgeslagen."
+ ],
+ [
+  "Could not load telescope settings.",
+  "Telescoopinstellingen konden niet worden geladen."
+ ],
+ [
+  "target",
+  "doel"
+ ],
+ [
+  "N ↑ · E ←",
+  "N ↑ · O ←"
+ ],
+ [
+  "Frame is (partly) outside the image",
+  "Kader valt (deels) buiten beeld"
+ ],
+ [
+  "Frame = one exposure",
+  "Kader = één opname"
+ ],
+ [
+  "Calculating field of view…",
+  "Beeldveld berekenen…"
+ ],
+ [
+  "Loading image…",
+  "Beeld laden…"
+ ],
+ [
+  "Could not load target data.",
+  "Doelgegevens konden niet worden geladen."
+ ],
+ [
+  "Advice ({0}): {1}",
+  "Advies ({0}): {1}"
+ ],
+ [
+  "Estimate.",
+  "Schatting."
+ ],
+ [
+  "{0} of the long frame edge",
+  "{0} van de lange beeldrand"
+ ],
+ [
+  "Size unknown",
+  "Afmeting onbekend"
+ ],
+ [
+  "Best altitude {0}° at {1}",
+  "Beste hoogte {0}° om {1}"
+ ],
+ [
+  "Currently below the horizon.",
+  "Nu onder de horizon."
+ ],
+ [
+  "Now {0}° {1}",
+  "Nu {0}° {1}"
+ ],
+ [
+  "field width {0}°",
+  "beeldbreedte {0}°"
+ ],
+ [
+  "Context",
+  "Context"
+ ],
+ [
+  "Schematic current moon phase",
+  "Schematische actuele maanfase"
+ ],
+ [
+  "archive image",
+  "archiefbeeld"
+ ],
+ [
+  "{0} min above 30°",
+  "{0} min boven 30°"
+ ],
+ [
+  "usable frame coverage ≈",
+  "bruikbare beeldvulling ≈"
+ ],
+ [
+  "brightness unknown",
+  "helderheid onbekend"
+ ],
+ [
+  "coming night",
+  "komende nacht"
+ ],
+ [
+  "current position",
+  "huidige positie"
+ ],
+ [
+  "next 24 hours",
+  "komende 24 uur"
+ ],
+ [
+  "Planet",
+  "Planeet"
+ ],
+ [
+  "Saturn",
+  "Saturnus"
+ ],
+ [
+  "Waxing crescent",
+  "Wassende sikkel"
+ ],
+ [
+  "First quarter",
+  "Eerste kwartier"
+ ],
+ [
+  "Waxing gibbous",
+  "Wassende maan"
+ ],
+ [
+  "Waning gibbous",
+  "Afnemende maan"
+ ],
+ [
+  "Last quarter",
+  "Laatste kwartier"
+ ],
+ [
+  "Waning crescent",
+  "Afnemende sikkel"
+ ],
+ [
+  "Daylight",
+  "Daglicht"
+ ],
+ [
+  "Civil twilight",
+  "Burgerlijke schemering"
+ ],
+ [
+  "Nautical twilight",
+  "Nautische schemering"
+ ],
+ [
+  "Astronomical twilight",
+  "Astronomische schemering"
+ ],
+ [
+  "Astronomically dark",
+  "Astronomisch donker"
+ ],
+ [
+  "NNE",
+  "NNO"
+ ],
+ [
+  "NE",
+  "NO"
+ ],
+ [
+  "ENE",
+  "ONO"
+ ],
+ [
+  "E",
+  "O"
+ ],
+ [
+  "ESE",
+  "OZO"
+ ],
+ [
+  "SE",
+  "ZO"
+ ],
+ [
+  "SSE",
+  "ZZO"
+ ],
+ [
+  "S",
+  "Z"
+ ],
+ [
+  "SSW",
+  "ZZW"
+ ],
+ [
+  "SW",
+  "ZW"
+ ],
+ [
+  "WSW",
+  "WZW"
+ ],
+ [
+  "Emission nebula",
+  "Emissienevel"
+ ],
+ [
+  "Reflection nebula",
+  "Reflectienevel"
+ ],
+ [
+  "Planetary nebula",
+  "Planetaire nevel"
+ ],
+ [
+  "Supernova remnant",
+  "Supernovarest"
+ ],
+ [
+  "Dark nebula",
+  "Donkere nevel"
+ ],
+ [
+  "Nebula",
+  "Nevel"
+ ],
+ [
+  "Galaxy",
+  "Sterrenstelsel"
+ ],
+ [
+  "Open cluster",
+  "Open sterrenhoop"
+ ],
+ [
+  "Globular cluster",
+  "Bolvormige sterrenhoop"
+ ],
+ [
+  "Cluster with nebulosity",
+  "Sterrenhoop met nevel"
+ ],
+ [
+  "HII region",
+  "HII-gebied"
+ ],
+ [
+  "Catalog size ≈",
+  "Catalogusmaat ≈"
+ ],
+ [
+  "faint extensions may reach farther",
+  "zwakke uitlopers kunnen verder reiken"
+ ],
+ [
+  "Size unknown",
+  "Afmeting onbekend"
+ ],
+ [
+  "no size percentage available",
+  "geen groottepercentage beschikbaar"
+ ],
+ [
+  "Current disk diameter",
+  "Actuele schijfdiameter"
+ ],
+ [
+  "excluding rings",
+  "zonder ringen"
+ ],
+ [
+  "North America Nebula",
+  "Noord-Amerikanevel"
+ ],
+ [
+  "Heart Nebula",
+  "Hartnevel"
+ ],
+ [
+  "Soul Nebula",
+  "Zielnevel"
+ ],
+ [
+  "Orion Nebula",
+  "Orionnevel"
+ ],
+ [
+  "Ring Nebula",
+  "Ringnevel"
+ ],
+ [
+  "Dumbbell Nebula",
+  "Halternevel"
+ ],
+ [
+  "Eastern Veil Nebula",
+  "Sluiernevel oost"
+ ],
+ [
+  "Western Veil Nebula",
+  "Sluiernevel west"
+ ],
+ [
+  "Andromeda Galaxy",
+  "Andromedastelsel"
+ ],
+ [
+  "Pleiades",
+  "Plejaden"
+ ],
+ [
+  "Lagoon Nebula",
+  "Lagunenevel"
+ ],
+ [
+  "Eagle Nebula",
+  "Adelaarsnevel"
+ ],
+ [
+  "Trifid Nebula",
+  "Trifidnevel"
+ ],
+ [
+  "Rosette Nebula",
+  "Rosettenevel"
+ ],
+ [
+  "Crescent Nebula",
+  "Sikkelnevel"
+ ],
+ [
+  "capture",
+  "opname"
+ ],
+ [
+  "upload",
+  "upload"
+ ],
+ [
+  "Could not load captures.",
+  "Opnames konden niet worden geladen."
+ ],
+ [
+  "View capture {0} with {1}",
+  "Bekijk opname {0} met {1}"
+ ],
+ [
+  "newest uploads first",
+  "nieuwste uploads eerst"
+ ],
+ [
+  "Back",
+  "Terug"
+ ],
+ [
+  "Previous captures",
+  "Vorige opnames"
+ ],
+ [
+  "Next captures",
+  "Volgende opnames"
+ ],
+ [
+  "Filter captures by telescope",
+  "Opnames filteren op telescoop"
+ ],
+ [
+  "All telescopes",
+  "Alle telescopen"
+ ],
+ [
+  "Search captures",
+  "Opnames zoeken"
+ ],
+ [
+  "Object / note",
+  "Object / notitie"
+ ],
+ [
+  "Retry",
+  "Opnieuw"
+ ],
+ [
+  "Loading captures…",
+  "Opnames laden…"
+ ],
+ [
+  "Trash is empty.",
+  "De prullenbak is leeg."
+ ],
+ [
+  "No captures for this selection yet. Upload JPG or PNG from this page on your phone or computer, or from an object's page.",
+  "Nog geen opnames voor deze selectie. Upload JPG of PNG via deze pagina op je telefoon of computer, of bij een object."
+ ],
+ [
+  "Originals {0} MB",
+  "Originelen {0} MB"
+ ],
+ [
+  "{0} GB free on Pi",
+  "{0} GB vrij op Pi"
+ ],
+ [
+  "Storage on Pi",
+  "Opslag op Pi"
+ ],
+ [
+  "Files are retained; restore from the photo viewer.",
+  "Bestanden blijven bewaard; herstellen via de foto."
+ ],
+ [
+  "Own captures",
+  "Eigen opnames"
+ ],
+ [
+  "no FOV overlay",
+  "geen FOV-overlay"
+ ],
+ [
+  "selected telescope",
+  "gekozen telescoop"
+ ],
+ [
+  "Loading own captures…",
+  "Eigen opnames laden…"
+ ],
+ [
+  "Telescope for own captures",
+  "Telescoop voor eigen opnames"
+ ],
+ [
+  "Previous own captures",
+  "Vorige eigen opnames"
+ ],
+ [
+  "Next own captures",
+  "Volgende eigen opnames"
+ ],
+ [
+  "No captures with this telescope yet. Add a JPG or PNG.",
+  "Nog geen opnames met deze telescoop. Voeg een JPG of PNG toe."
+ ],
+ [
+  "Loading failed.",
+  "Laden mislukt."
+ ],
+ [
+  "Fit",
+  "Passend"
+ ],
+ [
+  "Restore",
+  "Herstellen"
+ ],
+ [
+  "Own capture of {0} with {1}",
+  "Eigen opname van {0} met {1}"
+ ],
+ [
+  "Image could not be loaded. You can still download the original.",
+  "Afbeelding kon niet worden geladen. Het origineel blijft via de downloadknop bereikbaar."
+ ],
+ [
+  "Could not load the next capture.",
+  "Volgende opname kon niet worden geladen."
+ ],
+ [
+  "Change failed.",
+  "Wijziging mislukt."
+ ],
+ [
+  "Upload failed.",
+  "Upload mislukt."
+ ],
+ [
+  "{0} of {1} captures saved.",
+  "{0} van {1} opnames opgeslagen."
+ ],
+ [
+  "You can close this window.",
+  "Je kunt dit venster sluiten."
+ ],
+ [
+  "{0}: JPG/PNG only, up to 25 MB.",
+  "{0}: alleen JPG/PNG tot 25 MB."
+ ],
+ [
+  "Settings could not be loaded.",
+  "Instellingen konden niet worden geladen."
+ ],
+ [
+  "Minimum 5%, so you can always find the display.",
+  "Minimaal 5%, zodat je het scherm altijd kunt terugvinden."
+ ],
+ [
+  "Brightness control is only available on the Pi display.",
+  "Helderheidsregeling is alleen beschikbaar op het Pi-scherm."
+ ],
+ [
+  "Brightness saved.",
+  "Helderheid opgeslagen."
+ ],
+ [
+  "Searching places…",
+  "Plaatsen zoeken…"
+ ],
+ [
+  "No place found.",
+  "Geen plaats gevonden."
+ ],
+ [
+  "Search is temporarily unavailable.",
+  "Zoeken is tijdelijk niet beschikbaar."
+ ],
+ [
+  "Connection to the Pi lost",
+  "Verbinding met de Pi verbroken"
+ ],
+ [
+  "last received data",
+  "laatst ontvangen gegevens"
+ ],
+ [
+  "Astronomy",
+  "Astronomie"
+ ],
+ [
+  "{0} outdated",
+  "{0} verouderd"
+ ],
+ [
+  "{0} temporarily unavailable",
+  "{0} tijdelijk niet bereikbaar"
+ ],
+ [
+  "Calculated locally {0}",
+  "Lokaal berekend {0}"
+ ],
+ [
+  "weather {0}",
+  "weer {0}"
+ ],
+ [
+  "satellite {0}",
+  "satelliet {0}"
+ ],
+ [
+  "Preparing data…",
+  "Gegevens worden voorbereid…"
+ ],
+ [
+  "Satellite image unavailable",
+  "Satellietbeeld niet beschikbaar"
+ ],
+ [
+  "retrying automatically",
+  "automatisch opnieuw proberen"
+ ],
+ [
+  "Language",
+  "Taal"
+ ],
+ [
+  "English (US)",
+  "English (US)"
+ ],
+ [
+  "Nederlands",
+  "Nederlands"
+ ],
+ [
+  "Language saved.",
+  "Taal opgeslagen."
+ ],
+ [
+  "System & backup",
+  "Systeem & back-up"
+ ],
+ [
+  "Display setup",
+  "Scherm instellen"
+ ],
+ [
+  "Run the display wizard on the Pi to choose the screen, rotation and interface size.",
+  "Start de schermwizard op de Pi om scherm, rotatie en interfacegrootte te kiezen."
+ ],
+ [
+  "Download ZIP backup",
+  "ZIP-back-up downloaden"
+ ],
+ [
+  "Create backup",
+  "Back-up maken"
+ ],
+ [
+  "Creating a consistent backup…",
+  "Een consistente back-up wordt gemaakt…"
+ ],
+ [
+  "Backup ready",
+  "Back-up gereed"
+ ],
+ [
+  "Original photos, trash, favorites, telescopes, location and language are included.",
+  "Originele foto's, prullenbak, favorieten, telescopen, locatie en taal zijn inbegrepen."
+ ],
+ [
+  "Altitude & time",
+  "Hoogte & tijd"
+ ],
+ [
+  "Altitude through the night",
+  "Hoogte gedurende de nacht"
+ ],
+ [
+  "Close altitude chart",
+  "Hoogtegrafiek sluiten"
+ ],
+ [
+  "Best imaging window",
+  "Beste opnametijdvak"
+ ],
+ [
+  "Loading altitude chart…",
+  "Hoogtegrafiek laden…"
+ ],
+ [
+  "No continuous window of at least 30 minutes above 30° with the Sun below −12°.",
+  "Geen aaneengesloten tijdvak van minimaal 30 minuten boven 30° met de zon onder −12°."
+ ],
+ [
+  "Geometric estimate; weather unavailable.",
+  "Geometrische schatting; weer niet beschikbaar."
+ ],
+ [
+  "Cloud forecast suggests poor conditions.",
+  "Volgens de wolkenverwachting zijn de omstandigheden ongunstig."
+ ],
+ [
+  "Estimated window; check local clouds and obstructions.",
+  "Geschat tijdvak; controleer lokale wolken en obstakels."
+ ],
+ [
+  "Target altitude",
+  "Hoogte doel"
+ ],
+ [
+  "Moon altitude",
+  "Hoogte maan"
+ ],
+ [
+  "Cloud forecast",
+  "Wolkenverwachting"
+ ],
+ [
+  "Dark shading: Sun below −12°. Dashed line: 30° altitude.",
+  "Donkere achtergrond: zon onder −12°. Stippellijn: 30° hoogte."
+ ],
+ [
+  "Favorite",
+  "Favoriet"
+ ],
+ [
+  "★ Favorite",
+  "★ Favoriet"
+ ],
+ [
+  "☆ Favorite",
+  "☆ Favoriet"
+ ],
+ [
+  "Favorites only",
+  "Alleen favorieten"
+ ],
+ [
+  "Not captured with this telescope",
+  "Nog niet met deze telescoop opgenomen"
+ ],
+ [
+  "All capture histories",
+  "Alle opnamegeschiedenissen"
+ ],
+ [
+  "Favorite saved.",
+  "Favoriet opgeslagen."
+ ],
+ [
+  "Favorites are saved separately for each telescope.",
+  "Favorieten worden per telescoop opgeslagen."
+ ],
+ [
+  "Loading capture history…",
+  "Opnamegeschiedenis laden…"
+ ],
+ [
+  "Compare",
+  "Vergelijken"
+ ],
+ [
+  "Compare capture",
+  "Opname vergelijken"
+ ],
+ [
+  "Close comparison",
+  "Vergelijking sluiten"
+ ],
+ [
+  "Align locally",
+  "Lokaal uitlijnen"
+ ],
+ [
+  "Local star matching keeps your photograph on this Pi. Only sky coordinates are sent to the reference image service.",
+  "Lokale sterherkenning houdt je foto op deze Pi. Alleen hemelcoördinaten worden naar de referentiebeelddienst gestuurd."
+ ],
+ [
+  "Queued",
+  "In wachtrij"
+ ],
+ [
+  "Matching stars locally…",
+  "Sterren lokaal herkennen…"
+ ],
+ [
+  "Loading and aligning reference…",
+  "Referentie laden en uitlijnen…"
+ ],
+ [
+  "Comparison ready",
+  "Vergelijking gereed"
+ ],
+ [
+  "Reference",
+  "Referentie"
+ ],
+ [
+  "Own photo",
+  "Eigen foto"
+ ],
+ [
+  "Swipe comparison",
+  "Vergelijking met schuifregelaar"
+ ],
+ [
+  "Blink",
+  "Afwisselen"
+ ],
+ [
+  "Stop blinking",
+  "Afwisselen stoppen"
+ ],
+ [
+  "Reference colors and resolution differ from your telescope. Alignment is based on the solved star field.",
+  "Kleuren en resolutie van de referentie verschillen van je telescoop. De uitlijning is gebaseerd op het herkende sterrenveld."
+ ],
+ [
+  "Install the local ASTAP solver and D50 star database first.",
+  "Installeer eerst de lokale ASTAP-solver en D50-stercatalogus."
+ ],
+ [
+  "Comparison needs a deep-sky photograph with recognizable stars.",
+  "Vergelijken vereist een deep-skyfoto met herkenbare sterren."
+ ],
+ [
+  "The comparison queue is full. Please try again later.",
+  "De vergelijkingswachtrij is vol. Probeer het later opnieuw."
+ ],
+ [
+  "Not enough free space for comparison.",
+  "Te weinig vrije ruimte voor vergelijking."
+ ],
+ [
+  "Comparison interrupted. Please try again.",
+  "Vergelijking onderbroken. Probeer opnieuw."
+ ],
+ [
+  "No star match found. Use a photograph with more visible stars and less cropping.",
+  "Geen sterrenpatroon herkend. Gebruik een foto met meer zichtbare sterren en minder bijsnijding."
+ ],
+ [
+  "Local solving timed out. Please try an image with clearer stars.",
+  "De lokale uitlijning duurde te lang. Probeer een foto met duidelijkere sterren."
+ ],
+ [
+  "Comparison failed. Please try again.",
+  "Vergelijking mislukt. Probeer opnieuw."
+ ],
+ [
+  "Not enough free space to create a ZIP backup.",
+  "Te weinig vrije ruimte om een ZIP-back-up te maken."
+ ],
+ [
+  "Backup interrupted. Please try again.",
+  "Back-up onderbroken. Probeer opnieuw."
+ ],
+ [
+  "A capture file is missing; backup was not completed.",
+  "Een opnamebestand ontbreekt; de back-up is niet voltooid."
+ ],
+ [
+  "Only JPG/JPEG and PNG are allowed.",
+  "Alleen JPG/JPEG en PNG zijn toegestaan."
+ ],
+ [
+  "Invalid filename.",
+  "Ongeldige bestandsnaam."
+ ],
+ [
+  "The note may contain at most 1000 characters.",
+  "De notitie mag maximaal 1000 tekens bevatten."
+ ],
+ [
+  "Choose a valid capture date.",
+  "Kies een geldige opnamedatum."
+ ],
+ [
+  "Maximum 25 MB per photo.",
+  "Maximaal 25 MB per foto."
+ ],
+ [
+  "Not enough free space; 2 GB is reserved for the system.",
+  "Te weinig vrije ruimte; er blijft 2 GB vrij voor het systeem."
+ ],
+ [
+  "This photo is already stored for this object and telescope.",
+  "Deze foto staat al bij dit object en deze telescoop."
+ ],
+ [
+  "File content does not match its extension.",
+  "Bestandsinhoud en bestandsextensie komen niet overeen."
+ ],
+ [
+  "Maximum 32 megapixels; use a still image.",
+  "Maximaal 32 megapixels; gebruik een stilstaande foto."
+ ],
+ [
+  "Not a valid JPG or PNG image.",
+  "Geen geldige JPG- of PNG-afbeelding."
+ ],
+ [
+  "This photo has already been saved.",
+  "Deze foto is al opgeslagen."
+ ],
+ [
+  "An active copy already exists for this object and telescope.",
+  "Er staat al een actieve kopie bij dit object en deze telescoop."
+ ],
+ [
+  "Check the telescope settings.",
+  "Controleer de telescoopinstellingen."
+ ],
+ [
+  "Could not save the telescope.",
+  "Telescoop kon niet worden opgeslagen."
+ ],
+ [
+  "The upload is too large. Maximum 25 MB per JPG or PNG photo.",
+  "De upload is te groot. Maximaal 25 MB per JPG- of PNG-foto."
+ ],
+ [
+  "Choose an existing object, a telescope and one photo per upload request.",
+  "Kies een bestaand object, een telescoop en één foto per uploadverzoek."
+ ],
+ [
+  "Could not save the photo.",
+  "Foto kon niet worden opgeslagen."
+ ],
+ [
+  "Sky image temporarily unavailable. The frame remains to scale.",
+  "Hemelbeeld tijdelijk niet beschikbaar. Het kader blijft op schaal."
+ ],
+ [
+  "Enter a place name.",
+  "Vul een plaatsnaam in."
+ ],
+ [
+  "Place search is unavailable. Please try again later.",
+  "Plaatsen zoeken lukt nu niet. Probeer het later opnieuw."
+ ],
+ [
+  "Brightness is unavailable on this device.",
+  "Helderheid is op dit apparaat niet beschikbaar."
+ ],
+ [
+  "Check the entered settings.",
+  "Controleer de ingevoerde instellingen."
+ ],
+ [
+  "Could not save the setting.",
+  "Instelling kon niet worden opgeslagen."
+ ],
+ [
+  "Hour",
+  "Uur"
+ ],
+ [
+  "Rain chance",
+  "Regenkans"
+ ],
+ [
+  "{0} km/h",
+  "{0} km/u"
+ ],
+ [
+  "weather model {0}",
+  "modelweer {0}"
+ ],
+ [
+  "fetched {0}",
+  "opgehaald {0}"
+ ],
+ [
+  "OUTDATED DATA",
+  "VEROUDERDE GEGEVENS"
+ ],
+ [
+  "low/middle/high cloud cover",
+  "lage/middelbare/hoge bewolking"
+ ],
+ [
+  "The forecast is not available yet. Retrying automatically…",
+  "De weersverwachting is nog niet beschikbaar. Automatisch opnieuw proberen…"
+ ],
+ [
+  "Fetching satellite images. The first startup can take a while.",
+  "Satellietbeelden worden opgehaald. Dit kan bij de eerste start even duren."
+ ],
+ [
+  "Meteosat infrared image of the region around {0}",
+  "Meteosat infraroodbeeld van de regio rond {0}"
+ ],
+ [
+  "Play or pause animation",
+  "Animatie afspelen of pauzeren"
+ ],
+ [
+  "Satellite image time",
+  "Tijdstip satellietbeeld"
+ ],
+ [
+  "lighter = colder cloud tops",
+  "licht = koudere toppen"
+ ],
+ [
+  "not a precipitation radar",
+  "geen neerslagradar"
+ ],
+ [
+  "OUTDATED",
+  "VEROUDERD"
+ ],
+ [
+  "boundaries Natural Earth",
+  "grenzen Natural Earth"
+ ],
+ [
+  "Image unavailable",
+  "Beeld niet beschikbaar"
+ ],
+ [
+  "frame to scale",
+  "kader op schaal"
+ ],
+ [
+  "Could not load.",
+  "Laden is niet gelukt."
+ ],
+ [
+  "high now",
+  "nu hoog"
+ ],
+ [
+  "low above horizon",
+  "laag boven horizon"
+ ],
+ [
+  "no long window above 30°",
+  "geen lang venster boven 30°"
+ ],
+ [
+  "very small",
+  "erg klein"
+ ],
+ [
+  "larger than one frame",
+  "groter dan één kader"
+ ],
+ [
+  "size unknown",
+  "afmeting onbekend"
+ ],
+ [
+  "brightness + spread ≈",
+  "helderheid + spreiding ≈"
+ ],
+ [
+  "bright",
+  "helder"
+ ],
+ [
+  "faint",
+  "zwak"
+ ],
+ [
+  "average brightness",
+  "gemiddelde helderheid"
+ ],
+ [
+  "Best tonight {0}°",
+  "Beste nacht {0}°"
+ ],
+ [
+  "Choose an object",
+  "Kies een object"
+ ],
+ [
+  "No object found.",
+  "Geen object gevonden."
+ ],
+ [
+  "Search failed. Please try again.",
+  "Zoeken mislukt. Probeer opnieuw."
+ ],
+ [
+  "No connection to the Pi.",
+  "Geen verbinding met de Pi."
+ ],
+ [
+  "Choose an object and one or more photos.",
+  "Kies een object en één of meer foto’s."
+ ],
+ [
+  "Invalid telescope list (maximum 12 custom telescopes).",
+  "Ongeldige telescooplijst (maximaal 12 eigen telescopen)."
+ ],
+ [
+  "Invalid telescope.",
+  "Ongeldige telescoop."
+ ],
+ [
+  "Enter a name and a field of view from 0.01 to 20 degrees.",
+  "Vul een naam en beeldveld van 0,01 tot 20 graden in."
+ ],
+ [
+  "Choose an existing telescope.",
+  "Kies een bestaande telescoop."
+ ],
+ [
+  "Telephoto camera · calculated from 3840×2160 pixels, 1.45 µm and 100 mm.",
+  "Telecamera · berekend uit 3840×2160 pixels, 1,45 µm en 100 mm."
+ ],
+ [
+  "Telephoto camera · derived from 2.8° diagonal and 2160×3840 pixels.",
+  "Telecamera · afgeleid van 2,8° diagonaal en 2160×3840 pixels."
+ ],
+ [
+  "Custom field of view · one exposure.",
+  "Eigen beeldveld · één opname."
+ ],
+ [
+  "Loading…",
+  "Laden…"
+ ],
+ [
+  "Could not load backup status.",
+  "Back-upstatus kon niet worden geladen."
+ ],
+ [
+  "Backup could not be started.",
+  "Back-up kon niet worden gestart."
+ ],
+ [
+  "Could not load altitude chart.",
+  "Hoogtegrafiek kon niet worden geladen."
+ ],
+ [
+  "Comparison status unavailable.",
+  "Vergelijkingsstatus niet beschikbaar."
+ ],
+ [
+  "Image could not be loaded.",
+  "Afbeelding kon niet worden geladen."
+ ],
+ [
+  "— Target altitude",
+  "— Hoogte doel"
+ ],
+ [
+  "— Moon altitude",
+  "— Hoogte maan"
+ ],
+ [
+  "ZIP backup",
+  "ZIP-back-up"
+ ],
+ [
+  "No celestial coordinates in the solution.",
+  "Geen hemelcoördinaten in de oplossing."
+ ],
+ [
+  "The returned pixel scale is not plausible.",
+  "De gevonden pixelschaal is niet aannemelijk."
+ ],
+ [
+  "The returned coordinates are invalid.",
+  "De gevonden coördinaten zijn ongeldig."
+ ],
+ [
+  "The solved field is too large for this comparison.",
+  "Het gevonden beeldveld is te groot voor deze vergelijking."
+ ],
+ [
+  "The reference does not cover the solved photograph.",
+  "Het referentiebeeld dekt de opname niet volledig."
+ ],
+ [
+  "The comparison queue is full. Please try again later.",
+  "De wachtrij voor vergelijkingen is vol. Probeer het later opnieuw."
+ ],
+ [
+  "Not enough free space for comparison.",
+  "Onvoldoende vrije ruimte voor de vergelijking."
+ ],
+ [
+  "Unexpected reference image dimensions.",
+  "Onverwachte afmetingen van het referentiebeeld."
+ ],
+ [
+  "Stellar association",
+  "Sterassociatie"
+ ],
+ [
+  "Galaxy pair",
+  "Stelselduo"
+ ],
+ [
+  "Galaxy group",
+  "Stelselgroep"
+ ],
+ [
+  "Galaxy triplet",
+  "Stelseltrio"
+ ],
+ [
+  "IR 10.8 μm",
+  "IR 10,8 μm"
+ ],
+ [
+  "Telephoto camera",
+  "Telecamera"
+ ],
+ [
+  "calculated from 3840 × 2160 pixels, 1.45 µm and 100 mm.",
+  "berekend uit 3840 × 2160 pixels, 1,45 µm en 100 mm."
+ ],
+ [
+  "derived from 2.8° diagonal and 2160 × 3840 pixels.",
+  "afgeleid van 2,8° diagonaal en 2160 × 3840 pixels."
+ ],
+ [
+  "Not enough free space to create a ZIP backup.",
+  "Onvoldoende vrije ruimte voor een ZIP-back-up."
+ ],
+ [
+  "Top bars: cloud cover.",
+  "Balkjes bovenaan: bewolking."
+ ]
+]

@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#101510">
+  <meta name="description" content="Astro Control Panel: observing conditions, targets and astrophotography for your Raspberry Pi.">
+  <title>Astro Control Panel</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="/static/targets.css">
+  <link rel="stylesheet" href="/static/captures.css">
+  <link rel="stylesheet" href="/static/features.css">
+  <script src="/static/i18n.js" defer></script>
+  <script src="/static/app.js" defer></script>
+  <script src="/static/targets.js" defer></script>
+  <script src="/static/captures.js" defer></script>
+  <script src="/static/features.js" defer></script>
+</head>
+<body>
+  <header>
+    <div class="brand"><span class="brand-mark">✳</span><div>ASTRO<span id="location" data-no-i18n>—</span></div></div>
+    <div class="clock"><strong id="clock">--:--</strong><span id="date"></span></div>
+    <button id="night" class="header-button" aria-label="Rode nachtmodus" aria-pressed="false">◐ <span>Nacht</span></button>
+    <button id="settings" class="header-button gear" aria-label="Instellingen">⚙</button>
+  </header>
+  <main id="content" aria-live="polite"><div class="empty">De hemelgegevens worden opgehaald…</div></main>
+  <div id="connection" role="status"></div>
+  <nav aria-label="Hoofdnavigatie">
+    <button data-tab="tonight" class="active" aria-current="page"><span>✦</span>Tonight</button>
+    <button data-tab="moon"><span>◒</span>Moon</button>
+    <button data-tab="weather"><span>☁</span>Weather</button>
+    <button data-tab="targets"><span>◎</span>Targets</button>
+    <button data-tab="captures"><span>▧</span>Captures</button>
+  </nav>
+  <dialog id="settings-dialog">
+    <div class="dialog-title"><h2>Instellingen</h2><button id="close-settings" aria-label="Instellingen sluiten">✕</button></div>
+    <div class="segmented settings-tabs"><button id="settings-place" class="selected" aria-pressed="true">Locatie & scherm</button><button id="settings-scopes" aria-pressed="false">Telescopen</button><button id="settings-system" aria-pressed="false">System & backup</button></div>
+    <section id="place-settings">
+    <label class="language-setting">Language<select id="language"><option value="en-US">English (US)</option><option value="nl-NL">Nederlands</option></select></label>
+    <form id="location-form"><input id="location-query" type="search" placeholder="Zoek een plaats" aria-label="Plaatsnaam" autocomplete="off"><button type="submit">Zoeken</button></form>
+    <div id="location-results" role="status"></div>
+    <div class="brightness"><label for="brightness">Schermhelderheid <span id="brightness-value"></span></label><input id="brightness" type="range" min="5" max="100" step="5"><p id="brightness-info"></p></div>
+    <p class="fine">Tijden volgen de lokale tijdzone. Astronomie blijft offline beschikbaar; weer en satellietbeelden worden bewaard met hun tijdstip.</p>
+    </section>
+    <section id="system-settings" hidden>
+      <h3>Display setup</h3><p class="fine">Run the display wizard on the Pi to choose the screen, rotation and interface size.</p>
+      <code class="setup-command" data-no-i18n>python3 deploy/display.py wizard</code>
+      <h3>ZIP backup</h3><p class="fine">Original photos, trash, favorites, telescopes, location and language are included.</p>
+      <button id="create-backup">Create backup</button><p id="backup-status" role="status"></p><a id="download-backup" class="button-link" hidden>Download ZIP backup</a>
+    </section>
+    <section id="scope-settings" hidden>
+      <div id="scope-list"></div>
+      <button id="add-scope" class="add-scope">＋ Andere telescoop</button>
+      <form id="scope-form" hidden>
+        <label>Naam<input id="scope-name" maxlength="40" required autocomplete="off" placeholder="Naam van je telescoop"></label>
+        <div class="scope-dimensions"><label>Breedte (°)<input id="scope-width" type="number" inputmode="decimal" step="any" min="0.01" max="20" required placeholder="3.2"></label><label>Hoogte (°)<input id="scope-height" type="number" inputmode="decimal" step="any" min="0.01" max="20" required placeholder="1.8"></label></div>
+        <div class="scope-form-actions"><button type="button" id="cancel-scope">Annuleren</button><button type="submit">Opslaan</button></div>
+      </form>
+      <p class="fine scope-explanation">Beeldveld van één tele-opname, breedte × hoogte. Kies je standaardtelescoop. De voorbeeldstand van het kader is indicatief; EQ-modus en alt-az-opstelling bepalen de werkelijke stand.</p>
+    </section>
+    <p id="settings-message" role="status"></p>
+  </dialog>
+  <dialog id="target-dialog" aria-labelledby="target-title">
+    <div class="dialog-title"><div><h2 id="target-title">Doel bekijken</h2><p id="target-subtitle" class="fine"></p></div><button id="close-target" aria-label="Doel sluiten">✕</button></div>
+    <div class="target-mode"><button id="show-reference" class="selected">Referentiebeeld</button><button id="show-own">Mijn opnames</button><button id="add-target-capture">＋ Opname toevoegen</button></div>
+    <div id="reference-detail" class="target-detail">
+      <div class="target-picture">
+        <svg id="target-sky" viewBox="0 0 900 540" role="img" aria-label="Referentiebeeld met telescoopbeeldveld"></svg>
+        <p id="image-status" role="status"></p>
+        <button id="retry-target" hidden>Opnieuw laden</button>
+      </div>
+      <aside class="target-controls">
+        <div class="target-extras"><button id="target-favorite">☆ Favorite</button><button id="target-plan">Altitude & time</button></div>
+        <label for="viewer-scope" class="fine">Telescoop · één opname</label><select id="viewer-scope" aria-label="Telescoop voor beeldveld"></select>
+        <p id="viewer-fov" class="fov-value"></p>
+        <div class="zoom-buttons"><button id="zoom-target" aria-pressed="false">Zoom op doel</button><button id="zoom-fov" class="selected" aria-pressed="true">Zoom op beeldveld</button></div>
+        <p id="viewer-ratio" class="fine"></p>
+        <p id="viewer-recommendation" class="fine"></p>
+        <p class="fine orientation-note">Kaderstand indicatief.<br>Geen camerarotatie; werkelijke stand hangt af van opstelling en tijd.</p>
+      </aside>
+    </div>
+    <div id="reference-caption" class="target-caption"><span id="target-credit"></span><span id="target-scale"></span></div>
+    <section id="own-captures" hidden></section>
+  </dialog>
+  <dialog id="target-filters-dialog" aria-labelledby="target-filters-title">
+    <div class="dialog-title"><h2 id="target-filters-title">Doelen filteren</h2><button id="close-target-filters" aria-label="Filters sluiten">✕</button></div>
+    <form id="target-filter" class="stack-form">
+      <label>Waarneemperiode<select id="target-when"><option value="night">Komende nacht</option><option value="now">Nu boven horizon</option><option value="day">Komende 24 uur</option></select></label>
+      <label>Soort doel<select id="target-kind"><option value="all">Alle soorten</option><option value="nebula">Nevels</option><option value="galaxy">Sterrenstelsels</option><option value="cluster">Sterrenhopen</option><option value="planet">Heldere planeten</option></select></label>
+      <label>Doel zoeken<input id="target-query" type="search" placeholder="Naam / M / NGC / IC" autocomplete="off"></label>
+      <label class="check-label"><input id="target-favorites" type="checkbox">Favorites only</label>
+      <label class="check-label"><input id="target-uncaptured" type="checkbox">Not captured with this telescope</label>
+      <p class="fine">Favorites are saved separately for each telescope.</p>
+      <button type="button" data-keyboard="target-query">⌨ Toetsenbord</button>
+      <button type="submit">Filters toepassen</button>
+    </form>
+    <p class="fine">Aanbevolen combineert hoogte (40%), beeldvulling (30%) en helderheid (30%), met extra afwaardering voor lage en heel kleine doelen. Schatting; weer, filters en belichting bepalen mede het resultaat. Grootte en lichtspreiding zijn benaderingen. Onbekende helderheid telt neutraal mee.</p>
+  </dialog>
+  <dialog id="upload-dialog" aria-labelledby="upload-title">
+    <div class="dialog-title"><h2 id="upload-title">Opname toevoegen</h2><button id="close-upload" aria-label="Upload sluiten">✕</button></div>
+    <form id="upload-form" class="stack-form">
+      <div id="upload-object-picker"><label>Object zoeken<input type="search" id="upload-object-query" placeholder="Bijvoorbeeld M31 of Hartnevel" autocomplete="off"></label><button type="button" data-keyboard="upload-object-query">⌨</button><div id="upload-object-results"></div></div>
+      <p id="upload-object-name" class="accent"></p>
+      <label>Telescoop<select id="upload-scope" required></select></label>
+      <label>Foto’s · JPG/JPEG of PNG<input id="upload-files" type="file" accept=".jpg,.jpeg,.png,image/jpeg,image/png" multiple required></label>
+      <div class="upload-meta"><label>Opnamedatum (optioneel)<input id="upload-date" type="date"></label><label>Notitie (optioneel)<input id="upload-note" type="text" maxlength="1000"></label><button type="button" data-keyboard="upload-note">⌨</button></div>
+      <p class="fine">Maximaal 25 MB en 32 megapixels per foto. Origineel blijft bewaard op de Pi. Selecteer bestanden vanaf dit apparaat; je kunt deze pagina ook op je telefoon of computer openen.</p>
+      <button id="upload-submit" type="submit">Uploaden naar Pi</button>
+    </form>
+    <p id="upload-message" role="status"></p>
+  </dialog>
+  <dialog id="capture-dialog" aria-labelledby="capture-title">
+    <div class="dialog-title"><div><h2 id="capture-title">Opname</h2><p id="capture-subtitle" class="fine"></p></div><button id="close-capture" aria-label="Opname sluiten">✕</button></div>
+    <div id="capture-photo-wrap"><img id="capture-photo" alt="Eigen opname"></div>
+    <p id="capture-note" class="fine" data-no-i18n></p><p id="capture-view-message" role="status"></p>
+    <div class="capture-actions"><button id="capture-previous" aria-label="Vorige opname">‹</button><button id="capture-next" aria-label="Volgende opname">›</button><button id="capture-zoom">Vergroten</button><a id="capture-original">Origineel</a><button id="capture-compare">Compare</button><button id="capture-object">Naar object</button><button id="capture-trash">Prullenbak</button></div>
+  </dialog>
+  <dialog id="plan-dialog" aria-labelledby="plan-title">
+    <div class="dialog-title"><div><h2 id="plan-title">Altitude through the night</h2><p id="plan-object" class="fine"></p></div><button id="close-plan" aria-label="Close altitude chart">✕</button></div>
+    <div id="plan-body" role="status"></div>
+  </dialog>
+  <dialog id="comparison-dialog" aria-labelledby="comparison-title">
+    <div class="dialog-title"><div><h2 id="comparison-title">Compare capture</h2><p id="comparison-caption" class="fine"></p></div><button id="close-comparison" aria-label="Close comparison">✕</button></div>
+    <p id="comparison-status" role="status"></p>
+    <div id="comparison-stage" hidden><div id="comparison-images"><img id="comparison-own" alt="Own photo"><img id="comparison-reference" alt="Reference"></div></div>
+    <div id="comparison-controls" hidden><label>Own photo<input id="comparison-swipe" type="range" min="0" max="100" value="50" aria-label="Swipe comparison">Reference</label><button id="comparison-blink">Blink</button></div>
+    <p id="comparison-details" class="fine"></p>
+    <button id="start-comparison">Align locally</button>
+    <p id="comparison-info" class="fine">Local star matching keeps your photograph on this Pi. Only sky coordinates are sent to the reference image service.</p>
+  </dialog>
+  <dialog id="keyboard-dialog" aria-labelledby="keyboard-title">
+    <h2 id="keyboard-title">Toetsenbord</h2><input id="keyboard-value" type="text" aria-label="Tekst invoeren"><div id="keyboard-keys"></div><button id="keyboard-done">Gereed</button>
+  </dialog>
+</body>
+</html>

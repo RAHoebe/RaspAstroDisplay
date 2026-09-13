@@ -1,0 +1,10 @@
+[Unit]
+Description=Astro touchscreen kiosk
+
+[Service]
+Type=simple
+ExecStart=@@KIOSK@@
+Restart=always
+RestartSec=5
+KillMode=control-group
+TimeoutStopSec=15
