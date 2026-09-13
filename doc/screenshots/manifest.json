@@ -1,0 +1,189 @@
+[
+  {
+    "file": "tonight.png",
+    "width": 800,
+    "height": 480,
+    "title": "Tonight, at a glance",
+    "category": "plan",
+    "caption": "Darkness, moonlight and a suggested weather window before you head outside.",
+    "credit": "Forecast: Open-Meteo (CC BY 4.0). Astronomy: Skyfield / JPL.",
+    "captured_date": "2026-09-13",
+    "source": "Actual application running on Raspberry Pi 4; Chromium viewport 800x480"
+  },
+  {
+    "file": "targets.png",
+    "width": 800,
+    "height": 480,
+    "title": "Find your next nebula",
+    "category": "plan",
+    "caption": "Recommendations balance altitude, frame coverage and catalog brightness for the selected telescope.",
+    "credit": "Catalog: OpenNGC, Mattia Verga (CC BY-SA 4.0); astronomy: Skyfield / JPL.",
+    "captured_date": "2026-09-13",
+    "source": "Actual application running on Raspberry Pi 4; Chromium viewport 800x480"
+  },
+  {
+    "file": "target-filters.png",
+    "width": 800,
+    "height": 480,
+    "title": "A sky worth exploring",
+    "category": "plan",
+    "caption": "Choose the coming night, a target type, favorites or objects you have not photographed with this telescope.",
+    "credit": "Catalog: OpenNGC (CC BY-SA 4.0).",
+    "captured_date": "2026-09-13",
+    "source": "Actual application running on Raspberry Pi 4; Chromium viewport 800x480"
+  },
+  {
+    "file": "target-fov.png",
+    "width": 800,
+    "height": 480,
+    "title": "Will it fit?",
+    "category": "observe",
+    "caption": "A single-exposure DWARF II frame over NGC 7000. The frame orientation is illustrative.",
+    "credit": "DSS2 / STScI / Palomar / UK Schmidt, via CDS hips2fits; OpenNGC catalog.",
+    "captured_date": "2026-09-13",
+    "source": "Actual application running on Raspberry Pi 4; Chromium viewport 800x480"
+  },
+  {
+    "file": "altitude.png",
+    "width": 800,
+    "height": 480,
+    "title": "Choose your moment",
+    "category": "plan",
+    "caption": "Target and Moon altitude, cloud coverage and a suggested imaging window on one chart.",
+    "credit": "Astronomy: Skyfield / JPL; forecast: Open-Meteo (CC BY 4.0).",
+    "captured_date": "2026-09-13",
+    "source": "Actual application running on Raspberry Pi 4; Chromium viewport 800x480"
+  },
+  {
+    "file": "moon.png",
+    "width": 800,
+    "height": 480,
+    "title": "Keep an eye on the Moon",
+    "category": "observe",
+    "caption": "Phase, illumination, position and upcoming events. The Moon drawing is calculated, not a photograph.",
+    "credit": "Astronomy: Skyfield / JPL; Moon illustration: application code.",
+    "captured_date": "2026-09-13",
+    "source": "Actual application running on Raspberry Pi 4; Chromium viewport 800x480"
+  },
+  {
+    "file": "weather.png",
+    "width": 800,
+    "height": 480,
+    "title": "Watch the forecast",
+    "category": "observe",
+    "caption": "Hourly cloud cover, temperature, wind and humidity for the observing location.",
+    "credit": "Forecast: Open-Meteo (CC BY 4.0).",
+    "captured_date": "2026-09-13",
+    "source": "Actual application running on Raspberry Pi 4; Chromium viewport 800x480"
+  },
+  {
+    "file": "cloud-map.png",
+    "width": 800,
+    "height": 480,
+    "title": "Follow the cloud tops",
+    "category": "observe",
+    "caption": "Animated Meteosat infrared imagery provides a regional view of changing cloud conditions.",
+    "credit": "Contains modified EUMETSAT Meteosat data (2026). Boundaries: Natural Earth (public domain).",
+    "captured_date": "2026-09-13",
+    "source": "Actual application running on Raspberry Pi 4; Chromium viewport 800x480"
+  },
+  {
+    "file": "captures.png",
+    "width": 800,
+    "height": 480,
+    "title": "A growing collection",
+    "category": "capture",
+    "caption": "Browse your own photographs by target and telescope, with originals stored on the Pi.",
+    "credit": "NGC 7000 and M57 photographs © 2026 Ron Hoebe; catalog: OpenNGC.",
+    "captured_date": "2026-09-13",
+    "source": "Actual application running on Raspberry Pi 4; Chromium viewport 800x480"
+  },
+  {
+    "file": "capture.png",
+    "width": 800,
+    "height": 480,
+    "title": "The photograph you brought home",
+    "category": "capture",
+    "caption": "Open a capture, read its note, download the original or continue to the comparison view.",
+    "credit": "NGC 7000 photograph © 2026 Ron Hoebe, DWARF II, September 12, 2026.",
+    "captured_date": "2026-09-13",
+    "source": "Actual application running on Raspberry Pi 4; Chromium viewport 800x480"
+  },
+  {
+    "file": "comparison.png",
+    "width": 800,
+    "height": 480,
+    "title": "The same patch of sky",
+    "category": "capture",
+    "caption": "Swipe between your capture and an archival survey, aligned to the solved field and rotation.",
+    "credit": "Photo © Ron Hoebe; DSS2 / STScI / Palomar / UK Schmidt via CDS hips2fits; alignment: ASTAP / Astropy.",
+    "captured_date": "2026-09-13",
+    "source": "Actual application running on Raspberry Pi 4; Chromium viewport 800x480"
+  },
+  {
+    "file": "upload.png",
+    "width": 800,
+    "height": 480,
+    "title": "Add your own exposures",
+    "category": "capture",
+    "caption": "Attach JPG or PNG photographs to an object and telescope, with an optional date and note.",
+    "credit": "Background survey: DSS2 via CDS hips2fits; catalog: OpenNGC.",
+    "captured_date": "2026-09-13",
+    "source": "Actual application running on Raspberry Pi 4; Chromium viewport 800x480"
+  },
+  {
+    "file": "night-mode.png",
+    "width": 800,
+    "height": 480,
+    "title": "A quieter screen after dark",
+    "category": "system",
+    "caption": "Red night mode changes the interface palette; backlight brightness is adjustable separately.",
+    "credit": "Forecast: Open-Meteo (CC BY 4.0); astronomy: Skyfield / JPL.",
+    "captured_date": "2026-09-13",
+    "source": "Actual application running on Raspberry Pi 4; Chromium viewport 800x480"
+  },
+  {
+    "file": "settings-language.png",
+    "width": 800,
+    "height": 480,
+    "title": "At home in two languages",
+    "category": "system",
+    "caption": "English (US) is the installation default. Dutch can be saved for the panel and other browsers.",
+    "credit": "Location search: Open-Meteo / GeoNames (CC BY 4.0).",
+    "captured_date": "2026-09-13",
+    "source": "Actual application running on Raspberry Pi 4; Chromium viewport 800x480"
+  },
+  {
+    "file": "settings-telescopes.png",
+    "width": 800,
+    "height": 480,
+    "title": "Room for your next telescope",
+    "category": "system",
+    "caption": "DWARF II and Seestar S50 Pro presets, plus custom profiles with explicit field width and height.",
+    "credit": "Nominal specifications: DWARFLAB / Sony and ZWO / Seestar; calculated fields.",
+    "captured_date": "2026-09-13",
+    "source": "Actual application running on Raspberry Pi 4; Chromium viewport 800x480"
+  },
+  {
+    "file": "settings-backup.png",
+    "width": 800,
+    "height": 480,
+    "title": "Take a copy home",
+    "category": "system",
+    "caption": "Export photographs and application settings as a downloadable ZIP archive.",
+    "credit": "Interface: Astro Control Panel. No private backup is included in this website.",
+    "captured_date": "2026-09-13",
+    "source": "Actual application running on Raspberry Pi 4; Chromium viewport 800x480"
+  },
+  {
+    "file": "tonight-nl.png",
+    "width": 800,
+    "height": 480,
+    "title": "De nacht, in het Nederlands",
+    "category": "system",
+    "caption": "The same dashboard in Dutch, with localized dates, numbers and interface labels.",
+    "credit": "Forecast: Open-Meteo (CC BY 4.0); astronomy: Skyfield / JPL.",
+    "captured_date": "2026-09-13",
+    "source": "Actual application running on Raspberry Pi 4; Chromium viewport 800x480"
+  }
+]

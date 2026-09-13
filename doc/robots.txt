@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://rahoebe.github.io/RaspAstroDisplay/sitemap.xml

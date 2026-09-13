@@ -2,6 +2,10 @@
 
 A local touchscreen dashboard for planning a night with a smart telescope. For **Raspberry Pi 4 with 4 GB RAM or newer**, the original Raspberry Pi 7-inch Touch Display and the 7-inch Touch Display 2. English (US) and Dutch, large touch controls, red night mode and adjustable backlight.
 
+**[Website & showcase](https://rahoebe.github.io/RaspAstroDisplay/)** · **[Installation guide](https://rahoebe.github.io/RaspAstroDisplay/install.html)** · **[Sources & licenses](https://rahoebe.github.io/RaspAstroDisplay/sources.html)**
+
+The English website lives in `doc/`, with 17 actual 800 × 480 application screenshots in `doc/screenshots/`. GitHub Actions publishes only `doc/`. Local working notes belong in the ignored `plan/` folder and private helper scripts in `toolslocal/`; distributable maintenance tools remain in `tools/`.
+
 ## Features
 
 - **Tonight:** darkness, moonlight and a suggested two-hour weather window.

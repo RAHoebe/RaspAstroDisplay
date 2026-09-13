@@ -8,13 +8,5 @@ artifacts/
 !.env.example
 node_modules/
 # Private deployment notes and appliance-specific maintenance helpers.
-PLAN.md
-PLAN-CAPTURES.md
-VALIDATION.md
-IDEAS.md
-tools/pi.py
-tools/verify-*-live.sh
-tools/update-pi.sh
-tools/deploy-targets.sh
-tools/clean-capture-test-fixtures.sh
-tools/inspect.sh
+plan/
+toolslocal/
