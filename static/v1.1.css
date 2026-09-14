@@ -1,0 +1,48 @@
+/* Height-constrained home; other views retain their own scrolling. */
+body{min-height:0;grid-template-columns:minmax(0,1fr)}main{min-height:0;min-width:0;width:100%;margin:0 auto}header{min-width:0}
+main[data-tab=tonight]{container-type:size}
+.tonight{height:100%;min-height:0;grid-template-columns:minmax(245px,.88fr) minmax(0,1.65fr);gap:10px}
+.night-summary{min-height:0;min-width:0;padding:16px;justify-content:center;gap:9px}
+.night-summary .eyebrow{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin:0}
+.night-dates{font-size:13px;color:var(--muted)}
+.night-summary h1{font-size:25px;line-height:1.2}
+.night-summary .window{font-size:clamp(16px,2.5vw,29px);white-space:nowrap;letter-spacing:-.7px;margin:0;font-variant-numeric:tabular-nums}
+.night-summary p{font-size:13px;line-height:1.35}
+.night-summary .polar-note{font-size:11px;color:var(--warn)}
+.night-detail{min-height:0;min-width:0;gap:8px}
+.forecast-box{padding:10px 12px;flex:1;min-height:0;display:flex;flex-direction:column}
+.forecast-box .section-title{gap:4px;flex-wrap:wrap}
+.period-toggle{gap:4px}.period-toggle button{min-height:44px;padding:0 10px;font-size:12px}
+.forecast{margin-top:6px;gap:4px;flex:1;align-items:stretch;min-height:0}
+.forecast-hour{display:flex;flex-direction:column;min-width:0;font-size:10px;white-space:nowrap}
+.forecast-hour span{letter-spacing:-.4px}.forecast-hour strong{font-size:12px}
+.cloud-track{flex:1;min-height:12px;height:auto;margin:5px 0}
+.forecast-hour.unknown .cloud-track{background:repeating-linear-gradient(135deg,var(--panel) 0 5px,var(--line) 5px 7px)}
+.darkness-strip{position:relative;height:6px;flex-shrink:0;background:var(--panel2);margin-top:6px;border-radius:2px;overflow:hidden}
+.darkness-strip i{position:absolute;top:0;bottom:0;background:var(--accent)}
+.legend{font-size:10px;margin-top:5px;line-height:1.3}
+.night-bottom{flex:0 0 auto;gap:8px}.mini{padding:10px;min-width:0}
+.mini .eyebrow{font-size:10px;letter-spacing:1px;margin-bottom:4px}
+.mini strong{font-size:clamp(13px,1.8vw,22px);white-space:nowrap;letter-spacing:-.5px}.mini .fine{font-size:11px}
+.period-date{margin:5px 0}.weather-table td:first-child{white-space:nowrap}
+.weather-period{display:flex;align-items:center;gap:12px;justify-content:space-between}
+#weather-now{margin-top:6px;font-size:12px;color:var(--muted)}#weather-now summary{min-height:32px;cursor:pointer;padding:8px 0}#weather-now summary .fine{float:right;color:var(--accent)}
+main[data-tab=weather] .view-heading{min-height:44px;margin-bottom:6px}main[data-tab=weather] .view-heading .segmented button{min-height:44px}main[data-tab=weather] .view-heading h1{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.settings-tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:4px}.settings-tabs button{padding:0 6px;font-size:12px}
+.dimming-options{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:13px}.dimming-options input[type=number]{width:90px;min-height:44px;background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:8px}
+.dimming-options input[type=checkbox]{width:22px;height:22px;vertical-align:middle;accent-color:var(--accent)}
+#display-settings .brightness{margin:8px 0}#display-settings .brightness input{height:40px}#brightness-info{margin-top:10px}
+.night-mode #comparison-images img{filter:grayscale(1) sepia(1) saturate(5) hue-rotate(320deg) brightness(.6)}
+@media(min-width:1100px){.tonight{grid-template-columns:minmax(320px,1fr) 2fr}.night-summary .window{font-size:29px}}
+@media(max-width:600px){
+ body{grid-template-rows:56px minmax(0,1fr) 20px 64px}
+ main{padding:8px 8px 0}.tonight{display:grid;grid-template-columns:1fr;grid-template-rows:auto minmax(0,1fr);gap:8px}
+ .night-summary{min-height:0;padding:12px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:5px 8px}
+ .night-summary h1,.night-summary .window,.night-summary p{grid-column:1/-1}
+ .night-summary h1{font-size:21px}.night-summary .window{font-size:24px}
+ .night-summary p{font-size:12px}.night-detail{min-height:0}.forecast-box{padding:8px}
+ .mini{padding:8px}.mini strong{font-size:15px}.mini .fine{font-size:10px}
+ .forecast-hour{font-size:9px}.forecast-hour span{letter-spacing:-.7px}
+ .period-toggle button{min-height:44px}.night-bottom{gap:6px}
+}
+@media(max-height:520px) and (min-width:601px){.night-summary{gap:8px}.forecast-box .section-title h3{font-size:14px}.period-toggle button{padding:0 8px}}

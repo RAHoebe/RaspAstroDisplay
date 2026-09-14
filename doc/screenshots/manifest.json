@@ -1,11 +1,44 @@
 [
   {
+    "file": "settings-display.png",
+    "width": 800,
+    "height": 480,
+    "title": "Wake gently, dim automatically",
+    "category": "system",
+    "caption": "Separate active and idle brightness, a configurable timeout and wake-only first touch.",
+    "credit": "Interface: Astro Control Panel.",
+    "captured_date": "2026-09-14",
+    "source": "Actual application running on Raspberry Pi 4; Chromium viewport 800x480"
+  },
+  {
+    "file": "altitude-night.png",
+    "width": 800,
+    "height": 480,
+    "title": "Plan without bright colors",
+    "category": "plan",
+    "caption": "Target and Moon curves follow the red palette in night mode.",
+    "credit": "Astronomy: Skyfield / JPL; forecast: Open-Meteo (CC BY 4.0).",
+    "captured_date": "2026-09-14",
+    "source": "Actual application running on Raspberry Pi 4; Chromium viewport 800x480"
+  },
+  {
+    "file": "comparison-night.png",
+    "width": 800,
+    "height": 480,
+    "title": "Compare in night mode",
+    "category": "capture",
+    "caption": "Both aligned images receive the red viewing filter; original files and downloads are unchanged.",
+    "credit": "Photo © Ron Hoebe; DSS2 / STScI / Palomar / UK Schmidt via CDS hips2fits; alignment: ASTAP / Astropy.",
+    "captured_date": "2026-09-14",
+    "source": "Actual application running on Raspberry Pi 4; Chromium viewport 800x480"
+  },
+  {
     "file": "tonight.png",
     "width": 800,
     "height": 480,
     "title": "Tonight, at a glance",
     "category": "plan",
-    "caption": "Darkness, moonlight and a suggested weather window before you head outside.",
+    "caption": "The full selected night, cloud blocks, darkness and a future two-hour weather window.",
     "credit": "Forecast: Open-Meteo (CC BY 4.0). Astronomy: Skyfield / JPL.",
     "captured_date": "2026-09-14",
     "source": "Actual application running on Raspberry Pi 4; Chromium viewport 800x480"
@@ -71,7 +104,7 @@
     "height": 480,
     "title": "Watch the forecast",
     "category": "observe",
-    "caption": "Hourly cloud cover, temperature, wind and humidity for the observing location.",
+    "caption": "Switch between the coming night and next eight hours, with matching forecast detail intervals.",
     "credit": "Forecast: Open-Meteo (CC BY 4.0).",
     "captured_date": "2026-09-14",
     "source": "Actual application running on Raspberry Pi 4; Chromium viewport 800x480"

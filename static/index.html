@@ -16,6 +16,8 @@
   <script src="/static/targets.js" defer></script>
   <script src="/static/captures.js" defer></script>
   <script src="/static/features.js" defer></script>
+  <script src="/static/display.js" defer></script>
+  <link rel="stylesheet" href="/static/v1.1.css">
 </head>
 <body>
   <header>
@@ -35,13 +37,19 @@
   </nav>
   <dialog id="settings-dialog">
     <div class="dialog-title"><h2>Instellingen</h2><button id="close-settings" aria-label="Instellingen sluiten">✕</button></div>
-    <div class="segmented settings-tabs"><button id="settings-place" class="selected" aria-pressed="true">Locatie & scherm</button><button id="settings-scopes" aria-pressed="false">Telescopen</button><button id="settings-system" aria-pressed="false">System & backup</button></div>
+    <div class="segmented settings-tabs"><button id="settings-place" class="selected" aria-pressed="true">Locatie & taal</button><button id="settings-display" aria-pressed="false">Scherm</button><button id="settings-scopes" aria-pressed="false">Telescopen</button><button id="settings-system" aria-pressed="false">System & backup</button></div>
     <section id="place-settings">
     <label class="language-setting">Language<select id="language"><option value="en-US">English (US)</option><option value="nl-NL">Nederlands</option></select></label>
     <form id="location-form"><input id="location-query" type="search" placeholder="Zoek een plaats" aria-label="Plaatsnaam" autocomplete="off"><button type="submit">Zoeken</button></form>
     <div id="location-results" role="status"></div>
-    <div class="brightness"><label for="brightness">Schermhelderheid <span id="brightness-value"></span></label><input id="brightness" type="range" min="5" max="100" step="5"><p id="brightness-info"></p></div>
+    <p id="location-current" class="fine" data-no-i18n></p>
     <p class="fine">Tijden volgen de lokale tijdzone. Astronomie blijft offline beschikbaar; weer en satellietbeelden worden bewaard met hun tijdstip.</p>
+    </section>
+    <section id="display-settings" hidden>
+      <div class="brightness"><label for="brightness">Actieve helderheid <span id="brightness-value"></span></label><input id="brightness" type="range" min="5" max="100" step="5"></div>
+      <div class="brightness"><label for="idle-brightness">Rusthelderheid <span id="idle-brightness-value"></span></label><input id="idle-brightness" type="range" min="5" max="100" step="5"></div>
+      <div class="dimming-options"><label><input id="auto-dim" type="checkbox"> Automatisch dimmen</label><label for="idle-timeout">Wachttijd (seconden)</label><input id="idle-timeout" type="number" min="10" max="3600" step="1" value="60"></div>
+      <p id="brightness-info" class="fine"></p>
     </section>
     <section id="system-settings" hidden>
       <h3>Display setup</h3><p class="fine">Run the display wizard on the Pi to choose the screen, rotation and interface size.</p>

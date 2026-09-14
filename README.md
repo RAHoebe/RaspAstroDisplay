@@ -1,14 +1,14 @@
 # Astro Control Panel
 
-A local touchscreen dashboard for planning a night with a smart telescope. For **Raspberry Pi 4 with 4 GB RAM or newer**, the original Raspberry Pi 7-inch Touch Display and the 7-inch Touch Display 2. English (US) and Dutch, large touch controls, red night mode and adjustable backlight.
+A local touchscreen dashboard for planning a night with a smart telescope. For **Raspberry Pi 4 with 4 GB RAM or newer**, the original Raspberry Pi 7-inch Touch Display and the 7-inch Touch Display 2. English (US) and Dutch, large touch controls, red night mode and automatic backlight dimming.
 
 **[Website & showcase](https://rahoebe.github.io/RaspAstroDisplay/)** · **[Installation guide](https://rahoebe.github.io/RaspAstroDisplay/install.html)** · **[Sources & licenses](https://rahoebe.github.io/RaspAstroDisplay/sources.html)**
 
-The English website lives in `doc/`, with 17 actual 800 × 480 application screenshots in `doc/screenshots/`. GitHub Actions publishes only `doc/`. Local working notes belong in the ignored `plan/` folder and private helper scripts in `toolslocal/`; distributable maintenance tools remain in `tools/`.
+The English website lives in `doc/`, with 20 actual 800 × 480 application screenshots in `doc/screenshots/`. GitHub Actions publishes only `doc/`. Local working notes belong in the ignored `plan/` folder and private helper scripts in `toolslocal/`; distributable maintenance tools remain in `tools/`.
 
 ## Features
 
-- **Tonight:** darkness, moonlight and a suggested two-hour weather window.
+- **Tonight:** a compact home screen, shared sunrise-based night selection, full-night cloud blocks or the next eight hours, and a future two-hour weather window.
 - **Moon:** phase, illumination, altitude, direction and upcoming events.
 - **Weather:** hourly forecasts and animated Meteosat infrared cloud images.
 - **Targets:** 12,160 OpenNGC deep-sky objects, a permanent Moon shortcut and selected bright planets. Filter the coming night, current sky or next 24 hours; sort by smart-telescope recommendation, altitude, size or magnitude.
@@ -16,9 +16,14 @@ The English website lives in `doc/`, with 17 actual 800 × 480 application scree
 - **Planning:** altitude and Moon tracks, a suggested imaging window, favorites and a “not captured with this telescope” filter. Favorites and capture counts are separate for each telescope.
 - **Captures:** upload JPG/JPEG or PNG, browse by object/telescope, download originals and restore photos from Trash. Original image bytes are retained.
 - **Compare:** local ASTAP star matching determines the actual field and rotation of a photograph. A survey reference is reprojected into the same frame, with swipe and blink comparison.
+- **Display:** active/idle brightness, 10–3600 second timeout, backend-owned dimming and a first touch that only wakes the local kiosk. Remote browsers do not keep the screen awake.
 - **Backup:** download a consistent ZIP of photographs, database, favorites and application settings.
 
 This application does not control a telescope. Being above the horizon does not guarantee suitability for imaging. Recommendations are estimates, with reasons shown in the interface. See [SOURCES.md](SOURCES.md) for calculations and credits.
+
+## Version 1.1
+
+See [what changed](CHANGELOG.md) and the [upgrade guide](https://rahoebe.github.io/RaspAstroDisplay/install.html#v11). Existing active brightness, photographs, language and telescopes are preserved. The original display and its rotation remain supported.
 
 ## Install on a Raspberry Pi
 
@@ -46,7 +51,7 @@ This downloads official ASTAP CLI and the D50 star database to `~/.local/share/a
 
 Open `http://<your-pi-hostname>.local:8080/` on the same network, or use the Pi's IP address if name resolution is unavailable. The kiosk opens automatically on the Pi.
 
-New installations start in **English (US)** at **Greenwich**. Set your location and language under **Settings → Location & display**. The saved language becomes the default for new browsers; each browser can retain its own language choice. Times use the observing location's time zone, and date/number formatting follows the language.
+New installations start in **English (US)** at **Greenwich**. Set your location and language under **Settings → Location & language**. The saved language becomes the default for new browsers; each browser can retain its own language choice. Times use the observing location's time zone, and date/number formatting follows the language.
 
 ### Change display or rotation
 

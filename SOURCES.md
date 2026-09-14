@@ -66,3 +66,10 @@ Planeten gebruiken lokaal meegeleverde, ongewijzigde NASA-referentiebeelden. Het
 - [Mars, Hubble (2016)](https://science.nasa.gov/image-detail/hs-2016-15-a-full_tif/): NASA, ESA, Hubble Heritage Team (STScI/AURA), J. Bell (ASU), M. Wolff (Space Science Institute).
 - [Jupiter, Hubble (2019)](https://science.nasa.gov/asset/hubble/jupiter-2019/): NASA, ESA, A. Simon (GSFC), M.H. Wong (UC Berkeley).
 - [Saturnus, Hubble (2019)](https://science.nasa.gov/asset/hubble/saturn-2019/): NASA, ESA, A. Simon (GSFC), M.H. Wong (UC Berkeley), OPAL Team.
+
+
+## Version 1.1 night and forecast handling
+
+The shared observing date advances at local sunrise; without a sunrise it uses a labeled local-noon calendar boundary. UTC timestamps preserve real elapsed time across daylight-saving changes. The home advice still requires two future hours of astronomical darkness (Sun ≤ −18°); target advice retains its ≥30° altitude and Sun < −12° limits. Catalog eligibility uses Sun < −6° within that selected night.
+
+The existing Open-Meteo request supplies three days of hourly forecasts. Night blocks cover sunset to sunrise, average available interval values by elapsed time and are limited to eight blocks. Missing hourly coverage remains unknown; stale data is displayed with a warning and excluded from reliable weather advice. The provider and its CC BY 4.0 attribution are unchanged. [Open-Meteo hourly forecast documentation](https://open-meteo.com/en/docs).

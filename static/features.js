@@ -23,10 +23,10 @@ window.addEventListener('astro-language',()=>{updateClock();render(true);if($('#
 let backupTimer=null;
 async function readBackup(){
  try{const r=await fetch('/api/backup',{signal:AbortSignal.timeout(10000)});if(!r.ok)throw Error('Could not load backup status.');showBackup(await r.json());}
- catch(error){$('#backup-status').textContent=error.message;$('#create-backup').disabled=false;}
+ catch(error){$('#backup-status').textContent=error.message;$('#create-backup').disabled=!settingsReady;}
 }
 function showBackup(data){
- clearTimeout(backupTimer);$('#create-backup').disabled=data.status==='running';$('#download-backup').hidden=data.status!=='ready';
+ clearTimeout(backupTimer);$('#create-backup').disabled=!settingsReady||data.status==='running';$('#download-backup').hidden=data.status!=='ready';
  $('#backup-status').textContent=data.status==='running'?'Creating a consistent backup…':data.status==='ready'?'Backup ready · '+day(data.created_at)+' '+tm(data.created_at):data.error||'';
  if(data.status==='ready')$('#download-backup').href=data.url;
  if(data.status==='running')backupTimer=setTimeout(readBackup,2000);
@@ -35,7 +35,7 @@ $('#settings-system').onclick=()=>{settingsSection(false);$('#place-settings').h
 $('#create-backup').onclick=async()=>{
  $('#create-backup').disabled=true;
  try{await freshToken();const r=await fetch('/api/backup',{method:'POST',headers:{'Content-Type':'application/json','X-Astro-Token':token},body:'{}',signal:AbortSignal.timeout(10000)});if(!r.ok)throw Error('Backup could not be started.');showBackup(await r.json());}
- catch(error){$('#backup-status').textContent=error.message;$('#create-backup').disabled=false;}
+ catch(error){$('#backup-status').textContent=error.message;$('#create-backup').disabled=!settingsReady;}
 };
 
 let planData=null,planVersion=0;
@@ -49,13 +49,13 @@ function renderPlan(){
  if(!planData)return;const rows=planData.samples,night=rows.filter(r=>r.night),start=night[0]?.time||rows[0].time,end=night.at(-1)?.time||rows.at(-1).time;
  const selected=rows.filter(r=>r.time>=start&&r.time<=end),span=Math.max(3600,end-start),x=t=>48+(t-start)/span*690,y=a=>157-(Math.max(-90,Math.min(90,a))+90)/180*140;
  const path=key=>selected.map((r,i)=>(i?'L':'M')+x(r.time).toFixed(1)+' '+y(r[key]).toFixed(1)).join(' ');
- const lines=[-90,-60,-30,0,30,60,90].map(a=>`<path d="M48 ${y(a)}H738" stroke="${a===30?'#b5c6a0':'#47513d'}" stroke-dasharray="${a===30?'5 4':'1 0'}"/><text x="39" y="${y(a)+4}" text-anchor="end" fill="#a1ad9a">${a}°</text>`).join('');
- const ticks=Array.from({length:5},(_,i)=>start+span*i/4).map(t=>`<text x="${x(t)}" y="180" text-anchor="middle" fill="#a1ad9a">${esc(tm(t))}</text>`).join('');
- const darkness=selected.slice(0,-1).filter(r=>r.sun<-12).map(r=>`<rect x="${x(r.time)}" y="16" width="${690*600/span+.5}" height="141" fill="#0b120b"/>`).join('');
- const clouds=selected.filter(r=>r.cloud!=null).map(r=>`<rect x="${x(r.time)}" y="2" width="${Math.max(2,690*600/span)}" height="${r.cloud/100*10}" fill="#8c9c86"/>`).join('');
- const best=planData.best,window=best?`<rect x="${x(best.start)}" y="16" width="${x(best.end)-x(best.start)}" height="141" fill="#ceef91" opacity=".09"/>`:'';
+ const lines=[-90,-60,-30,0,30,60,90].map(a=>`<path d="M48 ${y(a)}H738" stroke="${a===30?'var(--accent)':'var(--line)'}" stroke-dasharray="${a===30?'5 4':'1 0'}"/><text x="39" y="${y(a)+4}" text-anchor="end" fill="var(--muted)">${a}°</text>`).join('');
+ const ticks=Array.from({length:5},(_,i)=>start+span*i/4).map(t=>`<text x="${x(t)}" y="180" text-anchor="middle" fill="var(--muted)">${esc(tm(t))}</text>`).join('');
+ const darkness=selected.slice(0,-1).filter(r=>r.sun<-12).map(r=>`<rect x="${x(r.time)}" y="16" width="${690*600/span+.5}" height="141" fill="var(--bg)"/>`).join('');
+ const clouds=selected.filter(r=>r.cloud!=null).map(r=>`<rect x="${x(r.time)}" y="2" width="${Math.max(2,690*600/span)}" height="${r.cloud/100*10}" fill="var(--cloud)"/>`).join('');
+ const best=planData.best,window=best?`<rect x="${x(best.start)}" y="16" width="${x(best.end)-x(best.start)}" height="141" fill="var(--accent)" opacity=".09"/>`:'';
  const advice=best?`<div class="plan-window"><strong>${tm(best.start)} – ${tm(best.end)}</strong><p>${n(best.minutes)} min · ${tr('Best imaging window')}<br>${best.weather_available?tr('Cloud forecast')+' '+n(best.cloud)+'%':tr('Geometric estimate; weather unavailable.')}</p></div><p class="fine">${tr(best.weather_available&&best.cloud>60?'Cloud forecast suggests poor conditions.':'Estimated window; check local clouds and obstructions.')}</p>`:`<p class="fine">${tr('No continuous window of at least 30 minutes above 30° with the Sun below −12°.')}</p>`;
- $('#plan-body').innerHTML=`<svg id="altitude-chart" viewBox="0 0 780 192" role="img" aria-label="Altitude through the night" preserveAspectRatio="none"><g font-size="12" font-family="sans-serif">${darkness}${window}${clouds}${lines}${ticks}<path d="${path('altitude')}" fill="none" stroke="#ceef91" stroke-width="2.5"/><path d="${path('moon')}" fill="none" stroke="#efbc79" stroke-width="1.5"/></g></svg><div class="chart-legend"><span class="chart-target">— Target altitude</span><span class="chart-moon">— Moon altitude</span></div>${advice}<p class="fine">Dark shading: Sun below −12°. Dashed line: 30° altitude. Top bars: cloud cover.</p>`;
+ $('#plan-body').innerHTML=`<p class="fine">${nightDates(planData)}</p><svg id="altitude-chart" viewBox="0 0 780 192" role="img" aria-label="Altitude through the night" preserveAspectRatio="none"><g font-size="12" font-family="sans-serif">${darkness}${window}${clouds}${lines}${ticks}<path d="${path('altitude')}" fill="none" stroke="var(--accent)" stroke-width="2.5"/><path d="${path('moon')}" fill="none" stroke="var(--warn)" stroke-width="1.5"/></g></svg><div class="chart-legend"><span class="chart-target">— Target altitude</span><span class="chart-moon">— Moon altitude</span></div>${advice}<p class="fine">Dark shading: Sun below −12°. Dashed line: 30° altitude. Top bars: cloud cover.</p>`;
 }
 
 let compareId=null,compareData=null,compareTimer=null,blinkTimer=null,compareVersion=0;

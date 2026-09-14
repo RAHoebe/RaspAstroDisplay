@@ -28,6 +28,8 @@ from ranking import recommendation
 from backup import BackupManager
 from comparison import ComparisonManager
 from planning import track, observing_plan
+from display_control import DisplayController, validate as validate_display
+from forecast import forecast_periods
 
 ROOT = Path(__file__).resolve().parent
 STATE = Path(os.environ.get('ASTRO_STATE', ROOT / '.runtime'))
@@ -85,6 +87,9 @@ def snapshot():
             age = (datetime.now(UTC) - datetime.fromisoformat(stamp)).total_seconds()
             value['age_seconds'] = round(age)
             value['stale'] = age > limit or age < -300
+    result['forecast'] = forecast_periods(result['weather'], result['astronomy'], time.time())
+    result['display'] = display.view()
+    result['local_display'] = local_display_request()
     return result
 
 
@@ -187,17 +192,33 @@ def brightness_device():
     return next(Path('/sys/class/backlight').glob('*/brightness'), None)
 
 
+display = DisplayController(STATE, brightness_device())
+
+
+def local_display_request():
+    # Never trust forwarded IPs or a remote browser's ?kiosk=1 flag.
+    from flask import has_request_context
+    return has_request_context() and request.remote_addr in ('127.0.0.1', '::1')
+
+
+@app.get('/api/display')
+def display_status():
+    return jsonify(display=display.view(), local_display=local_display_request(),
+                   token=csrf if local_display_request() else None)
+
+
+@app.post('/api/display/activity')
+def display_activity():
+    if not local_display_request():
+        abort(403)
+    return jsonify(display.activity())
+
+
 @app.get('/api/settings')
 def settings():
-    device = brightness_device()
-    brightness = None
-    writable = False
-    if device:
-        maximum = int((device.parent / 'max_brightness').read_text())
-        brightness = round(int(device.read_text()) / maximum * 100)
-        writable = os.access(device, os.W_OK)
     return jsonify(config=config, preferences=preferences, equipment=equipment_view(equipment), token=csrf,
-                   brightness=brightness, brightness_available=writable)
+                   brightness=display.profile['active'], brightness_available=display.available,
+                   display=display.view(), local_display=local_display_request())
 
 
 @app.post('/api/equipment')
@@ -322,9 +343,13 @@ def target_plan(ident):
         abort(404)
     current = snapshot()
     c = current['config']
-    samples = track(str(STATE), ident, c['latitude'], c['longitude'], c['elevation'], int(time.time() // 300))
+    samples = track(str(STATE), ident, c['latitude'], c['longitude'], c['elevation'], int(time.time() // 300), c['timezone'],
+                    (current.get('astronomy') or {}).get('night_start'), (current.get('astronomy') or {}).get('night_end'))
     illumination = (current.get('astronomy') or {}).get('moon', {}).get('illumination', 0)
-    return jsonify(observing_plan(samples, current.get('weather'), illumination))
+    result = observing_plan(samples, current.get('weather'), illumination, now=time.time())
+    result['night_start'] = (current.get('astronomy') or {}).get('night_start')
+    result['night_end'] = (current.get('astronomy') or {}).get('night_end')
+    return jsonify(result)
 
 
 @lru_cache(maxsize=4)
@@ -464,13 +489,17 @@ def update_settings():
     try:
         if not isinstance(body, dict):
             raise ValueError()
+        new_display = body.get('display', {})
+        if 'brightness' in body:
+            legacy_brightness = int(body['brightness'])
+            new_display = dict(new_display, active=legacy_brightness)
+            if 'idle' not in new_display:
+                new_display['idle'] = min(display.profile['idle'], legacy_brightness)
+        validate_display(new_display, display.profile, legacy='brightness' in body and 'display' not in body)
         if 'language' in body:
             if body['language'] not in ('en-US', 'nl-NL'):
                 raise ValueError()
-            with lock:
-                new_preferences = dict(preferences, language=body['language'])
-                save_json(STATE / 'preferences.json', new_preferences)
-                preferences = new_preferences
+            new_preferences = dict(preferences, language=body['language'])
         if 'location' in body:
             c = body['location']
             name = str(c['name']).strip()
@@ -481,19 +510,15 @@ def update_settings():
             if not name or len(name) > 80 or not all(math.isfinite(x) for x in (lat, lon, elevation)) or not -90 <= lat <= 90 or not -180 <= lon <= 180 or not -500 <= elevation <= 9000:
                 raise ValueError()
             new_config = dict(name=name, latitude=lat, longitude=lon, elevation=elevation, timezone=zone)
-            with lock:
+        with lock:
+            if 'display' in body or 'brightness' in body:
+                display.update(new_display, legacy='brightness' in body and 'display' not in body)
+            if 'location' in body:
                 save_json(STATE / 'config.json', new_config)
                 config = new_config
-        if 'brightness' in body:
-            value = int(body['brightness'])
-            if not 5 <= value <= 100:
-                raise ValueError()
-            device = brightness_device()
-            if not device or not os.access(device, os.W_OK):
-                return jsonify(error='Helderheid is op dit apparaat niet beschikbaar.'), 503
-            maximum = int((device.parent / 'max_brightness').read_text())
-            device.write_text(str(max(1, round(maximum * value / 100))))
-            save_json(STATE / 'brightness.json', {'percent': value})
+            if 'language' in body:
+                save_json(STATE / 'preferences.json', new_preferences)
+                preferences = new_preferences
     except (KeyError, ValueError, TypeError, ZoneInfoNotFoundError):
         return jsonify(error='Controleer de ingevoerde instellingen.'), 400
     except OSError:
@@ -508,11 +533,7 @@ def image(name):
 
 if __name__ == '__main__':
     logging.basicConfig(level=logging.INFO)
-    saved = read_json(STATE / 'brightness.json', {})
-    device = brightness_device()
-    if device and os.access(device, os.W_OK) and 'percent' in saved:
-        maximum = int((device.parent / 'max_brightness').read_text())
-        device.write_text(str(max(1, round(maximum * max(5, min(100, saved['percent'])) / 100))))
+    display.start()
     start_workers()
     serve(app, host=os.environ.get('ASTRO_BIND', '0.0.0.0'), port=int(os.environ.get('ASTRO_PORT', '8080')), threads=6,
           max_request_body_size=MAX_BYTES + 128 * 1024)

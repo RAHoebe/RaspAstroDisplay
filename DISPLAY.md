@@ -55,3 +55,12 @@ A transparent Xcursor theme hides the pointer from desktop startup, including be
 Use SSH to rerun the wizard or restore `wayfire.ini` / `rc.xml` and `astro-display.json` from the same dated backup, then reboot. A `no-previous-profile` marker means that reverting also requires removing the newly created `~/.config/astro-display.json`.
 
 Check touch at top-right Settings and bottom-left Tonight after a change. Original display hardware is verified. Touch Display 2 dimensions, rotations and configuration have automated checks, but physical verification waits for the new panel.
+## Automatic brightness (1.1)
+
+In **Settings → Display**, select active brightness, idle brightness, automatic dimming and a timeout. Brightness is 5–100% in steps of five; idle cannot exceed active. The default is 10% idle after 60 seconds (allowed timeout: 10–3600 seconds). Upgrades keep the old active brightness; fresh installations use 70%.
+
+Only interaction in the kiosk at `http://127.0.0.1:8080/?kiosk=1` counts as activity. The Pi backend uses a monotonic clock and fades up in approximately 0.2 seconds or down in one second. The entire first touch while dimmed is consumed, including over dialogs. Restarting begins at active brightness. Missing or failed backlight hardware does not intercept normal touches.
+
+The existing `GET /api/settings` response now includes `display.profile` with `active`, `idle`, `timeout` and `auto_dim`, plus `available`, `dimmed`, `current` and `seconds_until_idle`. Save changes through `POST /api/settings` with `{"display":{"active":65,"idle":10,"timeout":60,"auto_dim":true}}`. Partial profile updates are allowed. The legacy `{"brightness":65}` input remains usable.
+
+`GET /api/display` returns runtime status. `POST /api/display/activity` accepts an empty JSON object and the normal `X-Astro-Token`; it additionally requires a loopback client address. Forwarded headers cannot bypass this restriction. Remote browsers never send activity. Activity and fade steps do not write settings to disk. The migrated `brightness.json` retains `percent` for v1.0 rollback, adds the complete profile, and is included in application ZIP backups.

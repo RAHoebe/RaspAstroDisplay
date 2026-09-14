@@ -53,6 +53,11 @@ def observing_minutes(altitudes, eligible):
     return np.maximum(0, longest - 1) * 10
 
 
+def night_mask(dates, solar_altitudes, events):
+    start, end = (datetime.fromisoformat(events[k]) for k in ('night_start', 'night_end'))
+    return np.array([start <= d < end for d in dates]) & (np.asarray(solar_altitudes) < -6)
+
+
 def fixed_altitude_grid(ra_hours, dec_degrees, sidereal_hours, latitude, longitude):
     """Apparent equatorial coordinates and local apparent sidereal time, no refraction.
 
@@ -84,6 +89,23 @@ class Astronomy:
     def observer(self, lat, lon, elevation):
         site = wgs84.latlon(lat, lon, elevation_m=elevation)
         return site, self.eph['earth'] + site
+
+    def selected_night(self, config, now):
+        """One local observing date; advance at sunrise, with a noon polar fallback."""
+        start, end = night_bounds(now, config['timezone'])
+        args = [config[k] for k in ('latitude', 'longitude', 'elevation')]
+        events = self.events(iso(start), iso(end), *args)
+        if events['sunrise'] and now >= datetime.fromisoformat(events['sunrise']):
+            # Local calendar arithmetic is necessary across both DST transitions.
+            local_end = end.astimezone(ZoneInfo(config['timezone']))
+            start, end = end, (local_end + timedelta(days=1)).astimezone(UTC)
+            events = self.events(iso(start), iso(end), *args)
+        result = dict(events)
+        result['calendar_start'], result['calendar_end'] = iso(start), iso(end)
+        result['night_start'] = events['sunset'] or iso(start)
+        result['night_end'] = events['sunrise'] or iso(end)
+        result['no_sunrise'] = events['sunrise'] is None
+        return result
 
     @lru_cache(maxsize=12)
     def events(self, start_iso, end_iso, lat, lon, elevation):
@@ -126,13 +148,18 @@ class Astronomy:
         illumination = float(almanac.fraction_illuminated(self.eph, 'moon', t)) * 100
         phase_name = ['Nieuwe maan', 'Wassende sikkel', 'Eerste kwartier', 'Wassende maan',
                       'Volle maan', 'Afnemende maan', 'Laatste kwartier', 'Afnemende sikkel'][int((phase + 22.5) / 45) % 8]
-        start, end = night_bounds(now, config['timezone'])
-        events = self.events(iso(start), iso(end), lat, lon, elevation)
-        dates = [now + timedelta(minutes=10 * i) for i in range(145)]
+        events = self.selected_night(config, now)
+        # Moon events are "next from now", not "next after the selected evening".
+        # In the morning, today's Moon rise or phase can precede that night's noon bound.
+        moon_start, moon_end = night_bounds(now, config['timezone'])
+        moon_events = self.events(iso(moon_start), iso(moon_end), lat, lon, elevation)
+        end = datetime.fromisoformat(events['night_end'])
+        duration = max(86400, (end - now).total_seconds())
+        dates = [now + timedelta(minutes=10 * i) for i in range(int(np.ceil(duration / 600)) + 1)]
         grid = self.ts.from_datetimes(dates)
         grid_observer = observer.at(grid)
         solar_alts = grid_observer.observe(self.eph['sun']).apparent().altaz()[0].degrees
-        eligible = first_night_mask(solar_alts)
+        eligible = night_mask(dates, solar_alts, events)
         targets = []
         def timing(altitudes, minutes=None):
             index = int(np.argmax(np.where(eligible, altitudes, -999)))
@@ -141,7 +168,7 @@ class Astronomy:
                 minutes = observing_minutes(altitudes, eligible)[0]
             return dict(night_minutes_30=int(minutes), best_time=iso(dates[index]) if best is not None and best > 0 else None,
                         best_altitude=round(best, 2) if best is not None else None,
-                        day_max_altitude=round(float(np.max(altitudes)), 2))
+                        day_max_altitude=round(float(np.max(altitudes[:145])), 2))
 
         sun = at.observe(self.eph['sun']).apparent()
         for ident, name, kind, body in self.catalog:
@@ -174,21 +201,22 @@ class Astronomy:
                     'moon_distance':round(float(fm[i])), **timing(altitudes, durations[j])})
         targets.sort(key=lambda x: (-x['altitude'], x['name']))
         # Hour samples share timestamps with Unix-time weather API; no DST ambiguity.
-        hour_start = now.replace(minute=0, second=0, microsecond=0)
-        hours = [hour_start + timedelta(hours=i) for i in range(25)]
+        hour_start = min(now, datetime.fromisoformat(events['night_start'])).replace(minute=0, second=0, microsecond=0)
+        hour_end = max(now + timedelta(hours=24), end)
+        hours = [hour_start + timedelta(hours=i) for i in range(int(np.ceil((hour_end-hour_start).total_seconds()/3600)) + 1)]
         hour_t = self.ts.from_datetimes(hours)
         hour_at = observer.at(hour_t)
         sun_hours = hour_at.observe(self.eph['sun']).apparent().altaz()[0].degrees
         moon_hours = hour_at.observe(self.eph['moon']).apparent().altaz()[0].degrees
-        next_event = lambda key: next((v for v in events[key] if datetime.fromisoformat(v) >= now), None)
+        next_event = lambda key: next((v for v in moon_events[key] if datetime.fromisoformat(v) >= now), None)
         return {'updated_at': iso(now), **events, 'sun_altitude': round(sun_alt, 1),
                 'sky': 'Astronomisch donker' if sun_alt < -18 else 'Schemering' if sun_alt < -0.833 else 'Overdag',
                 'moon': {'phase_angle': phase, 'phase_name': phase_name, 'illumination': round(illumination, 1),
                          'altitude': round(float(ma.degrees), 1), 'azimuth': round(float(mz.degrees)),
                          'direction': direction(float(mz.degrees)), 'distance_km': round(float(md.km)),
                          'rise': next_event('moonrises'), 'set': next_event('moonsets'),
-                         'next_new': next((p['time'] for p in events['phases'] if p['phase'] == 0 and datetime.fromisoformat(p['time']) >= now), None),
-                         'next_full': next((p['time'] for p in events['phases'] if p['phase'] == 2 and datetime.fromisoformat(p['time']) >= now), None)},
+                         'next_new': next((p['time'] for p in moon_events['phases'] if p['phase'] == 0 and datetime.fromisoformat(p['time']) >= now), None),
+                         'next_full': next((p['time'] for p in moon_events['phases'] if p['phase'] == 2 and datetime.fromisoformat(p['time']) >= now), None)},
                 'targets': targets, 'catalog_count':len(CATALOG),
                 'target_night_start':iso(dates[int(np.flatnonzero(eligible)[0])]) if np.any(eligible) else None,
                 'target_night_end':iso(dates[int(np.flatnonzero(eligible)[-1])]) if np.any(eligible) else None,

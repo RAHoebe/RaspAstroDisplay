@@ -51,7 +51,7 @@ targetsView=function(){
  return `<section class="catalog-view"><div class="catalog-heading"><div><h1>Waarneemdoelen</h1><p class="fine">${n(all.length)} doelen · ${period}${targetKind==='nebula'?' · nevels':''}</p></div><button class="moon-shortcut" data-target="moon" aria-label="Bekijk Maan">☾ Maan <strong>${n(a.moon.altitude)}°</strong><small>${n(a.moon.illumination)}% verlicht</small></button><div class="pager"><button id="target-prev" aria-label="Vorige doelen" ${targetPage===0?'disabled':''}>‹</button><span>${targetPage+1}/${pages}</span><button id="target-next" aria-label="Volgende doelen" ${targetPage>=pages-1?'disabled':''}>›</button></div></div>`+
  `<div class="target-toolbar"><select id="target-scope" aria-label="Telescoop voor aanbevelingen">${getEquipment().scopes.map(s=>`<option data-no-i18n value="${esc(s.id)}" ${s.id===chosen?.id?'selected':''}>${esc(s.name)}</option>`).join('')}</select><select id="target-sort" aria-label="Doelen sorteren">${targetSorts.map(([id,label])=>`<option value="${id}" ${targetSort===id?'selected':''}>${label}</option>`).join('')}</select><button id="open-target-filters">Filters / zoeken${targetQuery?' ●':''}</button></div>`+
  (all.length?`<div class="targets-list">${all.slice(targetPage*3,targetPage*3+3).map(t=>`<article class="target-row panel capture-target-row" style="--scope-cols:${scopes.length}"><button class="target-main" data-target="${esc(t.id)}" aria-label="Bekijk ${esc(t.name)}"><strong>${esc(t.name)} ↗</strong><span class="fine">${sizeText(t)} · ${esc(t.kind)}${t.magnitude!=null?' · mag '+n(t.magnitude,1):''}</span><span class="fine recommendation-reason">${targetSort==='recommended'?esc(t.recommendation?.reasons.join(' · ')):'Beste nacht '+n(t.best_altitude)+'° · '+tm(t.best_time)}</span></button><div class="target-height"><strong>${n(t.altitude,1)}°</strong><span class="fine">nu · ${esc(t.direction)}</span></div>${scopes.map(s=>`<button class="scope-count" data-capture-target="${esc(t.id)}" data-capture-scope="${esc(s.id)}" aria-label="Opnames ${esc(t.name)} met ${esc(s.name)}"><strong>${pct(percent(t,s))}</strong><span data-no-i18n>${esc(s.name)}</span><small>${captureCount(t.id,s.id)} opnames</small></button>`).join('')}</article>`).join('')}</div>`:`<div class="catalog-empty">${targetLoading?'De catalogus wordt geladen…':targetListError||'Geen doelen voor deze filters.'}</div>`)+
- `<p class="fine catalog-foot">${targetSort==='recommended'?'Advies ≈ · geen garantie · ':'% = lange beeldrand · '}boven horizon ≠ goed fotografeerbaar · <span id="counts-status">${captureSummaryError?'Opnametellers niet bereikbaar':'OpenNGC'}</span></p></section>`;
+ `<p class="fine catalog-foot"><span data-no-i18n>${nightDates(a)}</span> · ${targetSort==='recommended'?'Advies ≈ · geen garantie · ':'% = lange beeldrand · '}boven horizon ≠ goed fotografeerbaar · <span id="counts-status">${captureSummaryError?'Opnametellers niet bereikbaar':'OpenNGC'}</span></p></section>`;
 };
 content.addEventListener('click',event=>{
  const row=event.target.closest('[data-target]');if(row)openTarget(row.dataset.target);
@@ -66,8 +66,10 @@ function renderEquipment(){
  const e=getEquipment();if(!e)return;
  $('#scope-list').innerHTML=e.scopes.map(s=>`<div class="scope-row"><button class="scope-select ${s.id===e.selected?'chosen':''}" data-scope="${esc(s.id)}" aria-pressed="${s.id===e.selected}"><span><strong data-no-i18n>${esc(s.name)}</strong><small>${n(s.width,2)}° × ${n(s.height,2)}° ${s.id===e.selected?'· standaard':''}</small></span><span>${s.id===e.selected?'✓':'○'}</span></button>${!s.builtin?`<button class="scope-remove" data-remove="${esc(s.id)}" aria-label="Verwijder ${esc(s.name)}">✕</button>`:''}</div>`).join('');
  $('#add-scope').disabled=e.scopes.length>=14;
+ if(!settingsReady)settingsLoading(true);
 }
 async function writeEquipment(e){
+ if(!settingsReady)throw Error(I18N.t('Instellingen konden niet worden geladen.'));
  const previousDefault=getEquipment()?.selected;
  const r=await fetch('/api/equipment',{method:'POST',headers:{'Content-Type':'application/json','X-Astro-Token':token},body:JSON.stringify({selected:e.selected,custom:e.scopes.filter(s=>!s.builtin)}),signal:AbortSignal.timeout(10000)});
  const result=await r.json();if(!r.ok)throw Error(result.error||'Opslaan is niet gelukt.');
@@ -76,6 +78,7 @@ async function writeEquipment(e){
  $('#settings-message').textContent='Telescoopinstellingen opgeslagen.';
 }
 function settingsSection(scopes){
+ $('#display-settings').hidden=true;$('#settings-display').classList.remove('selected');$('#settings-display').setAttribute('aria-pressed','false');
  $('#system-settings').hidden=true;$('#settings-system').classList.remove('selected');$('#settings-system').setAttribute('aria-pressed','false');
  $('#place-settings').hidden=scopes;$('#scope-settings').hidden=!scopes;
  for(const [id,selected] of [['settings-place',!scopes],['settings-scopes',scopes]]){$('#'+id).classList.toggle('selected',selected);$('#'+id).setAttribute('aria-pressed',selected);}
@@ -87,12 +90,10 @@ const originalSettings=$('#settings').onclick;
 $('#settings').onclick=async()=>{
  settingsSection(false);$('#scope-form').hidden=true;$('#add-scope').hidden=false;
  await originalSettings();
- try{const r=await fetch('/api/settings',{signal:AbortSignal.timeout(10000)});if(!r.ok)throw Error();const s=await r.json();token=s.token;equipmentState=s.equipment;if(state)state.equipment=equipmentState;renderEquipment();}
- catch{$('#settings-message').textContent='Telescoopinstellingen konden niet worden geladen.';}
 };
 let savingEquipment=false;
 $('#scope-list').onclick=async event=>{
- const choose=event.target.closest('[data-scope]'),remove=event.target.closest('[data-remove]');if(savingEquipment || (!choose&&!remove))return;
+ const choose=event.target.closest('[data-scope]'),remove=event.target.closest('[data-remove]');if(!settingsReady || savingEquipment || (!choose&&!remove))return;
  const e=structuredClone(getEquipment());
  if(choose)e.selected=choose.dataset.scope;
  if(remove){e.scopes=e.scopes.filter(s=>s.id!==remove.dataset.remove);if(e.selected===remove.dataset.remove)e.selected=e.scopes[0].id;}

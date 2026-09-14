@@ -1930,5 +1930,81 @@
  [
   "Pelican Nebula",
   "Pelikaannevel"
+ ],
+ [
+  "Coming night",
+  "Komende nacht"
+ ],
+ [
+  "Location & language",
+  "Locatie & taal"
+ ],
+ [
+  "Display",
+  "Scherm"
+ ],
+ [
+  "Active brightness",
+  "Actieve helderheid"
+ ],
+ [
+  "Idle brightness",
+  "Rusthelderheid"
+ ],
+ [
+  "Automatically dim",
+  "Automatisch dimmen"
+ ],
+ [
+  "Idle timeout (seconds)",
+  "Wachttijd (seconden)"
+ ],
+ [
+  "The first touch only wakes the display.",
+  "De eerste aanraking laat het scherm alleen oplichten."
+ ],
+ [
+  "Display settings saved.",
+  "Scherminstellingen opgeslagen."
+ ],
+ [
+  "Loading settings…",
+  "Instellingen laden…"
+ ],
+ [
+  "Average {0}% cloud cover.",
+  "Gemiddeld {0}% bewolking."
+ ],
+ [
+  "No astronomical darkness.",
+  "Geen astronomische duisternis."
+ ],
+ [
+  "No reliable weather advice.",
+  "Geen betrouwbaar weeradvies."
+ ],
+ [
+  "No complete 2-hour advice window.",
+  "Geen volledig adviesvenster van 2 uur."
+ ],
+ [
+  "No sunrise: day changes at 12:00.",
+  "Geen zonsopkomst: daggrens om 12:00."
+ ],
+ [
+  "block",
+  "blok"
+ ],
+ [
+  "Dark strip: Sun below −18°",
+  "Donkere strook: zon onder −18°"
+ ],
+ [
+  "Sunrise {0}",
+  "Zon op {0}"
+ ],
+ [
+  "Weather now",
+  "Weer nu"
  ]
 ]

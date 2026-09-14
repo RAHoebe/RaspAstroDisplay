@@ -6,7 +6,7 @@ import threading
 import numpy as np
 from skyfield.api import Star
 
-from astro import Astronomy, first_night_mask
+from astro import Astronomy, night_mask
 from targets import CATALOG
 
 engine_lock = threading.Lock()
@@ -18,11 +18,18 @@ def engine(root):
 
 
 @lru_cache(maxsize=32)
-def track(root, ident, latitude, longitude, elevation, bucket):
+def track(root, ident, latitude, longitude, elevation, bucket, zone="UTC", night_start=None, night_end=None):
     with engine_lock:
         astro = engine(root)
         start = datetime.fromtimestamp(bucket * 300, timezone.utc)
-        dates = [start + timedelta(minutes=10 * i) for i in range(145)]
+        events = astro.selected_night(dict(latitude=latitude, longitude=longitude, elevation=elevation, timezone=zone), start)
+        if night_start and night_end:
+            events.update(night_start=night_start, night_end=night_end)
+        start = datetime.fromisoformat(events['night_start'])
+        end = datetime.fromisoformat(events['night_end'])
+        dates = [start + timedelta(minutes=10 * i) for i in range(int((end-start).total_seconds() // 600) + 1)]
+        if dates[-1] < end:
+            dates.append(end)
         times = astro.ts.from_datetimes(dates)
         _, observer = astro.observer(latitude, longitude, elevation)
         at = observer.at(times)
@@ -35,13 +42,13 @@ def track(root, ident, latitude, longitude, elevation, bucket):
         sun = at.observe(astro.eph['sun']).apparent().altaz()[0].degrees
         moon = at.observe(astro.eph['moon']).apparent().altaz()[0].degrees
         moon_distance = at.observe(body).apparent().separation_from(at.observe(astro.eph['moon']).apparent()).degrees
-    eligible = first_night_mask(sun)
+    eligible = night_mask(dates, sun, events)
     return [dict(time=d.timestamp(), altitude=round(float(a), 2), sun=round(float(s), 2),
                  moon=round(float(m), 2), moon_distance=round(float(md), 1), night=bool(e))
             for d, a, s, m, md, e in zip(dates, alt, sun, moon, moon_distance, eligible)]
 
 
-def observing_plan(samples, weather=None, illumination=0):
+def observing_plan(samples, weather=None, illumination=0, now=None):
     """Prefer up to two uninterrupted hours, at least 30 minutes, >=30° and Sun<-12°.
 
     Cloud forecasts rank eligible windows but never invent missing coverage.
@@ -52,12 +59,12 @@ def observing_plan(samples, weather=None, illumination=0):
     for row in rows:
         nearest = min(hours, key=lambda h: abs(h['time'] - row['time']), default=None)
         row['cloud'] = nearest.get('cloud_cover') if nearest and abs(nearest['time'] - row['time']) <= 1800 else None
-    good = [r['night'] and r['altitude'] >= 30 and r['sun'] < -12 for r in rows]
+    good = [(now is None or r['time'] >= now) and r['night'] and r['altitude'] >= 30 and r['sun'] < -12 for r in rows]
     candidates = []
     for start in range(len(rows) - 3):
         for length in range(3, 13):
             end = start + length
-            if end >= len(rows) or not all(good[start:end + 1]):
+            if end >= len(rows) or not all(good[start:end + 1]) or any(abs(rows[j+1]['time']-rows[j]['time']-600)>1 for j in range(start,end)):
                 break
             chosen = rows[start:end + 1]
             clouds = [r['cloud'] for r in chosen]

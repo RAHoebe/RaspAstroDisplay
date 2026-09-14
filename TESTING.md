@@ -1,5 +1,19 @@
 # Validation
 
+## v1.1 checks — 14 September 2026
+
+- 82 tests pass locally and on the Pi 4 (the original 61 plus 21 regression cases). The Pi test run takes about 33 seconds. Development-only `ephem` supplies independent astronomy checks.
+- Night selection is checked immediately before/at sunrise, at midnight, in summer without astronomical darkness, in polar day/night and across both DST changes. Hour coverage extends beyond 24 hours when required. Today's Moon rise is not skipped when the selected night advances.
+- Forecast tests cover complete, missing, null, non-finite and stale values, partial-hour weighting and full-night coverage. Target advice rejects past windows and gaps.
+- Fake-clock tests cover migration, validation, fade timing, restart, missing/failed hardware, unchanged settings files during activity, legacy brightness input and ZIP restoration. API tests reject remote and forwarded-address activity requests and missing tokens.
+- Browser geometry checks found no Home overflow in English/Dutch at 800×480, 853×480, 1024×576, 1280×720, 720×1280, 480×853, 360×640, 390×844 and 1440×1000. Long names, unknown weather, stale data and the polar notice were also exercised. Other views may scroll.
+- Browser interaction checks with the real frontend and a simulated backlight confirmed that the first click only wakes, including over a modal close button, and a second click operates the control. Settings makes one GET per opening and initially disables storage controls. A live background refresh retained unfinished capture search text, focus and selection.
+- On the actual Pi, the physical backlight was measured at 26/255 idle and 166/255 active: it reached active within 0.3 seconds of a local wake request, stayed active at 59.5 seconds, faded through 142 and 90 after the 60-second timeout, and returned to 26 by 61.2 seconds. The settings-file timestamp did not change. Remote browsing and ZIP creation did not keep it awake. Backend/kiosk restart and migration retained the 65/10/60 profile and Dutch preference.
+- The original two photo checksums were unchanged. A newly downloaded Pi ZIP was restored into a separate directory; both original checksums and the complete display profile matched.
+- Red-mode SVG strokes and both loaded comparison-image filters were checked in the browser. All 20 screenshots were captured from the running Pi at 800×480 and inspected without the browser automation cursor. All website gallery images retain 5:3 geometry at desktop/mobile widths and in the enlarged viewer; seven HTML pages and 177 internal references validate.
+
+Ron confirmed the physical finger-tap checks on the Pi: the first touch only wakes, the second opens Settings, and the first touch over an open dialog does not close it. Touch Display 2 hardware and labwc remain untested physically.
+
 Run `python -m unittest discover -s tests -v` in the project environment. Tests cover astronomical selection, recommendation calculations, FOV geometry, capture validation/duplicates, origin/host controls, favorites, language settings, ZIP backup/restore and corrupt archives, observing-window continuity, WCS reprojection (rotation, reflection, RA wrap), and display configuration preservation.
 
 Release checks on 13 September 2026:
