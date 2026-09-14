@@ -173,6 +173,7 @@ def headers(response):
 @app.get('/')
 def home():
     html = (ROOT / 'static' / 'index.html').read_text(encoding='utf-8')
+    html = html.replace('{{APP_VERSION}}', (ROOT / 'VERSION').read_text(encoding='utf-8').strip())
     language = preferences.get('language', 'en-US')
     html = html.replace('<html lang="nl">', '<html lang="' + language + ('" class="kiosk">' if request.args.get('kiosk') == '1' else '">'))
     return Response(html, mimetype='text/html')

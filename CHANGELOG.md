@@ -1,5 +1,12 @@
 # Changes
 
+## 1.2 — 14 September 2026 (Release 2)
+
+- Tap ASTRO to open About with the installed version, author, MIT license and project/documentation/source links.
+- About supports English/Dutch, red night mode, touchscreen controls and native keyboard focus restoration.
+- A single VERSION file supplies the displayed version and release link.
+- Updated documentation and added three original 800 × 480 screenshots of About.
+
 ## 1.1 — 14 September 2026
 
 - Home fits the available display height, with short advice and no unused space above the panels. Long location names are shortened visually.

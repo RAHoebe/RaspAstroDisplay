@@ -1,5 +1,38 @@
 [
   {
+    "file": "about.png",
+    "width": 800,
+    "height": 480,
+    "title": "Meet your Astro panel",
+    "category": "system",
+    "caption": "Tap ASTRO for the installed version, author, license and links to the guide and project.",
+    "credit": "Interface: Astro Control Panel; background forecast: Open-Meteo (CC BY 4.0), astronomy: Skyfield / JPL.",
+    "captured_date": "2026-09-14",
+    "source": "Actual application running on Raspberry Pi 4; Chromium viewport 800x480"
+  },
+  {
+    "file": "about-nl.png",
+    "width": 800,
+    "height": 480,
+    "title": "Over Astro Control Panel",
+    "category": "system",
+    "caption": "The About dialog in Dutch, with the installed version and source links.",
+    "credit": "Interface: Astro Control Panel; background forecast: Open-Meteo (CC BY 4.0), astronomy: Skyfield / JPL.",
+    "captured_date": "2026-09-14",
+    "source": "Actual application running on Raspberry Pi 4; Chromium viewport 800x480"
+  },
+  {
+    "file": "about-night.png",
+    "width": 800,
+    "height": 480,
+    "title": "About, after dark",
+    "category": "system",
+    "caption": "The About dialog follows the red night palette.",
+    "credit": "Interface: Astro Control Panel; background forecast: Open-Meteo (CC BY 4.0), astronomy: Skyfield / JPL.",
+    "captured_date": "2026-09-14",
+    "source": "Actual application running on Raspberry Pi 4; Chromium viewport 800x480"
+  },
+  {
     "file": "settings-display.png",
     "width": 800,
     "height": 480,

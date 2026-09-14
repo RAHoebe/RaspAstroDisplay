@@ -1,5 +1,12 @@
 # Validation
 
+## v1.2 checks — 14 September 2026
+
+- All 82 existing tests pass locally. The updated app runs on the Pi 4.
+- About opens from ASTRO and shows version 1.2, Ron Hoebe, MIT and the correct guide/release/source links. English and Dutch were checked.
+- The native modal closes using its cross and Escape; keyboard focus returns to ASTRO. The popup fits at 800 × 480, 853 × 480, 1280 × 720, 720 × 1280 and 390 × 844.
+- Red night colors were checked. Three new 800 × 480 screenshots were captured from the Pi and visually inspected without the automation cursor.
+
 ## v1.1 checks — 14 September 2026
 
 - 82 tests pass locally and on the Pi 4 (the original 61 plus 21 regression cases). The Pi test run takes about 33 seconds. Development-only `ephem` supplies independent astronomy checks.

@@ -2006,5 +2006,41 @@
  [
   "Weather now",
   "Weer nu"
+ ],
+ [
+  "About Astro Control Panel",
+  "Over Astro Control Panel"
+ ],
+ [
+  "Close About",
+  "Over sluiten"
+ ],
+ [
+  "Version",
+  "Versie"
+ ],
+ [
+  "Your touchscreen companion for astronomy, weather and smart-telescope photography.",
+  "Je touchscreenhulp voor astronomie, weer en fotografie met slimme telescopen."
+ ],
+ [
+  "An independent planning dashboard. It does not control your telescope.",
+  "Een onafhankelijk planningsdashboard. Het bestuurt je telescoop niet."
+ ],
+ [
+  "Application code and documentation: MIT. Data, survey images and photographs retain their own licenses.",
+  "Applicatiecode en documentatie: MIT. Gegevens, surveybeelden en foto’s behouden hun eigen licenties."
+ ],
+ [
+  "Guide",
+  "Handleiding"
+ ],
+ [
+  "GitHub & release",
+  "GitHub & release"
+ ],
+ [
+  "Sources & licenses",
+  "Bronnen & licenties"
  ]
 ]

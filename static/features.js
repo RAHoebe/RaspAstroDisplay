@@ -86,3 +86,7 @@ $('#comparison-blink').onclick=()=>{if(blinkTimer){stopBlink();return;}let refer
 $('#comparison-own').onload=$('#comparison-reference').onload=fitComparison;
 $('#comparison-own').onerror=$('#comparison-reference').onerror=()=>{$('#comparison-status').textContent='Image could not be loaded.';};
 $('#close-comparison').onclick=()=>$('#comparison-dialog').close();$('#comparison-dialog').addEventListener('close',()=>{compareVersion++;clearTimeout(compareTimer);stopBlink();});
+
+// Native modal keeps keyboard focus and the kiosk wake-only gesture guard.
+$('#about').onclick=()=>$('#about-dialog').showModal();
+$('#close-about').onclick=()=>$('#about-dialog').close();

@@ -21,7 +21,7 @@
 </head>
 <body>
   <header>
-    <div class="brand"><span class="brand-mark">✳</span><div>ASTRO<span id="location" data-no-i18n>—</span></div></div>
+    <button id="about" class="brand" aria-label="About Astro Control Panel" aria-haspopup="dialog"><span class="brand-mark" aria-hidden="true">✳</span><div>ASTRO<span id="location" data-no-i18n>—</span></div></button>
     <div class="clock"><strong id="clock">--:--</strong><span id="date"></span></div>
     <button id="night" class="header-button" aria-label="Rode nachtmodus" aria-pressed="false">◐ <span>Nacht</span></button>
     <button id="settings" class="header-button gear" aria-label="Instellingen">⚙</button>
@@ -35,6 +35,15 @@
     <button data-tab="targets"><span>◎</span>Targets</button>
     <button data-tab="captures"><span>▧</span>Captures</button>
   </nav>
+  <dialog id="about-dialog" aria-labelledby="about-title">
+    <div class="dialog-title"><h2 id="about-title">About Astro Control Panel</h2><button id="close-about" aria-label="Close About">✕</button></div>
+    <div class="about-heading"><span class="brand-mark" aria-hidden="true">✳</span><div><strong data-no-i18n>ASTRO CONTROL PANEL</strong><p class="accent"><span>Version</span> <span data-no-i18n>{{APP_VERSION}}</span></p></div></div>
+    <p class="about-description">Your touchscreen companion for astronomy, weather and smart-telescope photography.</p>
+    <p class="fine">An independent planning dashboard. It does not control your telescope.</p>
+    <p class="about-author" data-no-i18n>© 2026 Ron Hoebe</p>
+    <p class="fine">Application code and documentation: MIT. Data, survey images and photographs retain their own licenses.</p>
+    <div class="about-links"><a href="https://rahoebe.github.io/RaspAstroDisplay/guide.html" target="_blank" rel="noopener noreferrer">Guide</a><a href="https://github.com/RAHoebe/RaspAstroDisplay/releases/tag/v{{APP_VERSION}}" target="_blank" rel="noopener noreferrer">GitHub &amp; release</a><a href="https://rahoebe.github.io/RaspAstroDisplay/sources.html" target="_blank" rel="noopener noreferrer">Sources &amp; licenses</a></div>
+  </dialog>
   <dialog id="settings-dialog">
     <div class="dialog-title"><h2>Instellingen</h2><button id="close-settings" aria-label="Instellingen sluiten">✕</button></div>
     <div class="segmented settings-tabs"><button id="settings-place" class="selected" aria-pressed="true">Locatie & taal</button><button id="settings-display" aria-pressed="false">Scherm</button><button id="settings-scopes" aria-pressed="false">Telescopen</button><button id="settings-system" aria-pressed="false">System & backup</button></div>

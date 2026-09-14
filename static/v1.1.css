@@ -46,3 +46,10 @@ main[data-tab=weather] .view-heading{min-height:44px;margin-bottom:6px}main[data
  .period-toggle button{min-height:44px}.night-bottom{gap:6px}
 }
 @media(max-height:520px) and (min-width:601px){.night-summary{gap:8px}.forecast-box .section-title h3{font-size:14px}.period-toggle button{padding:0 8px}}
+
+button.brand{background:transparent;border-color:transparent;padding:0;text-align:left;min-height:48px;border-radius:8px}
+#about-dialog{width:min(560px,calc(100vw - 24px));max-height:calc(100dvh - 24px)}
+.about-heading{display:flex;align-items:center;gap:14px;margin:12px 0}.about-heading strong{font-size:17px;letter-spacing:2px}.about-heading p{margin-top:4px}
+.about-description{font-size:16px;line-height:1.4;margin-bottom:8px}.about-author{margin:14px 0 6px}
+.about-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}.about-links a{display:flex;align-items:center;justify-content:center;min-height:44px;padding:8px 12px;border:1px solid var(--line);border-radius:10px;font-size:14px;color:var(--accent)}
+.about-links a:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
