@@ -1,77 +1,11 @@
 [
   {
-    "file": "about.png",
-    "width": 800,
-    "height": 480,
-    "title": "Meet your Astro panel",
-    "category": "system",
-    "caption": "Tap ASTRO for the installed version, author, license and links to the guide and project.",
-    "credit": "Interface: Astro Control Panel; background forecast: Open-Meteo (CC BY 4.0), astronomy: Skyfield / JPL.",
-    "captured_date": "2026-09-14",
-    "source": "Actual application running on Raspberry Pi 4; Chromium viewport 800x480"
-  },
-  {
-    "file": "about-nl.png",
-    "width": 800,
-    "height": 480,
-    "title": "Over Astro Control Panel",
-    "category": "system",
-    "caption": "The About dialog in Dutch, with the installed version and source links.",
-    "credit": "Interface: Astro Control Panel; background forecast: Open-Meteo (CC BY 4.0), astronomy: Skyfield / JPL.",
-    "captured_date": "2026-09-14",
-    "source": "Actual application running on Raspberry Pi 4; Chromium viewport 800x480"
-  },
-  {
-    "file": "about-night.png",
-    "width": 800,
-    "height": 480,
-    "title": "About, after dark",
-    "category": "system",
-    "caption": "The About dialog follows the red night palette.",
-    "credit": "Interface: Astro Control Panel; background forecast: Open-Meteo (CC BY 4.0), astronomy: Skyfield / JPL.",
-    "captured_date": "2026-09-14",
-    "source": "Actual application running on Raspberry Pi 4; Chromium viewport 800x480"
-  },
-  {
-    "file": "settings-display.png",
-    "width": 800,
-    "height": 480,
-    "title": "Wake gently, dim automatically",
-    "category": "system",
-    "caption": "Separate active and idle brightness, a configurable timeout and wake-only first touch.",
-    "credit": "Interface: Astro Control Panel.",
-    "captured_date": "2026-09-14",
-    "source": "Actual application running on Raspberry Pi 4; Chromium viewport 800x480"
-  },
-  {
-    "file": "altitude-night.png",
-    "width": 800,
-    "height": 480,
-    "title": "Plan without bright colors",
-    "category": "plan",
-    "caption": "Target and Moon curves follow the red palette in night mode.",
-    "credit": "Astronomy: Skyfield / JPL; forecast: Open-Meteo (CC BY 4.0).",
-    "captured_date": "2026-09-14",
-    "source": "Actual application running on Raspberry Pi 4; Chromium viewport 800x480"
-  },
-  {
-    "file": "comparison-night.png",
-    "width": 800,
-    "height": 480,
-    "title": "Compare in night mode",
-    "category": "capture",
-    "caption": "Both aligned images receive the red viewing filter; original files and downloads are unchanged.",
-    "credit": "Photo © Ron Hoebe; DSS2 / STScI / Palomar / UK Schmidt via CDS hips2fits; alignment: ASTAP / Astropy.",
-    "captured_date": "2026-09-14",
-    "source": "Actual application running on Raspberry Pi 4; Chromium viewport 800x480"
-  },
-  {
     "file": "tonight.png",
     "width": 800,
     "height": 480,
     "title": "Tonight, at a glance",
     "category": "plan",
-    "caption": "The full selected night, cloud blocks, darkness and a future two-hour weather window.",
+    "caption": "The full selected night, cloud blocks and darkness, with a clearly labeled best two-hour window.",
     "credit": "Forecast: Open-Meteo (CC BY 4.0). Astronomy: Skyfield / JPL.",
     "captured_date": "2026-09-14",
     "source": "Actual application running on Raspberry Pi 4; Chromium viewport 800x480"
@@ -88,17 +22,6 @@
     "source": "Actual application running on Raspberry Pi 4; Chromium viewport 800x480"
   },
   {
-    "file": "target-filters.png",
-    "width": 800,
-    "height": 480,
-    "title": "A sky worth exploring",
-    "category": "plan",
-    "caption": "Choose the coming night, a target type, favorites or objects you have not photographed with this telescope.",
-    "credit": "Catalog: OpenNGC (CC BY-SA 4.0).",
-    "captured_date": "2026-09-14",
-    "source": "Actual application running on Raspberry Pi 4; Chromium viewport 800x480"
-  },
-  {
     "file": "target-fov.png",
     "width": 800,
     "height": 480,
@@ -106,6 +29,17 @@
     "category": "observe",
     "caption": "A single-exposure DWARF II frame over NGC 7000. The frame orientation is illustrative.",
     "credit": "DSS2 / STScI / Palomar / UK Schmidt, via CDS hips2fits; OpenNGC catalog.",
+    "captured_date": "2026-09-14",
+    "source": "Actual application running on Raspberry Pi 4; Chromium viewport 800x480"
+  },
+  {
+    "file": "comparison.png",
+    "width": 800,
+    "height": 480,
+    "title": "The same patch of sky",
+    "category": "capture",
+    "caption": "Swipe between your capture and an archival survey, aligned to the solved field and rotation.",
+    "credit": "Photo © Ron Hoebe; DSS2 / STScI / Palomar / UK Schmidt via CDS hips2fits; alignment: ASTAP / Astropy.",
     "captured_date": "2026-09-14",
     "source": "Actual application running on Raspberry Pi 4; Chromium viewport 800x480"
   },
@@ -121,13 +55,13 @@
     "source": "Actual application running on Raspberry Pi 4; Chromium viewport 800x480"
   },
   {
-    "file": "moon.png",
+    "file": "captures.png",
     "width": 800,
     "height": 480,
-    "title": "Keep an eye on the Moon",
-    "category": "observe",
-    "caption": "Phase, illumination, position and upcoming events. The Moon drawing is calculated, not a photograph.",
-    "credit": "Astronomy: Skyfield / JPL; Moon illustration: application code.",
+    "title": "A growing collection",
+    "category": "capture",
+    "caption": "Browse your own photographs by target and telescope, with originals stored on the Pi.",
+    "credit": "NGC 7000 and M57 photographs © 2026 Ron Hoebe; catalog: OpenNGC.",
     "captured_date": "2026-09-14",
     "source": "Actual application running on Raspberry Pi 4; Chromium viewport 800x480"
   },
@@ -154,13 +88,24 @@
     "source": "Actual application running on Raspberry Pi 4; Chromium viewport 800x480"
   },
   {
-    "file": "captures.png",
+    "file": "moon.png",
     "width": 800,
     "height": 480,
-    "title": "A growing collection",
-    "category": "capture",
-    "caption": "Browse your own photographs by target and telescope, with originals stored on the Pi.",
-    "credit": "NGC 7000 and M57 photographs © 2026 Ron Hoebe; catalog: OpenNGC.",
+    "title": "Keep an eye on the Moon",
+    "category": "observe",
+    "caption": "Phase, illumination, position and upcoming events. The Moon drawing is calculated, not a photograph.",
+    "credit": "Astronomy: Skyfield / JPL; Moon illustration: application code.",
+    "captured_date": "2026-09-14",
+    "source": "Actual application running on Raspberry Pi 4; Chromium viewport 800x480"
+  },
+  {
+    "file": "night-mode.png",
+    "width": 800,
+    "height": 480,
+    "title": "A quieter screen after dark",
+    "category": "system",
+    "caption": "Red night mode changes the interface palette; backlight brightness is adjustable separately.",
+    "credit": "Forecast: Open-Meteo (CC BY 4.0); astronomy: Skyfield / JPL.",
     "captured_date": "2026-09-14",
     "source": "Actual application running on Raspberry Pi 4; Chromium viewport 800x480"
   },
@@ -176,13 +121,13 @@
     "source": "Actual application running on Raspberry Pi 4; Chromium viewport 800x480"
   },
   {
-    "file": "comparison.png",
+    "file": "target-filters.png",
     "width": 800,
     "height": 480,
-    "title": "The same patch of sky",
-    "category": "capture",
-    "caption": "Swipe between your capture and an archival survey, aligned to the solved field and rotation.",
-    "credit": "Photo © Ron Hoebe; DSS2 / STScI / Palomar / UK Schmidt via CDS hips2fits; alignment: ASTAP / Astropy.",
+    "title": "A sky worth exploring",
+    "category": "plan",
+    "caption": "Choose the coming night, a target type, favorites or objects you have not photographed with this telescope.",
+    "credit": "Catalog: OpenNGC (CC BY-SA 4.0).",
     "captured_date": "2026-09-14",
     "source": "Actual application running on Raspberry Pi 4; Chromium viewport 800x480"
   },
@@ -198,12 +143,56 @@
     "source": "Actual application running on Raspberry Pi 4; Chromium viewport 800x480"
   },
   {
-    "file": "night-mode.png",
+    "file": "altitude-night.png",
     "width": 800,
     "height": 480,
-    "title": "A quieter screen after dark",
+    "title": "Plan without bright colors",
+    "category": "plan",
+    "caption": "Target and Moon curves follow the red palette in night mode.",
+    "credit": "Astronomy: Skyfield / JPL; forecast: Open-Meteo (CC BY 4.0).",
+    "captured_date": "2026-09-14",
+    "source": "Actual application running on Raspberry Pi 4; Chromium viewport 800x480"
+  },
+  {
+    "file": "comparison-night.png",
+    "width": 800,
+    "height": 480,
+    "title": "Compare in night mode",
+    "category": "capture",
+    "caption": "Both aligned images receive the red viewing filter; original files and downloads are unchanged.",
+    "credit": "Photo © Ron Hoebe; DSS2 / STScI / Palomar / UK Schmidt via CDS hips2fits; alignment: ASTAP / Astropy.",
+    "captured_date": "2026-09-14",
+    "source": "Actual application running on Raspberry Pi 4; Chromium viewport 800x480"
+  },
+  {
+    "file": "settings-telescopes.png",
+    "width": 800,
+    "height": 480,
+    "title": "Room for your next telescope",
     "category": "system",
-    "caption": "Red night mode changes the interface palette; backlight brightness is adjustable separately.",
+    "caption": "DWARF II and Seestar S50 Pro presets, plus custom profiles with explicit field width and height.",
+    "credit": "Nominal specifications: DWARFLAB / Sony and ZWO / Seestar; calculated fields.",
+    "captured_date": "2026-09-14",
+    "source": "Actual application running on Raspberry Pi 4; Chromium viewport 800x480"
+  },
+  {
+    "file": "settings-display.png",
+    "width": 800,
+    "height": 480,
+    "title": "Wake gently, dim automatically",
+    "category": "system",
+    "caption": "Separate active and idle brightness, a configurable timeout and wake-only first touch.",
+    "credit": "Interface: Astro Control Panel.",
+    "captured_date": "2026-09-14",
+    "source": "Actual application running on Raspberry Pi 4; Chromium viewport 800x480"
+  },
+  {
+    "file": "tonight-nl.png",
+    "width": 800,
+    "height": 480,
+    "title": "De nacht, in het Nederlands",
+    "category": "system",
+    "caption": "The same dashboard in Dutch, with localized dates, numbers and interface labels.",
     "credit": "Forecast: Open-Meteo (CC BY 4.0); astronomy: Skyfield / JPL.",
     "captured_date": "2026-09-14",
     "source": "Actual application running on Raspberry Pi 4; Chromium viewport 800x480"
@@ -220,17 +209,6 @@
     "source": "Actual application running on Raspberry Pi 4; Chromium viewport 800x480"
   },
   {
-    "file": "settings-telescopes.png",
-    "width": 800,
-    "height": 480,
-    "title": "Room for your next telescope",
-    "category": "system",
-    "caption": "DWARF II and Seestar S50 Pro presets, plus custom profiles with explicit field width and height.",
-    "credit": "Nominal specifications: DWARFLAB / Sony and ZWO / Seestar; calculated fields.",
-    "captured_date": "2026-09-14",
-    "source": "Actual application running on Raspberry Pi 4; Chromium viewport 800x480"
-  },
-  {
     "file": "settings-backup.png",
     "width": 800,
     "height": 480,
@@ -242,13 +220,13 @@
     "source": "Actual application running on Raspberry Pi 4; Chromium viewport 800x480"
   },
   {
-    "file": "tonight-nl.png",
+    "file": "about.png",
     "width": 800,
     "height": 480,
-    "title": "De nacht, in het Nederlands",
+    "title": "Meet your Astro panel",
     "category": "system",
-    "caption": "The same dashboard in Dutch, with localized dates, numbers and interface labels.",
-    "credit": "Forecast: Open-Meteo (CC BY 4.0); astronomy: Skyfield / JPL.",
+    "caption": "Tap ASTRO for the installed version, author, license and links to the guide and project.",
+    "credit": "Interface: Astro Control Panel; background forecast: Open-Meteo (CC BY 4.0), astronomy: Skyfield / JPL.",
     "captured_date": "2026-09-14",
     "source": "Actual application running on Raspberry Pi 4; Chromium viewport 800x480"
   }

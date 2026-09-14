@@ -1,5 +1,11 @@
 # Validation
 
+## Post-v1.2 presentation fixes — 14 September 2026
+
+- Added an explicit Best 2 hours label to distinguish the recommended interval from the full astronomical darkness period. English/Dutch and 800 × 480, 853 × 480, 720 × 1280 and mobile layouts were checked without Home overflow.
+- Reordered all showcase categories around the main observing and capture workflows. One About image remains, last in All screens and Make it yours. The other two remain in the historical v1.2 release.
+- Recaptured the normal English/Dutch and red Home images on the Pi without a cursor. Website validation covers 21 screenshots, seven HTML pages and 182 local references.
+
 ## v1.2 checks — 14 September 2026
 
 - All 82 existing tests pass locally. The updated app runs on the Pi 4.
