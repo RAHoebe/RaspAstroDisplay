@@ -2074,5 +2074,37 @@
  [
   "Double star",
   "Dubbelster"
+ ],
+ [
+  "Show matched stars",
+  "Toon herkende sterren"
+ ],
+ [
+  "Matched star positions",
+  "Posities van herkende sterren"
+ ],
+ [
+  "Astrometry.net: nearby field",
+  "Astrometry.net: omgeving van het doel"
+ ],
+ [
+  "Astrometry.net: whole sky",
+  "Astrometry.net: hele hemel"
+ ],
+ [
+  "No reliable star match. Try the original, less processed photograph or a wider crop.",
+  "Geen betrouwbare sterrenherkenning. Probeer het origineel, een minder bewerkte foto of een ruimere uitsnede."
+ ],
+ [
+  "Too few reliable star matches. Try a less processed photograph.",
+  "Te weinig betrouwbare sterovereenkomsten. Probeer een minder bewerkte foto."
+ ],
+ [
+  "The selected object lies outside this photograph. Check the object name; alignment uses the detected stars.",
+  "Het gekozen object ligt buiten deze foto. Controleer de objectnaam; de uitlijning gebruikt de herkende sterren."
+ ],
+ [
+  "{0} matched stars",
+  "{0} herkende sterren"
  ]
 ]

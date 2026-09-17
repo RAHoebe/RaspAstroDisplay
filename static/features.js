@@ -71,11 +71,23 @@ async function pollComparison(){
 }
 function renderComparison(data){
  const ready=data.status==='ready',busy=['queued','solving','reference'].includes(data.status);
- $('#comparison-status').textContent=data.error||({queued:'Queued',solving:'Matching stars locally…',reference:'Loading and aligning reference…',ready:'Comparison ready'})[data.status]||(!data.supported?'Comparison needs a deep-sky photograph with recognizable stars.':!data.available?'Install the local ASTAP solver and D50 star database first.':'');
+ $('#comparison-status').textContent=data.error||(busy&&data.stage?data.stage:'')||({queued:'Queued',solving:'Matching stars locally…',reference:'Loading and aligning reference…',ready:'Comparison ready'})[data.status]||(!data.supported?'Comparison needs a deep-sky photograph with recognizable stars.':!data.available?'Install the local ASTAP solver and D50 star database first.':'');
  $('#comparison-stage').hidden=$('#comparison-controls').hidden=!ready;$('#start-comparison').hidden=ready||busy;$('#start-comparison').disabled=!data.available||!data.supported;
  $('#comparison-info').textContent=ready?'Reference colors and resolution differ from your telescope. Alignment is based on the solved star field.':'Local star matching keeps your photograph on this Pi. Only sky coordinates are sent to the reference image service.';
- if(ready){$('#comparison-own').src=data.own;$('#comparison-reference').src=data.reference;const c=data.calibration;$('#comparison-details').textContent=data.survey+' / CDS · '+n(c.width_degrees,2)+'° × '+n(c.height_degrees,2)+'° · '+n(c.rotation,1)+'° · '+n(c.pixel_scale,2)+'″/px';fitComparison();applySwipe();}
+ $('#comparison-star-control').hidden=!ready||!data.stars?.length;
+ $('#comparison-stars').toggleAttribute('hidden',!ready||!data.stars?.length||!$('#comparison-show-stars').checked);
+ if(ready){
+  const svg=$('#comparison-stars');svg.setAttribute('viewBox',`0 0 ${data.width} ${data.height}`);svg.replaceChildren();
+  for(const [x,y,ix,iy] of data.stars||[]){
+   const circle=document.createElementNS('http://www.w3.org/2000/svg','circle');circle.setAttribute('cx',x);circle.setAttribute('cy',y);circle.setAttribute('r','28');svg.append(circle);
+   const cross=document.createElementNS('http://www.w3.org/2000/svg','path');cross.setAttribute('d',`M${ix-18},${iy}h36 M${ix},${iy-18}v36`);svg.append(cross);
+  }
+ }
+ if(ready){$('#comparison-own').src=data.own;$('#comparison-reference').src=data.reference;const c=data.calibration;$('#comparison-details').textContent=data.survey+' / CDS · '+n(c.width_degrees,2)+'° × '+n(c.height_degrees,2)+'° · '+n(c.rotation,1)+'° · '+n(c.pixel_scale,2)+'″/px';if(data.matched_stars)$('#comparison-details').textContent+=' \u00b7 '+data.matched_stars+' matched stars \u00b7 '+n(data.median_residual_pixels,2)+' px';
+ if(c.target_outside_frame)$('#comparison-info').textContent='The selected object lies outside this photograph. Check the object name; alignment uses the detected stars.';
+ fitComparison();applySwipe();}
 }
+$('#comparison-show-stars').onchange=()=>{$('#comparison-stars').toggleAttribute('hidden',!$('#comparison-show-stars').checked);};
 $('#start-comparison').onclick=async()=>{
  $('#start-comparison').disabled=true;
  try{await freshToken();const r=await fetch('/api/captures/'+compareId+'/comparison',{method:'POST',headers:{'Content-Type':'application/json','X-Astro-Token':token},body:'{}',signal:AbortSignal.timeout(10000)});const data=await r.json();if(!r.ok)throw Error(data.error);pollComparison();}

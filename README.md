@@ -129,3 +129,10 @@ Application code: [MIT](LICENSE). OpenNGC-derived data: **CC BY-SA 4.0**. Third-
 
 
 Catalog search accepts identifiers such as `LDN 935`, `Lynds 935`, `Barnard 33`, `Caldwell 20` and `Sh2-155`, with exact identifiers listed first. Observing filters still apply in Targets; Add capture searches every catalog object, even outside the current night. Dark clouds have opacity/area where known, without invented magnitude or FOV dimensions. Supplemental data retain their [own licenses and source credits](catalog/sources/README.md).
+
+
+### Difficult or cropped captures
+
+Install the optional second local solver with `bash deploy/install-astrometry.sh`. It installs Debian Astrometry.net and about 334 MB of upstream Tycho-2 indexes (4107-4110), intended for roughly 0.5-8 degree fields; extreme crops may need finer indexes. All star matching remains local.
+
+Comparison first tries ASTAP twice, then Astrometry.net near the selected object and finally without a position constraint. Individual attempts are bounded; the complete fallback can take several minutes on a Pi 4. The working copy is at most 3000 pixels across; originals remain unchanged. For Astrometry.net solutions, **Show matched stars** draws circles at detected stars and crosses at predicted catalog positions. The reported median residual is in working-image pixels, not a guaranteed sky-position accuracy. A warning appears if the selected object's catalog center falls outside the solved frame. A less processed original remains useful when all attempts fail.

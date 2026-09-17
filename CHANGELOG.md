@@ -1,5 +1,12 @@
 # Changes
 
+## Unreleased - robust local solving
+
+- Try two bounded ASTAP passes, then optional local Astrometry.net with position-guided and whole-sky fallback.
+- Retain more working-image detail (up to 3000 pixels), accept crops independently of nominal telescope FOV, and preserve original files.
+- Validate distributed Astrometry.net star correspondences and show an optional star overlay, residual and per-attempt progress. Warn when the selected object center lies outside the solved frame.
+- Add an optional Debian/Tycho-2 installer and installation/source documentation.
+
 ## Unreleased - extended object catalogs
 
 - Expand the catalog to 15,438 objects with Messier, Caldwell, Barnard, Sharpless, VdB, RCW, LDN and LBN designations and common-name aliases.

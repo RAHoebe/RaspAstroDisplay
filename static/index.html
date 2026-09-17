@@ -140,8 +140,9 @@
   <dialog id="comparison-dialog" aria-labelledby="comparison-title">
     <div class="dialog-title"><div><h2 id="comparison-title">Compare capture</h2><p id="comparison-caption" class="fine"></p></div><button id="close-comparison" aria-label="Close comparison">✕</button></div>
     <p id="comparison-status" role="status"></p>
-    <div id="comparison-stage" hidden><div id="comparison-images"><img id="comparison-own" alt="Own photo"><img id="comparison-reference" alt="Reference"></div></div>
+    <div id="comparison-stage" hidden><div id="comparison-images"><img id="comparison-own" alt="Own photo"><img id="comparison-reference" alt="Reference"><svg id="comparison-stars" aria-label="Matched star positions" hidden></svg></div></div>
     <div id="comparison-controls" hidden><label>Own photo<input id="comparison-swipe" type="range" min="0" max="100" value="50" aria-label="Swipe comparison">Reference</label><button id="comparison-blink">Blink</button></div>
+    <label id="comparison-star-control" hidden><input id="comparison-show-stars" type="checkbox">Show matched stars</label>
     <p id="comparison-details" class="fine"></p>
     <button id="start-comparison">Align locally</button>
     <p id="comparison-info" class="fine">Local star matching keeps your photograph on this Pi. Only sky coordinates are sent to the reference image service.</p>

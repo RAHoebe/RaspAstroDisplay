@@ -1,3 +1,10 @@
+# Robust solving checks - 17 September 2026
+
+- 93 tests pass locally and on the Pi 4. New tests cover accurate, spatially distributed star matches, rejected poor matches, FITS image orientation, nearby-to-blind fallback, retry after failure and terminating timed-out solvers.
+- The previously unsolved processed/cropped LDN 935 PNG now completes the full production pipeline in 85.9 seconds on the Pi, including two ASTAP attempts, Astrometry.net and reference download/reprojection. Its 2732 x 1932 working image has 63 accepted correspondences, median residual 0.351 pixels, field 2.258 x 1.598 degrees; the catalog center is inside the solved footprint. Residual is an internal fit measure, not independent absolute astrometric accuracy.
+- Browser checks at 800 x 480 cover loaded own/reference images, swipe endpoints, blink, 63 visible star markers, Dutch labels and red-mode marker colors. The dialog fits without overflow. Original capture checksum is unchanged.
+- Installed indexes 4107-4110 cover common smart-telescope fields; extremely tight crops may require additional finer indexes. No claim is made that every processed image will solve. The original-before-editing image was not needed for this successful solve; registering a separate original to an edited image is not implemented.
+
 # Extended catalog checks - 17 September 2026
 
 - 89 tests pass locally (6.7 seconds) and on the Pi 4 (39.8 seconds).

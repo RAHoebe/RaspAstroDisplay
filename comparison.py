@@ -23,6 +23,7 @@ from PIL import Image, ImageOps
 
 from providers import fetch, read_json, save_json
 from targets import CATALOG, survey_for
+from solving import astrometry_available, solve
 
 
 def solver_paths():
@@ -105,7 +106,7 @@ class ComparisonManager:
 
     def available(self):
         executable, database = solver_paths()
-        return executable.is_file() and any(database.glob('d50*.1476'))
+        return (executable.is_file() and any(database.glob('d50*.1476'))) or astrometry_available()
 
     def status(self, ident):
         row = self.store.get(ident, include_trash=True)
@@ -157,21 +158,13 @@ class ComparisonManager:
                     if photo.mode in ('I','I;16','I;16B'):
                         photo = photo.point(lambda x:x/256).convert('L')
                     photo = photo.convert('RGB')
-                    photo.thumbnail((1600,1600), Image.Resampling.LANCZOS)
+                    photo.thumbnail((3000,3000), Image.Resampling.LANCZOS)
                     photo.save(picture)
                 obj = CATALOG[row['object_id']]
-                base = [str(executable), '-f', str(picture), '-d', str(database), '-D', 'd50',
-                        '-ra', str(obj['ra']/15), '-spd', str(obj['dec']+90), '-r', '15', '-z', '0',
-                        '-wcs', '-o', str(folder / 'solution')]
-                # First use the telescope's native height; then search scale for crops/rotation/mosaics.
-                for fov in (row['fov_height'] or 0, 0):
-                    result = subprocess.run(base+['-fov',str(fov)], cwd=folder, stdout=subprocess.PIPE,
-                                            stderr=subprocess.STDOUT, timeout=150, check=False)
-                    if result.returncode == 0 and solution.exists():
-                        break
-                    solution.unlink(missing_ok=True)
-                if not solution.exists():
-                    raise ValueError('No star match found. Use a photograph with more visible stars and less cropping.')
+                solver, quality = solve(photo, picture, folder, obj, row['fov_height'], executable, database, status)
+                save_json(folder / 'solve-info.json', dict(solver=solver, **quality))
+            solved = read_json(folder / 'solve-info.json', dict(solver='ASTAP local'))
+            stamp.update(solved)
             with Image.open(picture) as photo:
                 width, height = photo.size
             try:
@@ -180,6 +173,11 @@ class ComparisonManager:
             except Exception:
                 solution.unlink(missing_ok=True)
                 raise
+            target = SkyCoord(CATALOG[row['object_id']]['ra'], CATALOG[row['object_id']]['dec'], unit='deg')
+            center = SkyCoord(calibration['ra'], calibration['dec'], unit='deg')
+            calibration['target_offset_degrees'] = float(target.separation(center).deg)
+            calibration['target_outside_frame'] = not (-.5 <= wcs.all_world2pix([[target.ra.deg, target.dec.deg]], 0)[0,0] < width-.5 and
+                                                       -.5 <= wcs.all_world2pix([[target.ra.deg, target.dec.deg]], 0)[0,1] < height-.5)
             status('reference', calibration=calibration)
             source_header = reference_header(wcs, width, height)
             survey, label = survey_for(row['object_id'])

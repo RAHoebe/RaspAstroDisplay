@@ -80,3 +80,8 @@ The existing Open-Meteo request supplies three days of hourly forecasts. Night b
 The dashboard combines the unchanged 12,160-object OpenNGC selection with 3,278 additional objects and 325 enriched existing records (15,438 distinct dashboard IDs). The supplement covers Messier, Caldwell, Barnard, Sharpless, VdB, RCW, LDN and LBN using the pinned Stellarium DSO 3.23 catalog and Lynds/CDS VII/7A. See [complete provenance, coverage and licenses](catalog/sources/README.md). Source data, GPL notices and the reproducible importer are bundled; application code stays MIT. Do not apply the OpenNGC license to the supplement.
 
 Dark-nebula opacity and area are separate from emitted-light magnitude and measured axes. LDN 935 is distinct from NGC 7000. Object lookup for adding photographs searches the full catalog independently of location/time filters; observing-target search retains those filters and ranks exact designations first.
+
+
+## Optional Astrometry.net fallback
+
+Installed separately from Debian packages; not vendored into the MIT application. Astrometry.net developers, Lang et al. (2010), https://astrometry.net/ and https://astrometry.net/doc/readme.html. The complete solver is GPL-3.0-or-later with component-specific terms: https://github.com/dstndstn/astrometry.net/blob/main/LICENSE. Its downloaded Tycho-2 indexes 4107-4110 come from https://data.astrometry.net/4100/ (Tycho-2: Hog et al. 2000); they retain upstream catalog terms, not the application's MIT license. https://data.astrometry.net/ describes catalog origins. No photograph is sent to Astrometry.net.
