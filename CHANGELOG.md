@@ -1,6 +1,6 @@
 # Changes
 
-## Unreleased ? extended object catalogs
+## Unreleased - extended object catalogs
 
 - Expand the catalog to 15,438 objects with Messier, Caldwell, Barnard, Sharpless, VdB, RCW, LDN and LBN designations and common-name aliases.
 - Match spaces, punctuation, leading zeros and expanded catalog names; prioritize exact identifiers. Capture uploads search the complete catalog regardless of observing-night filters.

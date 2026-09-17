@@ -1,4 +1,4 @@
-# Extended catalog checks ? 17 September 2026
+# Extended catalog checks - 17 September 2026
 
 - 89 tests pass locally (6.7 seconds) and on the Pi 4 (39.8 seconds).
 - Regression coverage checks all existing IDs/positions/sizes, all 110 Messier and 109 Caldwell numbers, designation normalization and exact-match ordering, LDN 935 identity/opacity/area, and global catalog upload lookup independent of astronomy filters.
