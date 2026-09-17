@@ -1,18 +1,30 @@
-# Robust solving checks - 17 September 2026
+# Validation
+
+## v1.3 checks — 17 September 2026 (Release 3)
+
+The v1.3 release combines the extended object catalogs and robust local solving. The complete release suite contains **93 passing tests**, run locally and on the Raspberry Pi 4. Results below were recorded during release validation; earlier-version checks are retained as historical evidence.
+
+### Robust local solving
 
 - 93 tests pass locally and on the Pi 4. New tests cover accurate, spatially distributed star matches, rejected poor matches, FITS image orientation, nearby-to-blind fallback, retry after failure and terminating timed-out solvers.
 - The previously unsolved processed/cropped LDN 935 PNG now completes the full production pipeline in 85.9 seconds on the Pi, including two ASTAP attempts, Astrometry.net and reference download/reprojection. Its 2732 x 1932 working image has 63 accepted correspondences, median residual 0.351 pixels, field 2.258 x 1.598 degrees; the catalog center is inside the solved footprint. Residual is an internal fit measure, not independent absolute astrometric accuracy.
 - Browser checks at 800 x 480 cover loaded own/reference images, swipe endpoints, blink, 63 visible star markers, Dutch labels and red-mode marker colors. The dialog fits without overflow. Original capture checksum is unchanged.
 - Installed indexes 4107-4110 cover common smart-telescope fields; extremely tight crops may require additional finer indexes. No claim is made that every processed image will solve. The original-before-editing image was not needed for this successful solve; registering a separate original to an edited image is not implemented.
 
-# Extended catalog checks - 17 September 2026
+### Extended object catalogs
 
-- 89 tests pass locally (6.7 seconds) and on the Pi 4 (39.8 seconds).
+- The catalog-stage suite passed all 89 tests locally (6.7 seconds) and on the Pi 4 (39.8 seconds). These tests are included in the final 93-test v1.3 suite; four solver regression tests were added afterward.
 - Regression coverage checks all existing IDs/positions/sizes, all 110 Messier and 109 Caldwell numbers, designation normalization and exact-match ordering, LDN 935 identity/opacity/area, and global catalog upload lookup independent of astronomy filters.
 - All three original capture checksums match the pre-deployment backup.
 - The running Pi returns LDN 935 in both the observing-night list and global lookup. Its object viewer retains DWARF II selection and shows unknown dimensions instead of inventing a FOV percentage.
 
-# Validation
+### Release and documentation verification
+
+- The installed Pi's About popup displays **Version 1.3** and links to the correct GitHub release.
+- Tag `v1.3` and **Release 3 - v1.3** were published at commit `171a70b`; v1.2 remains available for rollback.
+- GitHub Pages deployment succeeded and the published homepage displays Version 1.3. Website validation passed for seven content HTML pages, 186 local references and 21 original 800 × 480 screenshots. The plain Google site-verification file is excluded from content-page checks.
+- Documentation covers optional Astrometry.net installation, index coverage, local processing and separate software/data licenses. Existing showcase screenshots retain their historical capture dates and may display an earlier application version.
+- Hardware validation used a Raspberry Pi 4B with 4 GB RAM, 64-bit Bookworm, Wayfire and the original 800 × 480 display. Touch Display 2 and labwc remain untested physically.
 
 ## Post-v1.2 presentation fixes — 14 September 2026
 
