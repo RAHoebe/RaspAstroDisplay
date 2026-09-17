@@ -1,4 +1,9 @@
-'use strict';
+ 'use strict';
+function normalizeCatalogQuery(value){
+ let s=String(value||'').normalize('NFKD').toLowerCase().replace(/[\u0300-\u036f]/g,'');
+ s=s.replace(/\blynds\s*(?:dark\s*nebula\s*)?/g,'ldn').replace(/\bbarnard\s*/g,'b').replace(/\bcaldwell\s*/g,'c').replace(/\bmessier\s*/g,'m').replace(/\bsharpless\s*(?:2\s*[- ]\s*)?/g,'sh2');
+ return s.replace(/[^a-z0-9]/g,'').replace(/^(sh2|ldn|lbn|rcw|vdb|ngc|ic|m|c|b)0+(\d)/,'$1$2');
+}
 // Keep all view coordinates in the same 900×540 tangent plane as the survey WCS.
 let equipmentState = null, viewingTarget = null, viewerZoom = 'fov', viewRequest = 0;
 let viewAbort = null, imageAbort = null, imageObjectURL = null;
@@ -42,16 +47,16 @@ targetsView=function(){
  refreshTargetList(a.updated_at);refreshCaptureSummary();
  const chosen=selectedScope();
  const rows=targetData?.location_key===`${Number(state.config.latitude).toFixed(5)},${Number(state.config.longitude).toFixed(5)}` && targetData.scope_id===chosen?.id && targetData.window===targetWhen?targetData.targets:[];
- const query=targetQuery.toLocaleLowerCase('nl').replace(/\s/g,'');
+ const query=normalizeCatalogQuery(targetQuery);
  if((favoritesOnly||uncapturedOnly)&&(!captureSummary||captureSummaryError))return empty(captureSummaryError?'Opnametellers niet bereikbaar':'Loading capture history…');
- const all=rows.filter(t=>historyFilter(t,chosen?.id) && inTargetWindow(t) && (targetKind==='all'||t.category===targetKind) && (!query||`${t.id} ${t.name} ${t.aliases||''}`.toLocaleLowerCase('nl').replace(/\s/g,'').includes(query))).sort(targetOrder);
+ const all=rows.filter(t=>historyFilter(t,chosen?.id) && inTargetWindow(t) && (targetKind==='all'||t.category===targetKind) && (!query||normalizeCatalogQuery(`${t.id} ${t.name} ${t.aliases||''}`).includes(query))).sort((a,b)=>{const exact=t=>query&&(t.designations||[t.id]).some(d=>normalizeCatalogQuery(d)===query);return Number(exact(b))-Number(exact(a))||targetOrder(a,b);});
  const pages=Math.max(1,Math.ceil(all.length/3));targetPage=Math.min(targetPage,pages-1);
  const scopes=(getEquipment()?.scopes||[]).filter(s=>s.builtin||s.id===chosen?.id);
  const period={night:'Komende nacht',now:'Nu boven horizon',day:'Komende 24 uur'}[targetWhen];
  return `<section class="catalog-view"><div class="catalog-heading"><div><h1>Waarneemdoelen</h1><p class="fine">${n(all.length)} doelen · ${period}${targetKind==='nebula'?' · nevels':''}</p></div><button class="moon-shortcut" data-target="moon" aria-label="Bekijk Maan">☾ Maan <strong>${n(a.moon.altitude)}°</strong><small>${n(a.moon.illumination)}% verlicht</small></button><div class="pager"><button id="target-prev" aria-label="Vorige doelen" ${targetPage===0?'disabled':''}>‹</button><span>${targetPage+1}/${pages}</span><button id="target-next" aria-label="Volgende doelen" ${targetPage>=pages-1?'disabled':''}>›</button></div></div>`+
  `<div class="target-toolbar"><select id="target-scope" aria-label="Telescoop voor aanbevelingen">${getEquipment().scopes.map(s=>`<option data-no-i18n value="${esc(s.id)}" ${s.id===chosen?.id?'selected':''}>${esc(s.name)}</option>`).join('')}</select><select id="target-sort" aria-label="Doelen sorteren">${targetSorts.map(([id,label])=>`<option value="${id}" ${targetSort===id?'selected':''}>${label}</option>`).join('')}</select><button id="open-target-filters">Filters / zoeken${targetQuery?' ●':''}</button></div>`+
  (all.length?`<div class="targets-list">${all.slice(targetPage*3,targetPage*3+3).map(t=>`<article class="target-row panel capture-target-row" style="--scope-cols:${scopes.length}"><button class="target-main" data-target="${esc(t.id)}" aria-label="Bekijk ${esc(t.name)}"><strong>${esc(t.name)} ↗</strong><span class="fine">${sizeText(t)} · ${esc(t.kind)}${t.magnitude!=null?' · mag '+n(t.magnitude,1):''}</span><span class="fine recommendation-reason">${targetSort==='recommended'?esc(t.recommendation?.reasons.join(' · ')):'Beste nacht '+n(t.best_altitude)+'° · '+tm(t.best_time)}</span></button><div class="target-height"><strong>${n(t.altitude,1)}°</strong><span class="fine">nu · ${esc(t.direction)}</span></div>${scopes.map(s=>`<button class="scope-count" data-capture-target="${esc(t.id)}" data-capture-scope="${esc(s.id)}" aria-label="Opnames ${esc(t.name)} met ${esc(s.name)}"><strong>${pct(percent(t,s))}</strong><span data-no-i18n>${esc(s.name)}</span><small>${captureCount(t.id,s.id)} opnames</small></button>`).join('')}</article>`).join('')}</div>`:`<div class="catalog-empty">${targetLoading?'De catalogus wordt geladen…':targetListError||'Geen doelen voor deze filters.'}</div>`)+
- `<p class="fine catalog-foot"><span data-no-i18n>${nightDates(a)}</span> · ${targetSort==='recommended'?'Advies ≈ · geen garantie · ':'% = lange beeldrand · '}boven horizon ≠ goed fotografeerbaar · <span id="counts-status">${captureSummaryError?'Opnametellers niet bereikbaar':'OpenNGC'}</span></p></section>`;
+ `<p class="fine catalog-foot"><span data-no-i18n>${nightDates(a)}</span> · ${targetSort==='recommended'?'Advies ≈ · geen garantie · ':'% = lange beeldrand · '}boven horizon ≠ goed fotografeerbaar · <span id="counts-status">${captureSummaryError?'Opnametellers niet bereikbaar':'OpenNGC · Stellarium · CDS'}</span></p></section>`;
 };
 content.addEventListener('click',event=>{
  const row=event.target.closest('[data-target]');if(row)openTarget(row.dataset.target);
@@ -169,7 +174,7 @@ async function loadTarget(){
   const t=v.target,s=v.scope;
   $('#target-title').textContent=t.name;
   $('#viewer-recommendation').textContent=t.category==='nebula'||t.category==='galaxy'||t.category==='cluster'?'Advies ('+v.recommendation.basis+'): '+v.recommendation.reasons.join(' · ')+'. Schatting.':'';
-  $('#target-subtitle').textContent=sizeText(t)+' · '+t.size_note;
+  $('#target-subtitle').textContent=sizeText(t)+' · '+t.size_note+(t.opacity?' · '+I18N.t('Ondoorzichtigheid {0}/6').replace('{0}',n(t.opacity)):'')+(t.area_sq_deg?' · '+I18N.t('Oppervlak {0} deg²').replace('{0}',n(t.area_sq_deg,3)):'');
   $('#viewer-fov').textContent=n(s.width,2)+'° × '+n(s.height,2)+'°';
   $('#viewer-ratio').textContent=(t.major?pct(percent(t,s))+' van de lange beeldrand. ':'Afmeting onbekend. ')+(t.id==='moon'?n(t.illumination)+'% verlicht. ':'Beste hoogte '+n(t.best_altitude)+'° om '+tm(t.best_time)+'. ')+(t.altitude<=0?'Nu onder de horizon. ':'Nu '+n(t.altitude)+'° '+t.direction+'. ');
   $('#target-scale').textContent=(v.geometry.size_unknown && viewerZoom==='target'?'Context · ':'')+'beeldbreedte '+n(v.geometry.field_width,v.geometry.field_width<.1?3:2)+'°';

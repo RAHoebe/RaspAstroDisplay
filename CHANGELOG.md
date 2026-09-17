@@ -1,5 +1,12 @@
 # Changes
 
+## Unreleased ? extended object catalogs
+
+- Expand the catalog to 15,438 objects with Messier, Caldwell, Barnard, Sharpless, VdB, RCW, LDN and LBN designations and common-name aliases.
+- Match spaces, punctuation, leading zeros and expanded catalog names; prioritize exact identifiers. Capture uploads search the complete catalog regardless of observing-night filters.
+- Keep existing object IDs and capture links. Treat dark-nebula opacity separately from magnitude and avoid invented FOV sizes.
+- Include reproducible data inputs, importer, source credits and separate dataset licenses.
+
 ## 1.2 — 14 September 2026 (Release 2)
 
 - Tap ASTRO to open About with the installed version, author, MIT license and project/documentation/source links.

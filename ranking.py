@@ -27,7 +27,8 @@ def recommendation(target, scope, window='night'):
         reasons.append('afmeting onbekend')
     magnitude = target.get('magnitude')
     brightness = .45
-    if magnitude is not None and target.get('kind') != 'Donkere nevel':
+    dark = target.get('dark_nebula') or target.get('kind') == 'Donkere nevel'
+    if magnitude is not None and not dark:
         total = clamp((13 - magnitude) / 8)
         # Mean V surface brightness is only a rough estimate for extended objects.
         # Star clusters have resolved stars; don't treat their empty area as nebulosity.
@@ -39,7 +40,7 @@ def recommendation(target, scope, window='night'):
             brightness = total
             reasons.append('helder' if total > .65 else 'zwak' if total < .3 else 'gemiddelde helderheid')
     else:
-        reasons.append('helderheid onbekend')
+        reasons.append('donkere nevel · contrast bepalend' if dark else 'helderheid onbekend')
     score = 100 * (.4 * visibility + .3 * size + .3 * brightness)
     # Low targets and sub-frame specks cannot become top candidates through brightness alone.
     score *= .4 + .6 * height
@@ -47,5 +48,5 @@ def recommendation(target, scope, window='night'):
     if target.get('category') in ('planet', 'moon'):
         score *= .15
     return dict(score=round(score, 3), reasons=reasons,
-                limited=not major or magnitude is None,
+                limited=not major or magnitude is None or dark,
                 basis='nu' if window == 'now' else 'komende nacht')

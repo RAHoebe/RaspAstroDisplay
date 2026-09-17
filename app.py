@@ -30,6 +30,7 @@ from comparison import ComparisonManager
 from planning import track, observing_plan
 from display_control import DisplayController, validate as validate_display
 from forecast import forecast_periods
+from catalog_search import normalize
 
 ROOT = Path(__file__).resolve().parent
 STATE = Path(os.environ.get('ASTRO_STATE', ROOT / '.runtime'))
@@ -301,18 +302,21 @@ def object_info(ident):
                 {'moon':'Maan', 'venus':'Venus', 'jupiter':'Jupiter', 'saturn':'Saturnus'}[ident])
 
 
+OBJECT_SEARCH = [(ident,
+                  {normalize(d) for d in [ident, *CATALOG.get(ident, {}).get('designations', [])]},
+                  normalize(ident + ' ' + object_info(ident)['name'] + ' ' + CATALOG.get(ident, {}).get('aliases', '')))
+                 for ident in IDS]
+
+
 @app.get('/api/objects')
 def objects_lookup():
-    query = request.args.get('q', '').replace(' ', '').casefold()[:100]
+    query = normalize(request.args.get('q', '')[:100])
     rows = []
-    for ident in IDS:
-        obj = object_info(ident)
-        haystack = (ident + obj['name'] + CATALOG.get(ident, {}).get('aliases', '')).replace(' ', '').casefold()
-        if query and query in haystack:
-            rows.append(obj)
-        if len(rows) == 25:
-            break
-    return jsonify(items=rows)
+    for ident, exact, haystack in OBJECT_SEARCH:
+        if query and (query in exact or query in haystack):
+            rows.append((0 if query in exact else 1, object_info(ident)))
+    rows.sort(key=lambda item: (item[0], item[1]['name']))
+    return jsonify(items=[obj for rank, obj in rows[:25]])
 
 
 @app.errorhandler(413)

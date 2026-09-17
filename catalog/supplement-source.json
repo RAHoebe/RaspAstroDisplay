@@ -1,0 +1,18 @@
+{
+  "objects_added": 3278,
+  "existing_objects_enriched": 325,
+  "designations": {
+    "NGC": 270,
+    "IC": 70,
+    "M": 110,
+    "C": 109,
+    "B": 343,
+    "Sh2-": 313,
+    "VdB": 158,
+    "RCW": 179,
+    "LDN": 1787,
+    "LBN": 1118
+  },
+  "input_catalog": "Stellarium DSO 3.23 standard + CDS VII/7A",
+  "stellarium_commit": "04329a443d6827c2829bf45874f87243226673c2"
+}

@@ -73,3 +73,10 @@ Planeten gebruiken lokaal meegeleverde, ongewijzigde NASA-referentiebeelden. Het
 The shared observing date advances at local sunrise; without a sunrise it uses a labeled local-noon calendar boundary. UTC timestamps preserve real elapsed time across daylight-saving changes. The home advice still requires two future hours of astronomical darkness (Sun ≤ −18°); target advice retains its ≥30° altitude and Sun < −12° limits. Catalog eligibility uses Sun < −6° within that selected night.
 
 The existing Open-Meteo request supplies three days of hourly forecasts. Night blocks cover sunset to sunrise, average available interval values by elapsed time and are limited to eight blocks. Missing hourly coverage remains unknown; stale data is displayed with a warning and excluded from reliable weather advice. The provider and its CC BY 4.0 attribution are unchanged. [Open-Meteo hourly forecast documentation](https://open-meteo.com/en/docs).
+
+
+## Extended catalogs — 17 September 2026
+
+The dashboard combines the unchanged 12,160-object OpenNGC selection with 3,278 additional objects and 325 enriched existing records (15,438 distinct dashboard IDs). The supplement covers Messier, Caldwell, Barnard, Sharpless, VdB, RCW, LDN and LBN using the pinned Stellarium DSO 3.23 catalog and Lynds/CDS VII/7A. See [complete provenance, coverage and licenses](catalog/sources/README.md). Source data, GPL notices and the reproducible importer are bundled; application code stays MIT. Do not apply the OpenNGC license to the supplement.
+
+Dark-nebula opacity and area are separate from emitted-light magnitude and measured axes. LDN 935 is distinct from NGC 7000. Object lookup for adding photographs searches the full catalog independently of location/time filters; observing-target search retains those filters and ranks exact designations first.

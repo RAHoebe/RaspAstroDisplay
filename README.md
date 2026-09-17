@@ -13,7 +13,7 @@ The English website lives in `doc/`, with 20 actual 800 × 480 application scree
 - **Tonight:** a compact home screen, shared sunrise-based night selection, full-night cloud blocks or the next eight hours, and a future two-hour weather window.
 - **Moon:** phase, illumination, altitude, direction and upcoming events.
 - **Weather:** hourly forecasts and animated Meteosat infrared cloud images.
-- **Targets:** 12,160 OpenNGC deep-sky objects, a permanent Moon shortcut and selected bright planets. Filter the coming night, current sky or next 24 hours; sort by smart-telescope recommendation, altitude, size or magnitude.
+- **Targets:** 15,438 catalog objects from OpenNGC, Stellarium and CDS (including LDN, LBN, Barnard, Sharpless, RCW, VdB and Caldwell), a permanent Moon shortcut and selected bright planets. Filter the coming night, current sky or next 24 hours; sort by smart-telescope recommendation, altitude, size or magnitude.
 - **Field of view:** DWARF II and Seestar S50 Pro presets, plus 12 custom telescopes. Open an object for a survey image, telescope frame, target zoom and frame zoom. The last telescope selection is remembered.
 - **Planning:** altitude and Moon tracks, a suggested imaging window, favorites and a “not captured with this telescope” filter. Favorites and capture counts are separate for each telescope.
 - **Captures:** upload JPG/JPEG or PNG, browse by object/telescope, download originals and restore photos from Trash. Original image bytes are retained.
@@ -126,3 +126,6 @@ ASTRO_BIND=127.0.0.1 OPENBLAS_NUM_THREADS=1 .venv/bin/python app.py
 On Windows use `.venv/Scripts/python` and PowerShell environment variables. Development state defaults to `.runtime/`. Options: `ASTRO_STATE`, `ASTRO_BIND`, `ASTRO_PORT`, `ASTRO_HOSTS`, `ASTRO_SOLVER_HOME`, `ASTRO_SOLVER`. Translations are in `static/locales.json`. User notes and telescope names are kept as entered.
 
 Application code: [MIT](LICENSE). OpenNGC-derived data: **CC BY-SA 4.0**. Third-party images, software and data retain their own credits and licenses in [SOURCES.md](SOURCES.md). See [TESTING.md](TESTING.md) for validation and hardware limitations.
+
+
+Catalog search accepts identifiers such as `LDN 935`, `Lynds 935`, `Barnard 33`, `Caldwell 20` and `Sh2-155`, with exact identifiers listed first. Observing filters still apply in Targets; Add capture searches every catalog object, even outside the current night. Dark clouds have opacity/area where known, without invented magnitude or FOV dimensions. Supplemental data retain their [own licenses and source credits](catalog/sources/README.md).

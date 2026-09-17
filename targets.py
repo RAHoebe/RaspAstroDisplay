@@ -7,10 +7,11 @@ import threading
 from urllib.parse import urlencode
 
 from providers import fetch
+from catalog_search import load_catalog
 
 # OpenNGC major axes in arcminutes. Missing minor axes use the catalog diameter.
 # M45 is Mel022 in the OpenNGC addendum (150 arcmin catalog diameter).
-CATALOG = json.loads((Path(__file__).parent / 'catalog' / 'deepsky.json').read_text(encoding='utf-8'))
+CATALOG = load_catalog()
 IDS = ['moon', 'venus', 'jupiter', 'saturn', *CATALOG]
 RADII = dict(moon=1737.4, venus=6051.8, mars=3396.19, jupiter=71492., saturn=60268.)
 WIDTH, HEIGHT = 900, 540

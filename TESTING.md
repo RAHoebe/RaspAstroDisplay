@@ -1,3 +1,10 @@
+# Extended catalog checks ? 17 September 2026
+
+- 89 tests pass locally (6.7 seconds) and on the Pi 4 (39.8 seconds).
+- Regression coverage checks all existing IDs/positions/sizes, all 110 Messier and 109 Caldwell numbers, designation normalization and exact-match ordering, LDN 935 identity/opacity/area, and global catalog upload lookup independent of astronomy filters.
+- All three original capture checksums match the pre-deployment backup.
+- The running Pi returns LDN 935 in both the observing-night list and global lookup. Its object viewer retains DWARF II selection and shows unknown dimensions instead of inventing a FOV percentage.
+
 # Validation
 
 ## Post-v1.2 presentation fixes — 14 September 2026
