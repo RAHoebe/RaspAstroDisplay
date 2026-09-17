@@ -1,12 +1,14 @@
 # Astro Control Panel
 
-Tap **ASTRO** in the upper-left corner for About: installed version, author, MIT license and links to the guide, release and sources. Current release: [Release 2 · v1.2](https://github.com/RAHoebe/RaspAstroDisplay/releases/tag/v1.2).
+Current release: **[v1.3](https://github.com/RAHoebe/RaspAstroDisplay/releases/tag/v1.3)** - extended catalogs and improved local star matching.
+
+Tap **ASTRO** in the upper-left corner for About: installed version, author, MIT license and links to the guide, release and sources.
 
 A local touchscreen dashboard for planning a night with a smart telescope. For **Raspberry Pi 4 with 4 GB RAM or newer**, the original Raspberry Pi 7-inch Touch Display and the 7-inch Touch Display 2. English (US) and Dutch, large touch controls, red night mode and automatic backlight dimming.
 
 **[Website & showcase](https://rahoebe.github.io/RaspAstroDisplay/)** · **[Installation guide](https://rahoebe.github.io/RaspAstroDisplay/install.html)** · **[Sources & licenses](https://rahoebe.github.io/RaspAstroDisplay/sources.html)**
 
-The English website lives in `doc/`, with 20 actual 800 × 480 application screenshots in `doc/screenshots/`. GitHub Actions publishes only `doc/`. Local working notes belong in the ignored `plan/` folder and private helper scripts in `toolslocal/`; distributable maintenance tools remain in `tools/`.
+The English website lives in `doc/`, with 21 actual 800 × 480 application screenshots in `doc/screenshots/`. GitHub Actions publishes only `doc/`. Local working notes belong in the ignored `plan/` folder and private helper scripts in `toolslocal/`; distributable maintenance tools remain in `tools/`.
 
 ## Features
 
