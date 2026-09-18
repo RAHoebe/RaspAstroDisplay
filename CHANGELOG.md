@@ -1,5 +1,11 @@
 # Changes
 
+## 1.3.1 - 18 September 2026
+
+- Start Chromium through native Wayland when available, retaining an X11 fallback, and request fullscreen without applying a conflicting fixed window size.
+- Pass X11 authorization to the kiosk user service when required.
+- Hide the kiosk pointer from the first rendered frame and install the transparent cursor theme in both Xcursor and XDG icon locations.
+
 ## 1.3 - 17 September 2026 (Release 3)
 
 ### Robust local solving

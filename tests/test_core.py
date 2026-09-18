@@ -96,8 +96,11 @@ class ApiTests(unittest.TestCase):
         self.assertEqual(self.client.get('/api/status', headers={'Host': 'evil.example'}).status_code, 400)
 
     def test_cursor_hidden_only_on_pi_kiosk_url(self):
-        self.assertIn(b'class="kiosk"', self.client.get('/?kiosk=1').data)
-        self.assertNotIn(b'class="kiosk"', self.client.get('/').data)
+        kiosk = self.client.get('/?kiosk=1').data
+        browser = self.client.get('/').data
+        self.assertIn(b'class="kiosk"', kiosk)
+        self.assertIn(b'<style>html.kiosk,html.kiosk *{cursor:none!important}</style>', kiosk)
+        self.assertNotIn(b'class="kiosk"', browser)
 
     def test_equipment_requires_token_and_persists_validated_settings(self):
         from equipment import DEFAULT_EQUIPMENT

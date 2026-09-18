@@ -1,5 +1,10 @@
 # Validation
 
+## v1.3.1 checks — 18 September 2026
+
+- All 94 application tests pass locally in 7.0 seconds.
+- On the Raspberry Pi 4's Wayfire session, Chromium starts in native Wayland fullscreen after reboot. The kiosk cursor is hidden from the first rendered frame.
+
 ## v1.3 checks — 17 September 2026 (Release 3)
 
 The v1.3 release combines the extended object catalogs and robust local solving. The complete release suite contains **93 passing tests**, run locally and on the Raspberry Pi 4. Results below were recorded during release validation; earlier-version checks are retained as historical evidence.

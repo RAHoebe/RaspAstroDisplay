@@ -1,6 +1,6 @@
 # Astro Control Panel
 
-Current release: **[v1.3](https://github.com/RAHoebe/RaspAstroDisplay/releases/tag/v1.3)** - extended catalogs and improved local star matching.
+Current release: **[v1.3.1](https://github.com/RAHoebe/RaspAstroDisplay/releases/tag/v1.3.1)** - reliable Wayland kiosk startup and cursor hiding.
 
 Tap **ASTRO** in the upper-left corner for About: installed version, author, MIT license and links to the guide, release and sources.
 

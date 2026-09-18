@@ -25,4 +25,17 @@ temporary = path.with_suffix('.tmp')
 temporary.write_text(json.dumps(prefs))
 temporary.replace(path)
 PY
-exec "$browser" --user-data-dir="$HOME/.config/astro-chromium" --kiosk --start-maximized "${display_args[@]}" --noerrdialogs --disable-infobars --no-first-run --no-default-browser-check --disable-session-crashed-bubble --disable-features=Translate --lang=en-US --ozone-platform=x11 --password-store=basic --disable-pinch 'http://127.0.0.1:8080/?kiosk=1'
+if [ -n "${WAYLAND_DISPLAY:-}" ]; then
+    browser_platform=wayland
+    browser_display_args=()
+    for display_arg in "${display_args[@]}"; do
+        case "$display_arg" in
+            --window-size=*) ;;
+            *) browser_display_args+=("$display_arg") ;;
+        esac
+    done
+else
+    browser_platform=x11
+    browser_display_args=("${display_args[@]}")
+fi
+exec "$browser" --user-data-dir="$HOME/.config/astro-chromium" --kiosk --start-fullscreen --start-maximized "${browser_display_args[@]}" --noerrdialogs --disable-infobars --no-first-run --no-default-browser-check --disable-session-crashed-bubble --disable-features=Translate --lang=en-US --ozone-platform="$browser_platform" --password-store=basic --disable-pinch 'http://127.0.0.1:8080/?kiosk=1'
