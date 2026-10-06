@@ -173,7 +173,9 @@ def apply_profile(name, flipped=False, compact=False, rotation=None, requested_t
         if hide_cursor is not None:
             after = edit_section(after,'input',dict(cursor_theme='AstroInvisible' if hide_cursor else 'default'))
     else:
-        after = desktop.labwc_config(before,output,touch,chosen['rotation'],hide_cursor)
+        # On the Pi 4/labwc Touch Display 2, the desktop already aligns touch at 270 degrees.
+        matrix = desktop.MATRICES['normal'] if name=='touch2' and chosen['rotation']=='270' else None
+        after = desktop.labwc_config(before,output,touch,chosen['rotation'],hide_cursor,matrix)
     data = dict(profile=name,flipped=flipped,compact=compact,rotation=rotation,backend=backend,output=output,touch=touch)
     backup = save_changes(after,data,wayfire=path)
     print('Saved profile. Configuration backup:',backup)

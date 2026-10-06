@@ -66,7 +66,7 @@ python3 deploy/display.py wizard
 sudo reboot
 ```
 
-The wizard supports 0°, 90°, 180° and 270°, matching touch coordinates and kiosk sizing. See [DISPLAY.md](DISPLAY.md) for details and recovery. Physical testing of Touch Display 2 and the labwc adapter is pending.
+The wizard supports 0°, 90°, 180° and 270°, matching touch coordinates and kiosk sizing. See [DISPLAY.md](DISPLAY.md) for details and recovery. Touch Display 2 at 270° has been physically verified on a Pi 4 with labwc; other rotations still need physical checks.
 
 ## Photographs and comparison
 

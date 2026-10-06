@@ -42,7 +42,7 @@ Official references: [original Touch Display](https://www.raspberrypi.com/docume
 
 **Wayfire:** an output transform and touchscreen-to-output mapping are written in `~/.config/wayfire.ini`. Wayfire applies the output transform to mapped touch. Do not add another XInput or udev rotation matrix on top.
 
-**labwc:** touch mapping and the corresponding libinput calibration matrix go in `~/.config/labwc/rc.xml`. Kiosk startup applies the output transform through `wlr-randr`. Unrelated settings are preserved. This follows [labwc touch configuration](https://labwc.github.io/labwc-config.5.html); physical testing remains pending.
+**labwc:** touch mapping and the libinput calibration matrix go in `~/.config/labwc/rc.xml`. Kiosk startup applies the output transform through `wlr-randr`. Unrelated settings are preserved. On a Pi 4 with Touch Display 2 at 270°, physical testing found that the desktop already aligns touch, so this profile uses the identity matrix. Other labwc rotations use the corresponding rotation matrix. This follows [labwc touch configuration](https://labwc.github.io/labwc-config.5.html).
 
 The original panel was verified on a Pi 4, Wayfire 0.7.5 and **6.12.96+rpt-rpi-v8**, rotated 180°. On this updated KMS installation an old `dtoverlay=rpi-ft5406` prevented native touch from probing. Commenting that legacy line in `/boot/firmware/config.txt`, retaining `display_auto_detect=1` and `dtoverlay=vc4-kms-v3d`, restored touch. The input became `10-0038 generic ft5x06 (79)`. Device names are detected; input event numbers are not hardcoded.
 
@@ -54,7 +54,7 @@ A transparent Xcursor theme hides the pointer from desktop startup, including be
 
 Use SSH to rerun the wizard or restore `wayfire.ini` / `rc.xml` and `astro-display.json` from the same dated backup, then reboot. A `no-previous-profile` marker means that reverting also requires removing the newly created `~/.config/astro-display.json`.
 
-Check touch at top-right Settings and bottom-left Tonight after a change. Original display hardware is verified. Touch Display 2 dimensions, rotations and configuration have automated checks, but physical verification waits for the new panel.
+Check touch at top-right Settings and bottom-left Tonight after a change. The original display was physically verified on Wayfire; Touch Display 2 at 270° was physically verified on a Pi 4 with labwc. Other Touch Display 2 rotations have automated checks but await physical verification.
 ## Automatic brightness (1.1)
 
 In **Settings → Display**, select active brightness, idle brightness, automatic dimming and a timeout. Brightness is 5–100% in steps of five; idle cannot exceed active. The default is 10% idle after 60 seconds (allowed timeout: 10–3600 seconds). Upgrades keep the old active brightness; fresh installations use 70%.

@@ -35,7 +35,7 @@ def install():
     user_units=HOME/'.config/systemd/user'
     user_units.mkdir(parents=True,exist_ok=True)
     service=(ROOT/'deploy/astro-panel.service').read_text()
-    service=service.replace('@@USER@@',account).replace('@@ROOT@@',quoted(ROOT))
+    service=service.replace('@@USER@@',account).replace('@@ROOT@@',str(ROOT))
     service=service.replace('@@STATE_ENV@@',quoted('ASTRO_STATE='+str(state)))
     service=service.replace('@@PYTHON@@',quoted(ROOT/'.venv/bin/python')).replace('@@APP@@',quoted(ROOT/'app.py'))
     with tempfile.TemporaryDirectory() as temp:

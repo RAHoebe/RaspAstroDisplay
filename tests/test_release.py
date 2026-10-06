@@ -57,7 +57,7 @@ class ReleaseTests(unittest.TestCase):
             setup_module.install()
         self.assertEqual(len(units),1)
         self.assertIn('User=astronomer',units[0])
-        self.assertIn('WorkingDirectory='+setup_module.quoted(root),units[0])
+        self.assertIn('WorkingDirectory='+str(root),units[0])
         self.assertNotIn('@@',units[0])
         kiosk=(home/'.config/systemd/user/astro-kiosk.service').read_text()
         self.assertIn('ExecStart='+setup_module.quoted(root/'deploy/kiosk.sh'),kiosk)
@@ -225,6 +225,9 @@ class DesktopTests(unittest.TestCase):
         again=ET.fromstring(desktop.labwc_config(after,'DSI-1','Goodix TouchScreen','270',True))
         self.assertEqual(len(again.findall('touch')),1)
         self.assertEqual(len(again.findall('libinput/device')),2)
+        aligned=ET.fromstring(desktop.labwc_config(after,'DSI-1','Goodix TouchScreen','270',True,
+                                                        desktop.MATRICES['normal']))
+        self.assertEqual(aligned.findall('libinput/device')[1].findtext('calibrationMatrix'),'1 0 0 0 1 0')
 
 
 if __name__=='__main__':
