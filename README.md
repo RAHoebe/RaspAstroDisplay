@@ -138,3 +138,30 @@ Catalog search accepts identifiers such as `LDN 935`, `Lynds 935`, `Barnard 33`,
 Install the optional second local solver with `bash deploy/install-astrometry.sh`. It installs Debian Astrometry.net and about 334 MB of upstream Tycho-2 indexes (4107-4110), intended for roughly 0.5-8 degree fields; extreme crops may need finer indexes. All star matching remains local.
 
 Comparison first tries ASTAP twice, then Astrometry.net near the selected object and finally without a position constraint. Individual attempts are bounded; the complete fallback can take several minutes on a Pi 4. The working copy is at most 3000 pixels across; originals remain unchanged. For Astrometry.net solutions, **Show matched stars** draws circles at detected stars and crosses at predicted catalog positions. The reported median residual is in working-image pixels, not a guaranteed sky-position accuracy. A warning appears if the selected object's catalog center falls outside the solved frame. A less processed original remains useful when all attempts fail.
+
+## Skykaart links
+
+Each target row and object viewer includes a **Skykaart** link for the observing
+night shown by the dashboard. The URL preserves the evening date, location,
+elevation and time zone. Saved links stay on that night after midnight, sunrise
+or a change of location settings. Charts are calculated on demand from the
+existing catalog and cached JPL DE421 ephemeris; no extra Python packages are
+required.
+
+The poster follows the Skykaart reference style: an atmospheric woodland horizon,
+real bright stars, constellation lines, a gold target path with time markers, a
+north-up close-up and information panels. It shows altitude through the night,
+the Moon at the labelled reference time, astronomical darkness and a geometric
+observing window. Deep-sky windows require Sun below −18°; Moon and planet windows
+use −12°. Fixed targets
+also have a CDS survey reference, with a graceful fallback when the survey is
+unavailable. The SVG download includes the date and location. Times include zone
+abbreviations to distinguish repeated hours at the autumn DST transition.
+There is no weather guarantee. The background landscape is illustrative; star
+positions and constellation lines come from bundled Hipparcos and Stellarium data.
+The panorama holds stars at its labelled reference time while the target path
+shows its motion. The standalone SVG embeds the landscape and available survey
+image, and can be viewed or printed without keeping the server open.
+
+Example: `/skykaart/m1?date=2026-10-01` uses the configured location.
+Supported evening dates: 1900–2052 (within the existing DE421 coverage).

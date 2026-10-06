@@ -15,6 +15,14 @@ const percent = (t,s) => t.major ? t.major/60/Math.max(s.width,s.height)*100 : n
 const pct = value => value == null ? '—' : value < .1 ? '<'+n(.1,1)+'%' : n(value,value<10?1:0)+'%';
 function getEquipment(){return state?.equipment || equipmentState;}
 
+function skykaartURL(ident){
+ const c=state?.config,a=state?.astronomy;if(!c||!a?.night_start)return '#';
+ const parts=Object.fromEntries(new Intl.DateTimeFormat('en-CA',{timeZone:c.timezone,year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date(a.calendar_start||a.night_start)).map(p=>[p.type,p.value]));
+ const args=new URLSearchParams({date:`${parts.year}-${parts.month}-${parts.day}`,latitude:c.latitude,longitude:c.longitude,elevation:c.elevation,timezone:c.timezone,location:c.name});
+ return '/skykaart/'+encodeURIComponent(ident)+'?'+args;
+}
+function skykaartLink(ident){return `<a class="skykaart-link" href="${esc(skykaartURL(ident))}" target="_blank" rel="noopener">Skykaart ↗</a>`;}
+
 let targetData=null,targetLoading=false,targetRequestedRevision='',targetListError='';
 let targetWhen=saved('astro-target-when') || 'night',targetKind=saved('astro-target-kind') || 'all',targetQuery='';
 let targetSort=saved('astro-target-sort') || 'recommended';
@@ -53,9 +61,9 @@ targetsView=function(){
  const pages=Math.max(1,Math.ceil(all.length/3));targetPage=Math.min(targetPage,pages-1);
  const scopes=(getEquipment()?.scopes||[]).filter(s=>s.builtin||s.id===chosen?.id);
  const period={night:'Komende nacht',now:'Nu boven horizon',day:'Komende 24 uur'}[targetWhen];
- return `<section class="catalog-view"><div class="catalog-heading"><div><h1>Waarneemdoelen</h1><p class="fine">${n(all.length)} doelen · ${period}${targetKind==='nebula'?' · nevels':''}</p></div><button class="moon-shortcut" data-target="moon" aria-label="Bekijk Maan">☾ Maan <strong>${n(a.moon.altitude)}°</strong><small>${n(a.moon.illumination)}% verlicht</small></button><div class="pager"><button id="target-prev" aria-label="Vorige doelen" ${targetPage===0?'disabled':''}>‹</button><span>${targetPage+1}/${pages}</span><button id="target-next" aria-label="Volgende doelen" ${targetPage>=pages-1?'disabled':''}>›</button></div></div>`+
+ return `<section class="catalog-view"><div class="catalog-heading"><div><h1>Waarneemdoelen</h1><p class="fine">${n(all.length)} doelen · ${period}${targetKind==='nebula'?' · nevels':''}</p></div><button class="moon-shortcut" data-target="moon" aria-label="Bekijk Maan">☾ Maan <strong>${n(a.moon.altitude)}°</strong><small>${n(a.moon.illumination)}% verlicht</small></button>${skykaartLink('moon')}<div class="pager"><button id="target-prev" aria-label="Vorige doelen" ${targetPage===0?'disabled':''}>‹</button><span>${targetPage+1}/${pages}</span><button id="target-next" aria-label="Volgende doelen" ${targetPage>=pages-1?'disabled':''}>›</button></div></div>`+
  `<div class="target-toolbar"><select id="target-scope" aria-label="Telescoop voor aanbevelingen">${getEquipment().scopes.map(s=>`<option data-no-i18n value="${esc(s.id)}" ${s.id===chosen?.id?'selected':''}>${esc(s.name)}</option>`).join('')}</select><select id="target-sort" aria-label="Doelen sorteren">${targetSorts.map(([id,label])=>`<option value="${id}" ${targetSort===id?'selected':''}>${label}</option>`).join('')}</select><button id="open-target-filters">Filters / zoeken${targetQuery?' ●':''}</button></div>`+
- (all.length?`<div class="targets-list">${all.slice(targetPage*3,targetPage*3+3).map(t=>`<article class="target-row panel capture-target-row" style="--scope-cols:${scopes.length}"><button class="target-main" data-target="${esc(t.id)}" aria-label="Bekijk ${esc(t.name)}"><strong>${esc(t.name)} ↗</strong><span class="fine">${sizeText(t)} · ${esc(t.kind)}${t.magnitude!=null?' · mag '+n(t.magnitude,1):''}</span><span class="fine recommendation-reason">${targetSort==='recommended'?esc(t.recommendation?.reasons.join(' · ')):'Beste nacht '+n(t.best_altitude)+'° · '+tm(t.best_time)}</span></button><div class="target-height"><strong>${n(t.altitude,1)}°</strong><span class="fine">nu · ${esc(t.direction)}</span></div>${scopes.map(s=>`<button class="scope-count" data-capture-target="${esc(t.id)}" data-capture-scope="${esc(s.id)}" aria-label="Opnames ${esc(t.name)} met ${esc(s.name)}"><strong>${pct(percent(t,s))}</strong><span data-no-i18n>${esc(s.name)}</span><small>${captureCount(t.id,s.id)} opnames</small></button>`).join('')}</article>`).join('')}</div>`:`<div class="catalog-empty">${targetLoading?'De catalogus wordt geladen…':targetListError||'Geen doelen voor deze filters.'}</div>`)+
+ (all.length?`<div class="targets-list">${all.slice(targetPage*3,targetPage*3+3).map(t=>`<article class="target-row panel capture-target-row" style="--scope-cols:${scopes.length}"><button class="target-main" data-target="${esc(t.id)}" aria-label="Bekijk ${esc(t.name)}"><strong>${esc(t.name)} ↗</strong><span class="fine">${sizeText(t)} · ${esc(t.kind)}${t.magnitude!=null?' · mag '+n(t.magnitude,1):''}</span><span class="fine recommendation-reason">${targetSort==='recommended'?esc(t.recommendation?.reasons.join(' · ')):'Beste nacht '+n(t.best_altitude)+'° · '+tm(t.best_time)}</span></button><div class="target-height"><strong>${n(t.altitude,1)}°</strong><span class="fine">nu · ${esc(t.direction)}</span>${skykaartLink(t.id)}</div>${scopes.map(s=>`<button class="scope-count" data-capture-target="${esc(t.id)}" data-capture-scope="${esc(s.id)}" aria-label="Opnames ${esc(t.name)} met ${esc(s.name)}"><strong>${pct(percent(t,s))}</strong><span data-no-i18n>${esc(s.name)}</span><small>${captureCount(t.id,s.id)} opnames</small></button>`).join('')}</article>`).join('')}</div>`:`<div class="catalog-empty">${targetLoading?'De catalogus wordt geladen…':targetListError||'Geen doelen voor deze filters.'}</div>`)+
  `<p class="fine catalog-foot"><span data-no-i18n>${nightDates(a)}</span> · ${targetSort==='recommended'?'Advies ≈ · geen garantie · ':'% = lange beeldrand · '}boven horizon ≠ goed fotografeerbaar · <span id="counts-status">${captureSummaryError?'Opnametellers niet bereikbaar':'OpenNGC · Stellarium · CDS'}</span></p></section>`;
 };
 content.addEventListener('click',event=>{
@@ -117,6 +125,7 @@ $('#scope-form').onsubmit=async event=>{
 
 function openTarget(ident,scopeId=null,own=false){
  viewingTarget=ident;viewerZoom='fov';if(scopeId)rememberViewerScope(scopeId);
+ $('#target-skykaart').href=skykaartURL(ident);
  const e=getEquipment();if(!e)return;
  $('#viewer-scope').innerHTML=e.scopes.map(s=>`<option data-no-i18n value="${esc(s.id)}">${esc(s.name)}</option>`).join('');
  $('#viewer-scope').value=e.scopes.some(s=>s.id===lastViewerScope)?lastViewerScope:e.selected;

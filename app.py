@@ -1,8 +1,9 @@
 from copy import deepcopy
 from functools import lru_cache
-from datetime import datetime, timezone
+from datetime import datetime, date, timezone
 import json
 import gzip
+import base64
 import logging
 import math
 import os
@@ -31,6 +32,7 @@ from planning import track, observing_plan
 from display_control import DisplayController, validate as validate_display
 from forecast import forecast_periods
 from catalog_search import normalize
+from skykaart import night_chart, chart_page, chart_svg
 
 ROOT = Path(__file__).resolve().parent
 STATE = Path(os.environ.get('ASTRO_STATE', ROOT / '.runtime'))
@@ -355,6 +357,76 @@ def target_plan(ident):
     result['night_start'] = (current.get('astronomy') or {}).get('night_start')
     result['night_end'] = (current.get('astronomy') or {}).get('night_end')
     return jsonify(result)
+
+
+@app.get('/skykaart/<ident>')
+def skykaart(ident):
+    if ident not in IDS:
+        abort(404)
+    with lock:
+        c = deepcopy(config)
+        astronomy = deepcopy(data.get('astronomy') or {})
+    try:
+        # Save the location in links too, so an old chart survives settings changes.
+        for key in ('latitude', 'longitude', 'elevation'):
+            c[key] = float(request.args.get(key, c[key]))
+        c['timezone'] = request.args.get('timezone', c['timezone'])
+        c['name'] = request.args.get('location', c['name'])
+        tz = ZoneInfo(c['timezone'])
+        if (not all(math.isfinite(c[k]) for k in ('latitude', 'longitude', 'elevation'))
+                or not -90 <= c['latitude'] <= 90 or not -180 <= c['longitude'] <= 180
+                or not -500 <= c['elevation'] <= 9000 or not 1 <= len(c['name']) <= 80):
+            raise ValueError()
+        evening = request.args.get('date')
+        if evening is None:
+            if astronomy.get('location_key') != location_key(c) or not astronomy.get('night_start'):
+                return Response('De observatienacht wordt nog berekend. Probeer het zo opnieuw.', status=503, mimetype='text/plain')
+            evening = datetime.fromisoformat(astronomy['night_start']).astimezone(tz).date().isoformat()
+        chosen_date = date.fromisoformat(evening)
+        if evening != chosen_date.isoformat() or not 1900 <= chosen_date.year <= 2052:
+            raise ValueError()
+    except (ValueError, TypeError, ZoneInfoNotFoundError):
+        abort(400)
+    try:
+        chart = night_chart(str(STATE), ident, evening, c['latitude'], c['longitude'], c['elevation'], c['timezone'])
+    except Exception:
+        log.exception('Skykaart %s unavailable', ident)
+        return Response('Skykaart tijdelijk niet beschikbaar. Probeer het opnieuw zodra de astronomische gegevens geladen zijn.', status=503, mimetype='text/plain')
+    name = object_info(ident)['name']
+    if request.args.get('download') == '1':
+        reference = False
+        if ident in CATALOG:
+            try:
+                with lock:
+                    scopes = equipment_view(equipment)
+                scope = next(s for s in scopes['scopes'] if s['id'] == scopes['selected'])
+                geometry = view_geometry(dict(CATALOG[ident], id=ident), scope, 'target', 0)
+                image_path = cutout_path(STATE, ident, geometry['scale'])
+                reference = 'data:image/jpeg;base64,'+base64.b64encode(image_path.read_bytes()).decode('ascii')
+            except Exception:
+                pass  # A standalone calculated map remains useful offline.
+        response = Response(chart_svg(chart, name, c['timezone'], c['name'], reference), mimetype='image/svg+xml')
+        response.headers['Content-Disposition'] = f'attachment; filename="skykaart-{ident}-{evening}.svg"'
+    else:
+        args = dict(date=evening, latitude=c['latitude'], longitude=c['longitude'], elevation=c['elevation'],
+                    timezone=c['timezone'], location=c['name'], download='1')
+        response = Response(chart_page(chart, name, c, evening, request.path+'?'+urlencode(args), ident), mimetype='text/html')
+    response.headers['Cache-Control'] = 'no-store'
+    return response
+
+
+@app.get('/skykaart/<ident>/reference')
+def skykaart_reference(ident):
+    if ident not in CATALOG:
+        abort(404)
+    try:
+        with lock:
+            scopes = equipment_view(equipment)
+        scope = next(s for s in scopes['scopes'] if s['id'] == scopes['selected'])
+        geometry = view_geometry(dict(CATALOG[ident], id=ident), scope, 'target', 0)
+        return send_file(cutout_path(STATE, ident, geometry['scale']), mimetype='image/jpeg', max_age=86400)
+    except Exception:
+        return Response('Surveybeeld tijdelijk niet beschikbaar.', status=503, mimetype='text/plain')
 
 
 @lru_cache(maxsize=4)

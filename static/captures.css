@@ -7,6 +7,10 @@ nav button{font-size:16px}
 .moon-shortcut{min-width:120px;min-height:44px}
 .catalog-view{gap:4px;min-height:302px}
 .catalog-view .targets-list{gap:4px}
+.skykaart-link{display:inline-block;color:var(--accent);font-size:12px;text-decoration:none;padding:4px 2px;white-space:nowrap}
+.skykaart-link:hover,.skykaart-link:focus-visible{text-decoration:underline}
+.target-height .skykaart-link{display:block;font-size:10px;padding:2px 0}
+#target-skykaart{font-size:13px}
 .catalog-view .capture-target-row{padding:2px 5px;grid-template-columns:minmax(0,1fr) 65px repeat(var(--scope-cols),99px);gap:5px;min-height:62px}
 .capture-target-row button{min-height:56px;border:0;background:transparent;border-radius:8px;padding:2px 4px;min-width:0;text-align:left}
 .capture-target-row .target-main{overflow:hidden}
